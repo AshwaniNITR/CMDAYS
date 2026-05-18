@@ -1,65 +1,12 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
-//import Navbar from "./Navbar";
-//import { Description } from "@radix-ui/react-dialog";
-import { Megaphone} from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
+import CombinedBackground from "./CombinedBackground";
 
-// Simple Carousel Component (unchanged)
-const SimpleCarousel = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  return (
-    <div className="relative w-full h-full overflow-hidden">
-      {images.map((src, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentIndex ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img
-            src={src}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
 const Hero = () => {
-  const [showModal, setShowModal] = useState(false);
-   const announcements = [
-  {
-    title: "⏳ Deadline Approaching!",
-    description: "Submit your papers before the deadline: MARCH 31, 2026.",
-  },
-  {
-    title: "Travel Grants",
-    description:
-      "Limited Travel Grants will be awarded to the selected student presenters.",
-  },
-  {
-    title: "Best Paper Award in Each Track",
-    description: "One best paper award in each track",
-  },
-  {
-    title: "Journal Publication Opportunity",
-    description:
-      "Authors of papers accepted and presented at INSTCon 2026 may submit technically extended versions of their work to IEEE Transactions on Instrumentation and Measurement (TIM) and IEEE Open Journal of Instrumentation and Measurement (OJIM), in accordance with the journals’ policies for extended versions of conference papers (https://ieee-ims.org/publication/ieee-tim/information-authors, https://ieee-ims.org/publication/ieee-ojim/author-information). All such submissions will be handled as regular journal submissions and will undergo the standard peer-review process.",
-  },
-];
   const [animationStates, setAnimationStates] = useState({
     desktopLayout: false,
-    carousel: false,
     content: false,
     logo: false,
     text: false,
@@ -69,258 +16,178 @@ const Hero = () => {
     announcementsSection: false,
     submissionSection: false,
   });
-   const [now, setNow] = useState(new Date());
+  const [now, setNow] = useState(new Date());
 
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(new Date());
-    }, 1000); // update every second
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
-  const targetTime = new Date("2026-03-31T23:59:00");
-  const isDeadlinePassed = now >= targetTime;
-  if(isDeadlinePassed){
-     announcements[0].title="Notification of Acceptance Date Extended!";
-     announcements[0].description="The Notification of Acceptance date has been extended to May 31, 2026.";
-  }
-  
-  const images = [
-    "/nitfrontgate3.jpg",
-    "/nitmainbuilding2.jpg",
-    "/la1.jpg",
-    "/ecdeptNew.jpeg",
-  ];
-
-  // Images for the new section
-  const bottomImages = [
-    "/ieeekolk-removebg-preview.png",
-    "/WomenInEng-removebg-preview.png",
-    "/ieeerklsub-removebg-preview.png",
-    "https://res.cloudinary.com/dd11bvhdi/image/upload/v1741620262/logo_I3ST_camy9q.jpg",
-  ];
-  
+  // Staggered entrance animation
   useEffect(() => {
-    const hasSeen = localStorage.getItem("seenPopup");
-
-    if (!hasSeen) {
-      const timer = setTimeout(() => {
-        setShowModal(true);
-        localStorage.setItem("seenPopup", "true");
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  // Staggered entrance animation for desktop layout
-  useEffect(() => {
-    // Overall layout appears
     setTimeout(() => {
       setAnimationStates(prev => ({ ...prev, desktopLayout: true }));
     }, 100);
     
-    // Carousel appears
-    setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, carousel: true }));
-    }, 200);
-    
-    // Content section appears
     setTimeout(() => {
       setAnimationStates(prev => ({ ...prev, content: true }));
-    }, 300);
+    }, 200);
     
-    // Logo appears
     setTimeout(() => {
       setAnimationStates(prev => ({ ...prev, logo: true }));
-    }, 400);
+    }, 300);
     
-    // Text appears
     setTimeout(() => {
       setAnimationStates(prev => ({ ...prev, text: true }));
-    }, 500);
+    }, 400);
     
-    // Date badge appears
     setTimeout(() => {
       setAnimationStates(prev => ({ ...prev, dateBadge: true }));
-    }, 600);
+    }, 500);
     
-    // Location section appears
     setTimeout(() => {
       setAnimationStates(prev => ({ ...prev, locationSection: true }));
-    }, 700);
-    
-    // Each bottom image appears one by one
-    bottomImages.forEach((_, index) => {
-      setTimeout(() => {
-        setAnimationStates(prev => {
-          const newImages = [...prev.bottomImages];
-          newImages[index] = true;
-          return { ...prev, bottomImages: newImages };
-        });
-      }, 800 + index * 120);
-    });
-    
-    // Announcements section appears
-    setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, announcementsSection: true }));
-    }, 800 + bottomImages.length * 120 + 50);
-    
-    // Submission section appears
-    setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, submissionSection: true }));
-    }, 800 + bottomImages.length * 120 + 150);
+    }, 600);
     
   }, []);
 
+  // Current date for conference display as per image: NOVEMBER 17-19, 2026
+  const conferenceDate = "NOVEMBER 17-19, 2026";
+
   return (
-    <div id="home" className="relative overflow-hidden">
-      {/* Desktop Layout (for larger screens) */}
-      <div className={`hidden xl:block transition-all duration-700 ease-out ${
+    <div id="home" className="relative overflow-hidden min-h-screen">
+      <CombinedBackground/>
+      
+      {/* Desktop Layout - Full Screen Centered with no scrolling */}
+      <div className={`hidden xl:flex min-h-screen transition-all duration-700 ease-out ${
         animationStates.desktopLayout ? "opacity-100" : "opacity-0"
       }`}>
-        {/* Your existing desktop layout */}
-        <div className="flex h-[700px]">
-          {/* Left side - Carousel - 60% width */}
-          <section className={`w-[65%] h-full transition-all duration-700 ease-out ${
-            animationStates.carousel 
-              ? "opacity-100 translate-x-0" 
-              : "opacity-0 -translate-x-10"
-          }`}>
-            <SimpleCarousel images={images} />
-          </section>
-
-          {/* Right side - Content - 40% width */}
-          <section className={`relative w-[35%] h-full bg-gradient-to-br transition-all duration-700 ease-out ${
+        <div className="w-full max-w-7xl mx-auto px-6 py-8 flex flex-col justify-center h-screen">
+          {/* Main Content - Centered and compact */}
+          <section className={`w-full max-w-4xl mx-auto transition-all duration-700 ease-out ${
             animationStates.content 
-              ? "opacity-100 translate-x-0" 
-              : "opacity-0 translate-x-10"
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-10"
           }`}>
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-20 right-10 w-72 h-72 rounded-full blur-3xl animate-pulse"></div>
-              <div
-                className="absolute bottom-20 left-10 w-96 h-96 rounded-full blur-3xl animate-pulse"
-                style={{ animationDelay: "1s" }}
-              ></div>
-            </div>
-
-            {/* Content Section - Adjusted spacing to push content down */}
-            <div className="flex flex-col justify-start items-center w-full h-full pt-16 pb-2 relative z-10">
-              {/* NIT Logo - Enlarged and reduced margin */}
-              <div className={`flex justify-center items-center w-full mb-0 transition-all duration-500 ease-out ${
+            <div className="flex flex-col items-center justify-center">
+              {/* Logo - smaller for better fit */}
+              <div className={`flex justify-center items-center w-full mb-3 transition-all duration-500 ease-out ${
                 animationStates.logo 
                   ? "opacity-100 scale-100" 
                   : "opacity-0 scale-90"
               }`}>
-                <div className="relative">
-                  <div className="relative w-64 h-44 rounded-2xl transition-all duration-500 overflow-hidden">
-                    <img
-                      src="/IEEE_Instcon-removebg-preview (1).png"
-                      alt="NIT Rourkela Logo"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
+                <div className="w-64 h-40">
+                  <img
+                    src="/cropped_circle_image.png"
+                    alt="I3ST Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
 
-              {/* Text content - Reduced spacing */}
-              <div className={`text-center w-full px-6 space-y-2 transition-all duration-500 ease-out ${
+              {/* Text content styled like the image: serif fonts, deep blue/black colors */}
+              <div className={`text-center w-full space-y-2 transition-all duration-500 ease-out ${
                 animationStates.text 
                   ? "opacity-100 translate-y-0" 
                   : "opacity-0 translate-y-5"
               }`}>
-                <div className="space-y-2">
-                  <p className="text-xl lg:text-2xl text-blue-900 font-extrabold leading-tight tracking-tight">
-                    1st IEEE International Conference on Instrumentation
-                  </p>
-                  <h4 className="text-5xl lg:text-6xl font-black bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent leading-none animate-fade-in">
-                    INSTCon 2026
-                  </h4>
-                </div>
+                <p className="text-2xl font-serif font-semibold text-[#1e3a8a] tracking-wide backdrop-blur-sm bg-white/20 inline-block px-4 py-1 rounded-full mx-auto">
+                  34th National Conference
+                </p>
+<h1
+  className="
+    text-8xl
+    2xl:text-9xl
+    3xl:text-[6rem]
+    4xl:text-[7rem]
+    font-black
+    tracking-[-0.07em]
+    leading-none
+    bg-[linear-gradient(90deg,#1e1b9b_0%,#2563eb_68%,#ec4899_100%)]
+    bg-clip-text
+    text-transparent
+    drop-shadow-[0_3px_10px_rgba(59,130,246,0.12)]
+  "
+  style={{
+    fontFamily: "Arial, Helvetica, sans-serif",
+  }}
+>
+  CMDAYS 2026
+</h1>       
 
-                {/* Date badge - Reduced margin */}
-                <div className={`inline-block relative group mt-2 transition-all duration-500 ease-out delay-100 ${
+                {/* Date badge - style like the image (dark blue background with white text) */}
+                <div className={`inline-block mt-3 transition-all duration-500 ease-out delay-100 ${
                   animationStates.dateBadge 
                     ? "opacity-100 scale-100" 
                     : "opacity-0 scale-95"
                 }`}>
-                  <div className="relative bg-gradient-to-r backdrop-blur-sm px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                    <div className="flex items-center justify-center gap-3">
-                      <svg
-                        className="w-6 h-6 text-blue-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2.5"
-                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        ></path>
-                      </svg>
-                      <span className="font-black text-xl bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent tracking-wider">
-                        JULY 24-25, 2026
-                      </span>
-                    </div>
-                  </div>
+                  <div
+  className="
+    px-8
+    py-3
+    rounded-2xl
+    border
+    border-white/40
+    bg-white/55
+    backdrop-blur-md
+    shadow-[0_8px_30px_rgba(124,58,237,0.10)]
+  "
+>
+  <div className="flex items-center justify-center gap-3">
+
+    <Calendar
+      className="w-5 h-5"
+      style={{
+        color: "#7c3aed",
+      }}
+    />
+
+    <span
+      className="
+        text-2xl
+        2xl:text-3xl
+        font-extrabold
+        tracking-[0.08em]
+      "
+      style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+        backgroundImage:
+          "linear-gradient(90deg,#2563eb 0%,#4f46e5 55%,#9333ea 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+      }}
+    >
+      {conferenceDate}
+    </span>
+
+  </div>
+</div>
                 </div>
 
-                {/* Location section with NIT logo positioned on top */}
-                <div className={`relative group mt-8 transition-all duration-500 ease-out delay-200 ${
+                {/* Location section - clean and compact with subtle styling */}
+                <div className={`mt-4 transition-all duration-500 ease-out delay-200 ${
                   animationStates.locationSection 
                     ? "opacity-100 translate-y-0" 
                     : "opacity-0 translate-y-5"
                 }`}>
-                  {/* NIT Logo positioned on top of the department div */}
-                  <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="w-32 h-32 rounded-full p-2">
+                  <div className="flex flex-col items-center">
+                    <div className="w-24 h-24 mb-2">
                       <img
                         src="/nitlogo-removebg-preview.png"
                         alt="NIT Rourkela Logo"
                         className="w-full h-full object-contain"
                       />
                     </div>
-                  </div>
-
-                  {/* Department information */}
-                  <div className="pt-20 pb-4 px-6 bg-gradient-to-br rounded-2xl">
-                    <div className="flex flex-row items-start justify-between max-w-md mx-auto">
-                      <div className="flex items-start flex-1">
-                        <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-blue-600 to-purple-700 rounded-xl flex items-center justify-center shadow-lg">
-                          <svg
-                            className="w-4 h-4 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2.5"
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            ></path>
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2.5"
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div className="text-center flex-1">
-                          <p className="font-extrabold text-gray-900 text-lg mb-1 leading-tight tracking-tight">
-                            Department of Electronics and Communication
-                            Engineering
-                          </p>
-                          <p className="font-bold text-gray-700 leading-relaxed">
-                            National Institute of Technology, Rourkela
-                            <br />
-                            Rourkela, Odisha, India - 769008
-                          </p>
-                        </div>
-                      </div>
+                    <div className="text-center backdrop-blur-sm bg-white/20 px-6 py-2 rounded-2xl">
+                      <p className="font-serif font-bold text-gray-800 text-lg">
+                        Department of Physics And Astronomy
+                      </p>
+                      <p className="font-serif text-gray-600 text-base flex items-center justify-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        National Institute of Technology, Rourkela • Odisha, India - 769008
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -328,719 +195,174 @@ const Hero = () => {
             </div>
           </section>
         </div>
-
-        {/* 4 Images Section - Enlarged logos with consistent size */}
-        <div className="w-full bg-gradient-to-br py-8">
-          <div className="w-full px-12">
-            <div className="flex justify-center items-center gap-8 w-full">
-              {bottomImages.map((src, index) => (
-                <div 
-                  key={index} 
-                  className={`relative group flex-1 transition-all duration-500 ease-out ${
-                    animationStates.bottomImages[index]
-                      ? "opacity-100 translate-y-0 scale-100"
-                      : "opacity-0 translate-y-8 scale-95"
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                >
-                  <div className="relative overflow-hidden flex justify-center items-center h-36">
-                    <img
-                      src={src}
-                      alt={`Partner ${index + 1}`}
-                      className="h-full w-auto object-contain max-h-28 transition-all duration-300 group-hover:scale-110"
-                      style={{
-                        maxWidth: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Paper Submission Section */}
-        <div className="w-full max-w-7xl mx-auto px-4">
-          <div className="flex flex-col lg:flex-row w-full py-8 items-start gap-6 lg:gap-10">
-            <div className={`relative bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 rounded-2xl p-6 shadow-lg sm:max-w-lg sm:mx-auto sm:p-8 h-[450px] flex flex-col transition-all duration-700 ease-out ${
-              animationStates.announcementsSection
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-10"
-            }`}>
-              {/* Heading */}
-              <div className="text-center mb-6 sm:mb-8 flex items-center justify-center gap-2">
-                <span className="text-red-500  animate-bounce text-xl">
-                  <Megaphone size={30} />
-                </span>
-                <h3 className="text-2xl font-black bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent sm:text-3xl">
-                  Announcements
-                </h3>
-              </div>
-
-              {/* Announcements List */}
-              <div className="overflow-hidden relative flex-1">
-                <div className="animate-scroll flex flex-col space-y-4 sm:space-y-6">
-                  {[...announcements, ...announcements].map((item, index) => {
-                    const isJournal = item.title
-                      .toLowerCase()
-                      .includes("journal");
-                    const isDeadline = item.title
-                      .toLowerCase()
-                      .includes("deadline");
-
-                    return (
-                      <div
-                        key={index}
-                        className={`p-4 rounded-xl border transition-all duration-300
-              ${
-                isJournal
-                  ? "bg-yellow-100 border-yellow-400 shadow-md animate-glow"
-                  : "bg-white/70 border-blue-100 shadow-sm"
-              }
-              ${isDeadline ? "border-red-500 bg-red-100 shadow-lg animate-pulse" : ""}`}
-                      >
-                        {/* Title */}
-                        <h4
-                          className={`text-lg font-bold sm:text-xl flex items-center gap-2 justify-center
-              ${isJournal ? "text-yellow-800" : "text-blue-700"}`}
-                        >
-                          {isJournal && (
-                            <span className="text-red-500 animate-bounce text-lg">
-                              🚨
-                            </span>
-                          )}
-                          {!isJournal && (
-                            <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-red-500 text-white rounded-full shadow-sm animate-bounce">
-                              New
-                            </span>
-                          )}
-
-                          {item.title}
-                        </h4>
-
-                        {/* Description */}
-                        {!isDeadline ? (
-                          <p
-                            className={`mt-1 justify-center text-sm sm:text-base text-center
-              ${isJournal ? "text-yellow-900 font-semibold" : "text-gray-700"}`}
-                          >
-                            {item.description}
-                          </p>
-                        ) : (
-                          <div className="mt-1 text-sm sm:text-base text-center">
-                          {!isDeadlinePassed ?(
-                            <>
-                             <p> Submit your papers before the deadline:{" "}</p>
-                           <p className="text-red-600 font-extrabold text-md sm:text-xl ">  
-                              March 31, 2026
-                            </p>
-                            </>
-                          ):(
-                            <>
-                             <p> Submit your papers before the deadline:{" "}</p>
-                           <p className="text-red-600 line-through font-extrabold text-md sm:text-xl ">  
-                              March 31, 2026
-                            </p>
-                             <p className="text-green-600  font-extrabold text-md sm:text-xl ">  
-                              April 10, 2026 <span className=" text-red-500 font-extrabold ">(Hard Deadline)</span>
-                            </p>
-                            </>
-                          )}
-                          </div>
-                          
-                        )}
-
-                        {/* Badge */}
-                        {isJournal && (
-                          <div className="mt-2 flex flex-row gap-4 justify-center">
-                            <button className="text-xs font-bold px-2 py-1 bg-red-500 text-white rounded ">
-                              <a href="https://ieee-ims.org/publication/ieee-tim/information-authors" target="_blank" rel="noopener noreferrer">
-                                IEEE TIM
-                              </a>
-                            </button>
-                            <button className="text-xs font-bold px-2 py-1 bg-red-500 text-white rounded ">
-                            <a href="https://ieee-ims.org/publication/ieee-ojim/author-information" target="_blank" rel="noopener noreferrer">
-                              IEEE OJIM
-                            </a>
-                          </button>
-                          </div>
-                        
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className={`relative overflow-hidden rounded-2xl mx-auto max-w-4xl h-full flex flex-col transition-all duration-700 ease-out ${
-              animationStates.submissionSection
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-10"
-            }`}>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 opacity-10"></div>
-              <div className="relative bg-gradient-to-br backdrop-blur-lg border-2 border-transparent bg-clip-padding rounded-2xl p-1 shadow-xl">
-                <div className="relative bg-gradient-to-r from-blue-50 via-white to-purple-50 rounded-xl p-8 text-center">
-                  {/* Animated badge */}
-                  {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full animate-pulse mb-6">
-                    <div className="relative flex h-3 w-3">
-                      <div className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></div>
-                      <div className="relative inline-flex h-3 w-3 rounded-full bg-white"></div>
-                    </div>
-                    <span className="font-bold text-white text-sm tracking-wider">
-                      LIVE NOW
-                    </span>
-                  </div> */}
-
-                  {/* Main message */}
-                  <div className="space-y-2 mb-8">
-                    <h3 className="text-4xl font-black bg-gradient-to-r from-blue-700 via-purple-700 to-blue-700 bg-clip-text text-transparent">
-                      Paper Submission is Now Closed!
-                    </h3>
-                    <p className="text-gray-600 font-semibold text-lg">
-                        Thank you for your interest. Stay tuned for updates on the review process and notification of acceptance.
-                    </p>
-                  </div>
-
-                  {/* Main CTA Button */}
-                  {/* <a
-                    href="https://cmt3.research.microsoft.com/INSTCON2026"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group mb-4 inline-flex items-center justify-center w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-purple-800 text-white font-extrabold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300"
-                  >
-                    <span className="tracking-wide">Click Here to Submit</span>
-                    <svg
-                      className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      ></path>
-                    </svg>
-                  </a> */}
-
-                  {/* Divider with "OR" */}
-                  <div className="relative my-6">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div className="relative flex justify-center">
-                      <span className="px-4 bg-gradient-to-r from-blue-50 via-white to-purple-50 text-gray-500 font-medium text-sm">
-                        Keep Checking the Announcements for Updates
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Secondary Button for Guidelines */}
-                  <a
-                    href="/announcements"
-                    className="group inline-flex items-center justify-center w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 hover:border-blue-700 font-bold text-lg px-10 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
-                  >
-                     <Megaphone size={30} />
-                    <span className="tracking-wide">
-                      View Announcements
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      {/* SPECIFIC LAYOUT FOR 1024x600 SCREENS (Nest Hub) */}
-      <div className="hidden lg:block xl:hidden">
-        {/* Ultra-compact layout for 1024x600 */}
-        <div className="h-[600px] flex flex-col">
-          {/* Top row with carousel and info */}
-          <div className="flex flex-1 min-h-0">
-            {/* Carousel - 55% width */}
-            <div className="w-[95%] h-full">
-              <SimpleCarousel images={images} />
-            </div>
-
-            {/* Info section - 45% width, SUPER COMPACT */}
-            <section className="relative w-[45%] h-full">
-              {/* Content - Centered vertically and horizontally */}
-              <div className="flex flex-col items-center justify-center w-full h-full px-2 pt-10">
-                {/* Logo - Centered */}
-                <div className="mb-2 flex justify-center">
-                  <div className="w-44 h-28">
-                    <img
-                      src="/IEEE_Instcon-removebg-preview (1).png"
-                      alt="IEEE Logo"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/* Text content - All centered */}
-                <div className="text-center w-full px-1 space-y-1">
-                  <p className="text-xs font-bold text-blue-900 leading-tight mb-1 text-center">
-                    1st IEEE International Conference on Instrumentation
-                  </p>
-                  <h4 className="text-2xl font-black bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent mb-2 text-center">
-                    INSTCon 2026
-                  </h4>
-
-                  {/* Date badge - Centered */}
-                  <div className="flex justify-center mb-2">
-                    <div className="relative px-3 py-1 rounded-lg inline-block">
-                      <div className="flex items-center justify-center gap-1">
-                        <svg
-                          className="w-3 h-3 text-blue-700"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          ></path>
-                        </svg>
-                        <span className="font-bold text-xs bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent">
-                          JULY 24-25, 2026
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Department section - Centered */}
-                  <div className="relative mt-2 flex justify-center">
-                    <div className="flex flex-col items-center max-w-[90%]">
-                      <div className="mb-1 flex justify-center">
-                        <div className="w-20 h-20">
-                          <img
-                            src="/nitlogo-removebg-preview.png"
-                            alt="NIT Logo"
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-center">
-                        <div className="flex-shrink-0 mr-1 mt-0.5">
-                          <svg
-                            className="w-3 h-3 text-blue-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            ></path>
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div className="text-center">
-                          <p className="font-bold text-gray-900 text-[12px] leading-tight mb-0.5">
-                            Dept. of Electronics & Communication Engg.
-                          </p>
-                          <p className="text-[10px] font-bold text-gray-700 leading-tight">
-                            National Institute of Technology, Rourkela
-                            <br />
-                            Rourkela, Odisha, India - 769008
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+      {/* Tablet Layout (lg) */}
+      <div className="hidden lg:flex xl:hidden min-h-screen items-center justify-center">
+        <div className="w-full max-w-4xl mx-auto px-6 py-12 flex flex-col items-center">
+          <div className="w-56 h-40 mb-3">
+            <img
+              src="/cropped_circle_image.png"
+              alt="CMDAYS Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
 
-          {/* Bottom section - 4 images in a row - Centered */}
-          <div className="h-16 bg-gradient-to-br py-1">
-            <div className="w-full px-2 h-full flex items-center justify-center">
-              <div className="grid grid-cols-4 gap-2 h-full w-full max-w-[95%]">
-                {bottomImages.map((src, index) => (
-                  <div
-                    key={index}
-                    className="relative flex justify-center items-center h-full"
-                  >
-                    <img
-                      src={src}
-                      alt={`Partner ${index + 1}`}
-                      className="h-full w-auto object-contain max-h-16"
-                    />
-                  </div>
-                ))}
+          <div className="text-center w-full space-y-2">
+            <p className="text-xl font-serif font-semibold text-[#1e3a8a] backdrop-blur-sm bg-white/20 inline-block px-4 py-1 rounded-full">
+              34th National Conference
+            </p>
+            <h1
+  className="
+    text-8xl
+    font-black
+    tracking-[-0.07em]
+    leading-none
+    bg-[linear-gradient(90deg,#1e1b8f_0%,#1d4ed8_72%,#7c3aed_100%)]
+    bg-clip-text
+    text-transparent
+    drop-shadow-[0_3px_12px_rgba(37,99,235,0.15)]
+  "
+  style={{
+    fontFamily: "Arial, Helvetica, sans-serif",
+  }}
+>
+  CMDAYS 2026
+</h1>
+          
+
+            <div className="flex justify-center mt-2">
+              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-sm bg-[#0f2b4d] backdrop-blur-sm">
+                <Calendar className="w-4 h-4 text-white" />
+                <span className="font-serif font-bold text-white">{conferenceDate}</span>
               </div>
             </div>
-          </div>
 
-          {/* Paper Submission Section - Centered */}
-          <div className="px-2 py-1 flex justify-center">
-            <div className="relative bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-2 w-full max-w-[95%]">
-              {/* Live badge - Centered */}
-              {/* <div className="flex justify-center mb-1">
-                <div className="inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full animate-pulse">
-                  <div className="relative flex h-1.5 w-1.5">
-                    <div className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></div>
-                    <div className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white"></div>
-                  </div>
-                  <span className="font-bold text-white text-[10px]">LIVE</span>
-                </div>
-              </div> */}
-
-              {/* Message - Centered */}
-              <div className="text-center mb-1">
-                <h3 className="text-xs font-black bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent mb-0.5">
-                 Paper Submission is Now Closed!
-                </h3>
-                <p className="text-gray-700 font-semibold text-[10px]">
-                  Thank you for your interest. Stay tuned for updates on the review process and notification of acceptance.
+            <div className="mt-4 flex flex-col items-center">
+              <div className="w-20 h-20 mb-2">
+                <img src="/nitlogo-removebg-preview.png" alt="NIT Logo" className="w-full h-full object-contain" />
+              </div>
+              <div className="backdrop-blur-sm bg-white/20 px-6 py-2 rounded-2xl">
+                <p className="font-serif font-bold text-gray-800 text-base">Department of Electronics and Communication Engineering</p>
+                <p className="font-serif text-gray-600 text-sm flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5" />
+                  National Institute of Technology, Rourkela, Odisha, India - 769008
                 </p>
               </div>
-
-              {/* Buttons - Centered */}
-              <div className="space-y-1">
-                {/* <a
-                  href="https://cmt3.research.microsoft.com/INSTCON2026"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-1 px-2 rounded text-center text-[10px]"
-                >
-                  Click to Submit
-                </a> */}
-                <a
-                  href="/announcements"
-                  className="block w-full border border-blue-600 text-blue-600 font-bold py-1 px-2 rounded text-center text-[10px]"
-                >
-                  View Announcements
-                </a>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile Layout (for phones) */}
-      <div className="lg:hidden relative">
-        {/* Full screen carousel */}
-        <div className="relative h-screen">
-          <div className="absolute inset-0">
-            <SimpleCarousel images={images} />
-          </div>
+      {/* Mobile Layout */}
+      {/* Mobile Layout */}
+<div className="lg:hidden relative min-h-screen flex flex-col">
+  <div className="flex-1 flex flex-col items-center justify-center px-5 py-10 text-center">
 
-          {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-transparent"></div>
+    {/* Logo */}
+    <div className="w-40 h-28 sm:w-48 sm:h-32 mb-2">
+      <img
+        src="/cropped_circle_image.png"
+        alt="CMDAYS Logo"
+        className="w-full h-full object-contain"
+      />
+    </div>
 
-          {/* Content overlay - Adjusted for screens above 700px */}
-          <div className="relative z-10 h-full flex flex-col justify-end px-5 pb-6 space-y-5 pt-16 sm:justify-center sm:pt-20 sm:pb-20 sm:space-y-6">
-            {/* Title and Conference Info */}
-            <div className="text-center backdrop-blur-sm bg-white/20 rounded-lg space-y-3 sm:space-y-4 sm:px-4 sm:py-3">
-              <p className="text-md sm:text-lg md:text-xl font-bold text-white/95 drop-shadow-2xl leading-tight">
-                1st IEEE International Conference on Instrumentation
-              </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight drop-shadow-2xl tracking-tight">
-                INSTCon 2026
-              </h1>
-            </div>
+    {/* Conference Subtitle */}
+    <p className="text-sm sm:text-base font-serif font-semibold text-[#1e3a8a] backdrop-blur-sm bg-white/20 inline-block px-3 py-0.5 rounded-full">
+      34th National Conference
+    </p>
 
-            {/* Date badge - Clean style */}
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-3 px-5 py-3 bg-white/20 backdrop-blur-lg rounded-xl sm:px-6 sm:py-3">
-                <svg
-                  className="w-5 h-5 text-white drop-shadow-2xl sm:w-6 sm:h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span className="font-black text-lg sm:text-xl text-white tracking-wider drop-shadow-2xl">
-                  JULY 24-25, 2026
-                </span>
-              </div>
-            </div>
+    {/* Main Title */}
+    <h1
+      className="
+        text-[3.6rem]
+        sm:text-7xl
+        font-black
+        tracking-[-0.06em]
+        leading-[0.92]
+        bg-clip-text
+        text-transparent
+        drop-shadow-[0_3px_10px_rgba(59,130,246,0.10)]
+      "
+      style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+        backgroundImage: `
+          linear-gradient(
+            135deg,
+            #1a1b9f 0%,
+            #1a1b9f 18%,
+            #1d4ed8 42%,
+            #4f46e5 68%,
+            #ec4899 100%
+          )
+        `,
+      }}
+    >
+      CMDAYS 2026
+    </h1>
 
-            {/* Location section - Centered and adjusted for larger screens */}
-            <div className="px-3 backdrop-blur-sm bg-white/20 rounded-lg py-4 sm:px-4 sm:py-4 sm:max-w-md sm:mx-auto">
-              <div className="flex items-start gap-3 sm:flex-col sm:items-center sm:gap-4">
-                <svg
-                  className="w-6 h-6 text-white drop-shadow-2xl flex-shrink-0 mt-1 sm:w-7 sm:h-7 sm:mt-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  ></path>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  ></path>
-                </svg>
-                <div className="text-left flex-1 sm:text-center sm:w-full">
-                  <p className="font-extrabold text-white text-sm mb-1 leading-snug drop-shadow-2xl tracking-tight sm:text-base sm:mb-2 sm:leading-tight">
-                    Department of Electronics and Communication Engineering
-                  </p>
-                  <p className="font-bold text-xs text-white/95 leading-relaxed drop-shadow-2xl sm:text-sm sm:leading-snug">
-                    National Institute of Technology, Rourkela
-                    <br />
-                    Rourkela, Odisha, India - 769008
-                  </p>
-                </div>
-              </div>
-            </div>
+    {/* Date Badge */}
+    <div
+      className="
+        inline-flex
+        items-center
+        gap-2
+        px-5
+        py-2
+        rounded-2xl
+        border
+        border-white/40
+        bg-white/55
+        backdrop-blur-md
+        shadow-[0_8px_30px_rgba(124,58,237,0.10)]
+        mt-3
+      "
+    >
+      <Calendar
+        className="w-4 h-4"
+        style={{
+          color: "#7c3aed",
+        }}
+      />
 
-            {/* 4 Images Overlay for Mobile - Adjusted for larger screens */}
-            <div className="grid grid-cols-2 gap-3 px-3 mt-4 sm:mt-6 sm:gap-4 sm:px-6 sm:max-w-lg sm:mx-auto">
-              {bottomImages.map((src, index) => (
-                <div key={index} className="relative group">
-                  <div className="relative rounded-xl overflow-hidden group-hover:bg-black/90 transition-all duration-300 group-hover:scale-105 h-28 sm:h-36">
-                    <img
-                      src={src}
-                      alt={`Partner ${index + 1}`}
-                      className="w-full h-full object-contain p-2 sm:p-3"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <span
+        className="text-sm font-extrabold tracking-[0.06em]"
+        style={{
+          fontFamily: "Arial, Helvetica, sans-serif",
+          backgroundImage:
+            "linear-gradient(90deg,#2563eb 0%,#4f46e5 55%,#9333ea 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+      >
+        {conferenceDate}
+      </span>
+    </div>
 
-        {/* Paper Submission Section for Mobile - Adjusted for larger screens */}
-        <div className="w-full flex flex-col px-4 py-8 sm:px-8 sm:py-10 gap-10">
-          <div className="relative bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 rounded-2xl p-6 shadow-lg sm:max-w-lg sm:mx-auto sm:p-8 h-[450px] flex flex-col">
-            {/* Heading */}
-            <div className="text-center mb-6 sm:mb-8 flex items-center justify-center gap-2">
-              <span className="text-red-500  animate-bounce text-xl">
-                <Megaphone size={30} />
-              </span>
-              <h3 className="text-2xl font-black bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent sm:text-3xl">
-                Announcements
-              </h3>
-            </div>
-
-            {/* Announcements List */}
-            <div className="overflow-hidden relative flex-1">
-              <div className="animate-scroll flex flex-col space-y-4 sm:space-y-6">
-                {[...announcements, ...announcements].map((item, index) => {
-                  const isJournal = item.title
-                    .toLowerCase()
-                    .includes("journal");
-                  const isDeadline = item.title
-                    .toLowerCase()
-                    .includes("deadline");
-
-                  return (
-                    <div
-                      key={index}
-                      className={`p-4 rounded-xl border transition-all duration-300
-              ${
-                isJournal
-                  ? "bg-yellow-100 border-yellow-400 shadow-md animate-glow"
-                  : "bg-white/70 border-blue-100 shadow-sm"
-              }
-              ${isDeadline ? "border-red-500 bg-red-100 shadow-lg animate-pulse" : ""}`}
-                    >
-                      {/* Title */}
-                      <h4
-                        className={`text-md font-bold sm:text-xl flex items-center gap-2 justify-center
-              ${isJournal ? "text-yellow-800" : "text-blue-700"}`}
-                      >
-                        {isJournal && (
-                          <span className="text-red-500 animate-bounce text-lg">
-                            🚨
-                          </span>
-                        )}
-                         {!isJournal && (
-                            <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-red-500 text-white rounded-full shadow-sm animate-bounce">
-                              New
-                            </span>
-                          )}
-
-                        {item.title}
-                      </h4>
-
-                      {/* Description */}
-                      {!isDeadline ? (
-                        <p
-                          className={`mt-1 justify-center text-sm sm:text-base text-center
-              ${isJournal ? "text-yellow-900 font-semibold" : "text-gray-700"}`}
-                        >
-                          {item.description}
-                        </p>
-                      ) : (
-                       <div className="mt-1 text-sm sm:text-base text-center">
-                          {!isDeadlinePassed ?(
-                            <>
-                             <p> Submit your papers before the deadline:{" "}</p>
-                           <p className="text-red-600 font-extrabold text-md sm:text-xl ">  
-                              March 31, 2026
-                            </p>
-                            </>
-                          ):(
-                            <>
-                             <p> Submit your papers before the deadline:{" "}</p>
-                           <p className="text-red-600 line-through font-extrabold text-md sm:text-xl ">  
-                              March 31, 2026
-                            </p>
-                             <p className="text-green-600  font-extrabold text-md sm:text-xl ">  
-                              April 10, 2026 <span className=" text-red-500 font-extrabold ">(Hard Deadline)</span>
-                            </p>
-                            </>
-                          )}
-                          </div>
-                      )}
-
-                      {/* Badge */}
-                      {isJournal && (
-                         <div className="mt-2 flex flex-row gap-4 justify-center">
-                            <button className="text-xs font-bold px-2 py-1 bg-red-500 text-white rounded ">
-                              <a href="https://ieee-ims.org/publication/ieee-tim/information-authors" target="_blank" rel="noopener noreferrer">
-                                IEEE TIM
-                              </a>
-                            </button>
-                            <button className="text-xs font-bold px-2 py-1 bg-red-500 text-white rounded ">
-                            <a href="https://ieee-ims.org/publication/ieee-ojim/author-information" target="_blank" rel="noopener noreferrer">
-                              IEEE OJIM
-                            </a>
-                          </button>
-                          </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="relative bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 rounded-2xl p-6 shadow-lg sm:max-w-lg sm:mx-auto sm:p-8">
-            {/* Live badge */}
-            {/* <div className="flex justify-center mb-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full animate-pulse sm:px-4 sm:py-1.5">
-                <div className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
-                  <div className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></div>
-                  <div className="relative inline-flex h-2 w-2 rounded-full bg-white sm:h-2.5 sm:w-2.5"></div>
-                </div>
-                <span className="font-bold text-white text-xs tracking-wider sm:text-sm">
-                  LIVE NOW
-                </span>
-              </div>
-            </div> */}
-
-            {/* Message */}
-            <div className="text-center space-y-2 mb-6 sm:space-y-3 sm:mb-8">
-              <h3 className="text-2xl font-black bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent sm:text-3xl">
-                Paper Submission is Now Closed!
-              </h3>
-              <p className="text-gray-700 font-semibold text-base sm:text-lg">
-                Thank you for your interest. Stay tuned for updates on the review process and notification of acceptance.
-              </p>
-            </div>
-
-            {/* Main Button */}
-            {/* <a
-              href="https://cmt3.research.microsoft.com/INSTCON2026"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full mb-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-purple-800 text-white font-bold py-4 px-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 sm:py-5 sm:text-lg"
-            >
-              <div className="flex items-center justify-center gap-2">
-                <span className="font-extrabold tracking-wide">
-                  Click Here to Submit
-                </span>
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  ></path>
-                </svg>
-              </div>
-            </a> */}
-
-            {/* Divider */}
-            {/* <div className="relative my-4 sm:my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center">
-                <span className="px-4 bg-gradient-to-br from-blue-50 to-purple-50 text-gray-500 font-medium text-sm sm:text-base">
-                  OR
-                </span>
-              </div>
-            </div> */}
-
-            {/* Guidelines Button */}
-            {/* <a
-              href="/submitPaper"
-              className="group block w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 hover:border-blue-700 font-bold py-4 px-6 rounded-xl text-center shadow-sm hover:shadow-md transition-all duration-300 active:scale-95 sm:py-5 sm:text-lg"
-            >
-              <div className="flex items-center justify-center gap-2">
-                <svg
-                  className="w-4 h-4 text-blue-600 group-hover:text-blue-700 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  ></path>
-                </svg>
-                <span className="font-bold tracking-wide">
-                  View Submission Guidelines
-                </span>
-              </div>
-            </a> */}
-          </div>
-        </div>
+    {/* Location Section */}
+    <div className="mt-5">
+      <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2">
+        <img
+          src="/nitlogo-removebg-preview.png"
+          alt="NIT Logo"
+          className="w-full h-full object-contain"
+        />
       </div>
 
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+      <div className="backdrop-blur-sm bg-white/20 px-4 py-2 rounded-2xl">
+        <p className="font-serif font-bold text-gray-800 text-sm sm:text-base px-2">
+          Department of Physics And Astronomy
+        </p>
 
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out;
-        }
-      `}</style>
+        <p className="font-serif text-gray-600 text-xs sm:text-sm flex items-center justify-center gap-1 mt-1 px-4">
+          <MapPin className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />
+          National Institute of Technology, Rourkela • Odisha, India
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   );
 };

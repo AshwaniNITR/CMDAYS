@@ -6,23 +6,28 @@ import { useState, useEffect, useRef } from "react";
 const IMPORTANT_DATES = [
   {
     id: 1,
-    title: "Paper Submission Starts",
-    date: new Date("2025-12-15"),
+    title: "Abstract Submission Begins",
+    date: new Date("2026-08-20"),
   },
   {
     id: 2,
-    title: "Paper Submission Ends",
-    date: new Date("2026-03-31"),
+    title: "Abstract Submission Ends",
+    date: new Date("2026-09-20"),
   },
   {
     id: 3,
-    title: "Notification of Acceptance",
-    date: new Date("2026-05-31"),
+    title: "Confirmation of Acceptance",
+    date: new Date("2026-09-30"),
   },
   {
     id: 4,
-    title: "Final Paper Submission",
-    date: new Date("2026-05-31"),
+    title: "Registration Begins",
+    date: new Date("2026-10-01"),
+  },
+   {
+    id: 5,
+    title: "Registration Ends",
+    date: new Date("2026-10-10"),
   },
 ];
 
@@ -100,7 +105,7 @@ export default function ImportantDatesSlider() {
       </div>
 
       {/* Header with gradient */}
-      <div className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 py-4 px-6 flex justify-center items-center border-b border-blue-700/50 backdrop-blur-sm">
+      <div className="relative bg-gradient-to-r from-purple-700 via-purple-800 to-purple-700 py-4 px-6 flex justify-center items-center border-b border-blue-700/50 backdrop-blur-sm">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center">
             <svg
