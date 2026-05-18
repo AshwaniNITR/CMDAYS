@@ -58,7 +58,7 @@ const Hero = () => {
 
   return (
     <div id="home" className="relative overflow-hidden min-h-screen">
-      <CombinedBackground/>
+      {/* <CombinedBackground/> */}
       
       {/* Desktop Layout - Full Screen Centered with no scrolling */}
       <div className={`hidden xl:flex min-h-screen transition-all duration-700 ease-out ${

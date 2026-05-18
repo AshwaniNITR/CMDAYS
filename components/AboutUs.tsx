@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import CombinedBackground from "./CombinedBackground";
 
+
+
 const AboutUs = () => {
   const controls = useAnimation();
 
@@ -55,10 +57,10 @@ const AboutUs = () => {
       className="relative overflow-hidden py-20 px-6 sm:px-10 lg:px-16"
     >
       {/* Animated Background */}
-      <CombinedBackground />
+      {/* <CombinedBackground /> */}
 
       {/* Soft Overlay */}
-      <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px]" />
+      {/* <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px]" /> */}
 
       <motion.div
         ref={ref}

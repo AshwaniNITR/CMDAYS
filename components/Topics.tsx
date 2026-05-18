@@ -128,7 +128,7 @@ const Topics = () => {
   return (
     <div
       id="topics"
-      className="bg-gradient-to-tr shadow-xl p-4 sm:p-6 md:p-10 lg:p-16"
+      className="bg-gradient-to-tr  p-4 sm:p-6 md:p-10 lg:p-16"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -139,10 +139,10 @@ const Topics = () => {
           className="mb-8 sm:mb-10 md:mb-12 text-center"
         >
           <div className="relative inline-block text-center">
-            <h1 className="text-2xl  sm:text-3xl md:text-4xl lg:text-5xl text-center font-extrabold bg-gradient-to-r from-blue-900 via-blue-700 to-blue-900 bg-clip-text text-transparent mb-2">
+            <h1 className="text-4xl  sm:text-3xl md:text-4xl lg:text-5xl text-center font-extrabold bg-gradient-to-r from-purple-800 via-purple-700 to-violet-600 bg-clip-text text-transparent mb-2">
               Conference Tracks
             </h1>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-900 via-blue-700 to-purple-600"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-800 via-purple-700 to-violet-600"></div>
           </div>
         </motion.div>
 

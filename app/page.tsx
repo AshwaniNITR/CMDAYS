@@ -5,6 +5,7 @@ import AboutUs from "../components/AboutUs";
 import Topics from "../components/Topics";
 import ImportantDatesSlider from '../components/ImportantDates';
 import SpeakersCarousel from '../components/SpeakersCarousel';
+import AboutAndTopic from '../components/AboutAndTopic';
 
 export default function Page() {
     return <div>
@@ -13,9 +14,8 @@ export default function Page() {
      
       <SpeakersCarousel/>
       <h1 className="text-3xl font-bold underline"></h1>
-      <AboutUs />
-      <Topics />
+      <AboutAndTopic/>
       
-      {/* <Contact/> */}
+       {/* <Contact/>  */}
     </div>
   }

@@ -18,9 +18,10 @@ export default function Contact() {
   };
   
   return (
-    <div id="contactus" className="bg-white">
+    <div id="contactus" className="relative bg-white">
       {/* Footer Section */}
-      <footer className="bg-blue-950 text-white py-10 rounded-t-3xl w-full overflow-hidden">
+
+      <footer className="relative z-20 bg-blue-950 text-white py-10 rounded-t-3xl w-full overflow-hidden">
         <div className="container mx-auto flex flex-col lg:flex-row justify-between my-5 px-4 md:px-6">
           {/* Conference Details */}
           <div className="lg:w-2/5 mb-8 lg:mb-0">

@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 import SecondBack from "../../components/SecondBack";
 import CombinedBackground from "../../components/CombinedBackground";
 import Contact from "../../components/contact";
+import OtherBackground from "../../components/OtherBackground";
 // import { CommitteesBackground } from "../../components/Background";
 
 
@@ -35,19 +36,21 @@ const AboutUs: FC = () => {
     rest: { scale: 1 },
   };
 
-  return (
-    <div className="py-20 px-4 sm:px-6 lg:px-8 ">
-      {/* <Navbar /> */}
-      <CombinedBackground />
+ return (
+  <div className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <OtherBackground />
+
+    <div className="relative z-20">
       <motion.h2
-        className="text-4xl md:text-5xl backdrop-blur-sm  font-extrabold text-center mb-4 bg-gradient-to-r  from-[#003366] to-[#0066cc] bg-clip-text text-transparent "
+        className="text-4xl md:text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 bg-clip-text text-transparent"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        About INSTCon 2026
+        About CMDAYS 2026
       </motion.h2>
-      <div className="w-24 h-1.5 bg-gradient-to-r from-[#003366] to-[#0066cc] mx-auto mb-6 rounded-full"></div>
+
+      <div className="w-24 h-1.5 bg-gradient-to-r from-purple-900 to-purple-900 mx-auto mb-6 rounded-full"></div>
 
       <div className="max-w-6xl mx-auto space-y-24">
         {sections.map((section, index) => (
@@ -62,44 +65,13 @@ const AboutUs: FC = () => {
             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
           >
-            <motion.div
-              className="relative w-full lg:w-1/2 overflow-hidden rounded-xl shadow-lg"
-              variants={imageVariants}
-              whileHover="hover"
-              initial="rest"
-              transition={{ duration: 0.3 }}
-            >
-              <Image
-                src={section.image}
-                alt={section.title}
-                width={800}
-                height={450}
-                className={`w-full ${
-                  section.image === "/AboutTheTheme.jpg"
-                    ? "object-fill"
-                    : "object-contain"
-                } h-64`}
-                priority={index < 2}
-              />
-            </motion.div>
-
-            <div
-              className={`w-full lg:w-1/2 ${
-                index % 2 === 0 ? "lg:pl-6" : "lg:pr-6"
-              }`}
-            >
-              <h3 className="text-3xl md:text-3xl font-bold text-gray-900 mb-4">
-                {section.title}
-              </h3>
-              <p className="text-slate-900 font-semibold leading-relaxed text-justify">
-                {section.content}
-              </p>
-            </div>
+            <motion.div className="relative w-full lg:w-1/2 overflow-hidden rounded-xl shadow-lg" variants={imageVariants} whileHover="hover" initial="rest" transition={{ duration: 0.3 }} > <Image src={section.image} alt={section.title} width={800} height={450} className={`w-full ${ section.image === "/AboutTheTheme.jpg" ? "object-fill" : "object-contain" } h-64`} priority={index < 2} /> </motion.div> <div className={`w-full lg:w-1/2 ${ index % 2 === 0 ? "lg:pl-6" : "lg:pr-6" }`   } > <h3 className="text-3xl md:text-3xl font-bold text-gray-900 mb-4"> {section.title} </h3> <p className="text-slate-900 font-semibold leading-relaxed text-justify"> {section.content} </p> </div>
           </motion.div>
         ))}
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default AboutUs;
