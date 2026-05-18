@@ -129,7 +129,7 @@ export default function CombinedBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden pt-8 md:pt-12 lg:pt-0">
+    <div className="absolute top-0 left-0 w-full min-h-full overflow-hidden pt-8 md:pt-12 lg:pt-0 pointer-events-none">
 
       {/* ======================================== */}
       {/* BASE GRADIENT — soft lavender-white-pink  */}
@@ -321,10 +321,12 @@ export default function CombinedBackground() {
         </svg>
       </div>
 
+      
+
       {/* ======================================== */}
       {/* BOTTOM-RIGHT ROTATING ATOM                */}
       {/* ======================================== */}
-      <div ref={atomRightRef} className="absolute right-[-30px] md:right-[-40px] lg:right-[-40px] bottom-[2%] md:bottom-[5%] lg:bottom-[5%] scale-75 md:scale-90 lg:scale-100 xl:scale-110 origin-bottom-right">
+      <div ref={atomRightRef} className="absolute mt-5 right-[-30px] md:right-[-40px] lg:right-[-40px] bottom-[2%] md:bottom-[5%] lg:bottom-[5%] scale-75 md:scale-90 lg:scale-100 xl:scale-110 origin-bottom-right">
         <svg width="320" height="320" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <radialGradient id="nucGradR" cx="35%" cy="30%" r="65%">
