@@ -21,10 +21,15 @@ const AboutUs: FC = () => {
   const sections: Section[] = [
     {
       title: "About NIT ROURKELA",
-      content: `National Institute of Technology (NIT) Rourkela is a prestigious institution of national importance, which is fully funded by the Ministry of Education. The institute is recognized as one of the leading national-level institutions for technical education in India. Its primary objective is to produce highly skilled and competent engineers and scientists through its graduate, post-graduate, and doctoral programs in various branches of Engineering and Science. NIT Rourkela has been ranked 317 in QS Asia University, 13 in NIRF Engineering, 30 in NIRF Research and 34 in NIRF Overall. Department of Physics and Astronomy at NIT Rourkela was established in 1961. The department is known for providing high-quality education in undergraduate and postgraduate studies, as well as PhD and M.Tech (Research) programs. The department is actively engaged in research activities in the field of low-temperature physics, astrophysics, astronomy, functional material, soft matter and polymer physics, and theoretical physics etc. For further information about the institute, please visit our website at www.nitrkl.ac.in
-`,
+      content: `National Institute of Technology (NIT) Rourkela is a prestigious institution of national importance, which is fully funded by the Ministry of Education. The institute is recognized as one of the leading national-level institutions for technical education in India. Its primary objective is to produce highly skilled and competent engineers and scientists through its graduate, post-graduate, and doctoral programs in various branches of Engineering and Science. NIT Rourkela has been ranked 317 in QS Asia University, 13 in NIRF Engineering, 30 in NIRF Research and 34 in NIRF Overall.`,
       image: "/nitlogo.png",
     },
+    {
+      title:"About Department of Physics and Astronomy",
+      content: ` Department of Physics and Astronomy at NIT Rourkela was established in 1961. The department is known for providing high-quality education in undergraduate and postgraduate studies, as well as PhD and M.Tech (Research) programs. The department is actively engaged in research activities in the field of low-temperature physics, astrophysics, astronomy, functional material, soft matter and polymer physics, and theoretical physics etc. For further information about the institute, please visit our website at www.nitrkl.ac.in
+      `,
+      image: "/physics.jpg",
+    }
   ];
 
   const cardVariants = {

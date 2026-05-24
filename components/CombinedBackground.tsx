@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { CommitteesBackground } from "./Background";
 
 export default function CombinedBackground() {
   const atomRef = useRef(null);
@@ -17,84 +18,83 @@ export default function CombinedBackground() {
       angleRight = (angleRight + 0.3) % 360;
       
       if (atomRef.current) {
-  const electrons = atomRef.current.querySelectorAll('.electron');
+        const electrons = atomRef.current.querySelectorAll('.electron');
+        const orbitRotations = [0, 60, 120];
 
-  const orbitRotations = [0, 60, 120];
+        electrons.forEach((electron, index) => {
+          const orbitAngle = angle + (index * 120);
+          const theta = (orbitAngle * Math.PI) / 180;
 
-  electrons.forEach((electron, index) => {
-    const orbitAngle = angle + (index * 120);
-    const theta = (orbitAngle * Math.PI) / 180;
+          const rx = 175;
+          const ry = 68;
 
-    const rx = 175;
-    const ry = 68;
+          const cx = 210;
+          const cy = 210;
 
-    const cx = 210;
-    const cy = 210;
+          // Base ellipse position
+          const ex = rx * Math.cos(theta);
+          const ey = ry * Math.sin(theta);
 
-    // Base ellipse position
-    const ex = rx * Math.cos(theta);
-    const ey = ry * Math.sin(theta);
+          // Rotate orbital plane
+          const rotation = (orbitRotations[index] * Math.PI) / 180;
 
-    // Rotate orbital plane
-    const rotation = (orbitRotations[index] * Math.PI) / 180;
+          const rotatedX =
+            ex * Math.cos(rotation) - ey * Math.sin(rotation);
 
-    const rotatedX =
-      ex * Math.cos(rotation) - ey * Math.sin(rotation);
+          const rotatedY =
+            ex * Math.sin(rotation) + ey * Math.cos(rotation);
 
-    const rotatedY =
-      ex * Math.sin(rotation) + ey * Math.cos(rotation);
+          const x = cx + rotatedX;
+          const y = cy + rotatedY;
 
-    const x = cx + rotatedX;
-    const y = cy + rotatedY;
-
-    electron.setAttribute(
-  "transform",
-  `translate(${x}, ${y})`
-);
-  });
-}
+          electron.setAttribute(
+            "transform",
+            `translate(${x}, ${y})`
+          );
+        });
+      }
 
       if (atomRightRef.current) {
-  const electrons =
-    atomRightRef.current.querySelectorAll(".electron-right");
+        const electrons =
+          atomRightRef.current.querySelectorAll(".electron-right");
 
-  const orbitRotations = [0, 60, 120];
+        const orbitRotations = [0, 60, 120];
 
-  electrons.forEach((electron, index) => {
-    const orbitAngle = angleRight + index * 120;
-    const theta = (orbitAngle * Math.PI) / 180;
+        electrons.forEach((electron, index) => {
+          const orbitAngle = angleRight + index * 120;
+          const theta = (orbitAngle * Math.PI) / 180;
 
-    const rx = 140;
-    const ry = 55;
+          const rx = 140;
+          const ry = 55;
 
-    const cx = 150;
-    const cy = 150;
+          const cx = 150;
+          const cy = 150;
 
-    // Base ellipse coordinates
-    const ex = rx * Math.cos(theta);
-    const ey = ry * Math.sin(theta);
+          // Base ellipse coordinates
+          const ex = rx * Math.cos(theta);
+          const ey = ry * Math.sin(theta);
 
-    // Rotate orbital plane
-    const rotation =
-      (orbitRotations[index] * Math.PI) / 180;
+          // Rotate orbital plane
+          const rotation =
+            (orbitRotations[index] * Math.PI) / 180;
 
-    const rotatedX =
-      ex * Math.cos(rotation) -
-      ey * Math.sin(rotation);
+          const rotatedX =
+            ex * Math.cos(rotation) -
+            ey * Math.sin(rotation);
 
-    const rotatedY =
-      ex * Math.sin(rotation) +
-      ey * Math.cos(rotation);
+          const rotatedY =
+            ex * Math.sin(rotation) +
+            ey * Math.cos(rotation);
 
-    const x = cx + rotatedX;
-    const y = cy + rotatedY;
+          const x = cx + rotatedX;
+          const y = cy + rotatedY;
 
-    electron.setAttribute(
-      "transform",
-      `translate(${x}, ${y})`
-    );
-  });
-}
+          electron.setAttribute(
+            "transform",
+            `translate(${x}, ${y})`
+          );
+        });
+      }
 
       requestAnimationFrame(animateAtoms);
     };
@@ -132,95 +132,16 @@ export default function CombinedBackground() {
     <div className="absolute top-0 left-0 w-full min-h-full overflow-hidden pt-8 md:pt-12 lg:pt-0 pointer-events-none">
 
       {/* ======================================== */}
-      {/* BASE GRADIENT — soft lavender-white-pink  */}
+      {/* CHECKERED/CHECKBOX PATTERN BACKGROUND     */}
       {/* ======================================== */}
-      {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(216,180,254,0.55),transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_0%_30%,rgba(167,139,250,0.35),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_40%_at_100%_20%,rgba(249,168,212,0.28),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_100%_80%,rgba(244,114,182,0.22),transparent_55%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_35%_at_0%_80%,rgba(139,92,246,0.18),transparent_55%)]" /> */}
+    <CommitteesBackground/>
+
 
 
       {/* ======================================== */}
-      {/* FLOWING BACKGROUND WAVES (bottom half)   */}
-      {/* ======================================== */}
-      <div className="absolute bottom-0 left-0 w-full hidden md:block">
-        <svg viewBox="0 0 1440 480" className="w-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          {/* <defs>
-            <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#c4b5fd" stopOpacity="0.35" />
-              <stop offset="50%" stopColor="#fbcfe8" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.35" />
-            </linearGradient>
-            <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.25" />
-              <stop offset="50%" stopColor="#f472b6" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.25" />
-            </linearGradient>
-            <linearGradient id="wave3" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.15" />
-              <stop offset="50%" stopColor="#ec4899" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.15" />
-            </linearGradient>
-          </defs> */}
-
-          {/* back wave */}
-          <path
-            fill="url(#wave3)"
-            d="M0,320 C200,260 400,380 600,300 C800,220 1000,360 1200,290 C1320,250 1400,310 1440,290 L1440,480 L0,480 Z"
-          />
-          {/* mid wave */}
-          <path
-            fill="url(#wave2)"
-            d="M0,360 C180,300 360,420 540,350 C720,280 900,400 1080,340 C1220,295 1360,360 1440,340 L1440,480 L0,480 Z"
-          />
-          {/* front wave */}
-          <path
-            fill="url(#wave1)"
-            d="M0,400 C160,340 340,460 520,400 C700,340 880,430 1060,390 C1220,360 1360,410 1440,395 L1440,480 L0,480 Z"
-          />
-        </svg>
-      </div>
-
-
-      {/* ======================================== */}
-      {/* SINE WAVE LINES across mid section        */}
-      {/* ======================================== */}
-      {/* <div ref={sineRef} className="absolute left-0 right-0 top-[30%] md:top-[35%] lg:top-[38%] opacity-40">
-        <svg viewBox="0 0 1440 160" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="sineG1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8b5cf6" />
-              <stop offset="100%" stopColor="#ec4899" />
-            </linearGradient>
-            <linearGradient id="sineG2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#a78bfa" />
-              <stop offset="100%" stopColor="#f472b6" />
-            </linearGradient>
-          </defs>
-          <path className="sine-path" d="M0,80 C120,20 240,140 360,80 C480,20 600,140 720,80 C840,20 960,140 1080,80 C1200,20 1320,140 1440,80"
-            stroke="url(#sineG1)" strokeWidth="2.5" fill="none" />
-          <path className="sine-path" d="M0,100 C120,40 240,160 360,100 C480,40 600,160 720,100 C840,40 960,160 1080,100 C1200,40 1320,160 1440,100"
-            stroke="url(#sineG2)" strokeWidth="1.5" fill="none" opacity="0.6" />
-        </svg>
-      </div> */}
-
       {/* Right side sine wave (like reference image top-right) - responsive */}
-      <div className="absolute right-[2%] md:right-[5%] top-[25%] md:top-[28%] opacity-60 hidden md:block">
-        <svg width="180" height="75" viewBox="0 0 260 90" fill="none" xmlns="http://www.w3.org/2000/svg" className="scale-75 md:scale-100 origin-top-right">
-          <defs>
-            <linearGradient id="rwG" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8b5cf6" />
-              <stop offset="100%" stopColor="#f43f5e" />
-            </linearGradient>
-          </defs>
-          <path d="M0,45 C32,10 65,80 97,45 C130,10 163,80 195,45 C218,20 238,60 260,45"
-            stroke="url(#rwG)" strokeWidth="2" fill="none" />
-          <path d="M0,55 C32,20 65,90 97,55 C130,20 163,90 195,55 C218,30 238,70 260,55"
-            stroke="#c084fc" strokeWidth="1.2" fill="none" opacity="0.5" />
-        </svg>
-      </div>
-
+      {/* ======================================== */}
+      
 
       {/* ======================================== */}
       {/* TOP-LEFT ATOM with glassy orbital rings   */}
@@ -302,26 +223,21 @@ export default function CombinedBackground() {
           {/* Nucleus highlight */}
           <circle cx="210" cy="210" r="46" fill="url(#nucHighlight)" />
 
-          {/* Electrons - now with class for animation */}
           {/* Electrons */}
-<g className="electron">
-  <circle r="14" fill="url(#eBlue)" />
-  <circle cx="-4" cy="-4" r="6" fill="white" opacity="0.5" />
-</g>
-
-<g className="electron">
-  <circle r="14" fill="url(#eViolet)" />
-  <circle cx="-4" cy="-4" r="6" fill="white" opacity="0.5" />
-</g>
-
-<g className="electron">
-  <circle r="14" fill="url(#ePink)" />
-  <circle cx="-4" cy="-4" r="6" fill="white" opacity="0.5" />
-</g>
+          <g className="electron">
+            <circle r="14" fill="url(#eBlue)" />
+            <circle cx="-4" cy="-4" r="6" fill="white" opacity="0.5" />
+          </g>
+          <g className="electron">
+            <circle r="14" fill="url(#eViolet)" />
+            <circle cx="-4" cy="-4" r="6" fill="white" opacity="0.5" />
+          </g>
+          <g className="electron">
+            <circle r="14" fill="url(#ePink)" />
+            <circle cx="-4" cy="-4" r="6" fill="white" opacity="0.5" />
+          </g>
         </svg>
       </div>
-
-      
 
       {/* ======================================== */}
       {/* BOTTOM-RIGHT ROTATING ATOM                */}
@@ -389,24 +305,20 @@ export default function CombinedBackground() {
           <circle cx="150" cy="150" r="35" fill="url(#nucHighlightR)" />
 
           {/* Electrons */}
-        {/* Electrons */}
-<g className="electron-right">
-  <circle r="11" fill="url(#eBlueR)" />
-  <circle cx="-3" cy="-3" r="5" fill="white" opacity="0.5" />
-</g>
-
-<g className="electron-right">
-  <circle r="11" fill="url(#eVioletR)" />
-  <circle cx="-3" cy="-3" r="5" fill="white" opacity="0.5" />
-</g>
-
-<g className="electron-right">
-  <circle r="11" fill="url(#ePinkR)" />
-  <circle cx="-3" cy="-3" r="5" fill="white" opacity="0.5" />
-</g>
+          <g className="electron-right">
+            <circle r="11" fill="url(#eBlueR)" />
+            <circle cx="-3" cy="-3" r="5" fill="white" opacity="0.5" />
+          </g>
+          <g className="electron-right">
+            <circle r="11" fill="url(#eVioletR)" />
+            <circle cx="-3" cy="-3" r="5" fill="white" opacity="0.5" />
+          </g>
+          <g className="electron-right">
+            <circle r="11" fill="url(#ePinkR)" />
+            <circle cx="-3" cy="-3" r="5" fill="white" opacity="0.5" />
+          </g>
         </svg>
       </div>
-
 
       {/* ======================================== */}
       {/* TOP-LEFT MOLECULE NET (faint, behind atom) - responsive */}
@@ -428,7 +340,6 @@ export default function CombinedBackground() {
           ))}
         </svg>
       </div>
-
 
       {/* ======================================== */}
       {/* TOP-RIGHT MOLECULAR STRUCTURE (benzene-ish) - responsive */}
@@ -490,7 +401,6 @@ export default function CombinedBackground() {
           <circle cx="290" cy="80"  r="10" fill="url(#atomPink)"   opacity="0.7"/>
         </svg>
       </div>
-
 
       {/* ======================================== */}
       {/* BOTTOM-LEFT CRYSTAL LATTICE CUBE - responsive */}
@@ -567,89 +477,9 @@ export default function CombinedBackground() {
         </svg>
       </div>
 
+    
 
-      {/* ======================================== */}
-      {/* DECORATIVE DIAMONDS / RHOMBS scatter - responsive */}
-      {/* ======================================== */}
-      {/* {[
-        { x: "15%", y: "38%", size: 10, color: "#f43f5e" },
-        { x: "48%", y: "22%", size: 7,  color: "#8b5cf6" },
-        { x: "62%", y: "55%", size: 9,  color: "#a78bfa" },
-        { x: "10%", y: "58%", size: 8,  color: "#fb7185" },
-        { x: "80%", y: "40%", size: 8,  color: "#6366f1" },
-        { x: "55%", y: "12%", size: 6,  color: "#8b5cf6" },
-        { x: "73%", y: "18%", size: 7,  color: "#f472b6" },
-        { x: "35%", y: "70%", size: 6,  color: "#a78bfa" },
-        { x: "88%", y: "65%", size: 7,  color: "#e11d48" },
-        { x: "5%", y: "45%", size: 6,  color: "#6366f1" },
-      ].map((d,i) => (
-        <div key={i} className="absolute hidden sm:block" style={{ left: d.x, top: d.y }}>
-          <svg width={d.size*4} height={d.size*4} viewBox="0 0 40 40" fill="none">
-            <polygon points="20,2 38,20 20,38 2,20"
-              stroke={d.color} strokeWidth="2.5" fill="none" opacity="0.5"/>
-          </svg>
-        </div>
-      ))} */}
-
-
-      {/* ======================================== */}
-      {/* SCATTERED DOT GRID patches - responsive */}
-      {/* ======================================== */}
-      <div className="absolute left-[10%] md:left-[18%] lg:left-[22%] top-[2%] md:top-[2%] lg:top-[2%] opacity-20 hidden md:block">
-        <svg width="140" height="100" viewBox="0 0 140 100">
-          {Array.from({length:6},(_,row) =>
-            Array.from({length:9},(_,col) => (
-              <circle key={`${row}-${col}`} cx={col*16+8} cy={row*16+8} r="2.5" fill="#8b5cf6"/>
-            ))
-          )}
-        </svg>
-      </div>
-      <div className="absolute right-[10%] md:right-[18%] lg:right-[22%] top-[2%] md:top-[2%] lg:top-[2%] opacity-20 hidden md:block">
-        <svg width="140" height="100" viewBox="0 0 140 100">
-          {Array.from({length:6},(_,row) =>
-            Array.from({length:9},(_,col) => (
-              <circle key={`${row}-${col}`} cx={col*16+8} cy={row*16+8} r="2.5" fill="#a78bfa"/>
-            ))
-          )}
-        </svg>
-      </div>
-
-
-      {/* ======================================== */}
-      {/* FLOATING PARTICLES - responsive */}
-      {/* ======================================== */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block">
-        {[
-          {t:"8%", l:"35%", s:4, d:0},   {t:"15%",l:"55%",s:3,d:2},
-          {t:"5%", l:"70%",s:5, d:4},    {t:"30%",l:"25%",s:3,d:1},
-          {t:"45%",l:"48%",s:4, d:3},    {t:"20%",l:"85%",s:3,d:5},
-          {t:"60%",l:"38%",s:3, d:2},    {t:"12%",l:"42%",s:4,d:6},
-          {t:"70%",l:"70%",s:3, d:1},    {t:"35%",l:"90%",s:4,d:4},
-          {t:"85%",l:"15%",s:3, d:3},    {t:"50%",l:"82%",s:3, d:5},
-          {t:"25%",l:"75%",s:4, d:2},    {t:"78%",l:"52%",s:3, d:6},
-        ].map((p,i) => (
-          <span key={i} className="absolute rounded-full bg-violet-400/50"
-            style={{
-              width: p.s, height: p.s,
-              top: p.t, left: p.l,
-              animation: `floatP ${8+p.d}s ease-in-out ${p.d}s infinite`,
-            }}
-          />
-        ))}
-      </div>
-
-
-      {/* ======================================== */}
-      {/* SOFT CENTER WHITE GLOW (keeps center clean) */}
-      {/* ======================================== */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_55%_at_50%_40%,rgba(255,255,255,0.82),transparent_70%)]" />
-
-
-      {/* ======================================== */}
-      {/* SUBTLE TOP EDGE FADE                      */}
-      {/* ======================================== */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white/30 to-transparent" />
-
+    
 
       {/* ======================================== */}
       {/* ANIMATIONS                                */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { CommitteesBackground } from "./Background";
 
 export default function OtherBackground() {
   const atomRef = useRef(null);
@@ -157,7 +158,7 @@ export default function OtherBackground() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_40%_40%_at_100%_20%,rgba(249,168,212,0.28),transparent_60%)]" />
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_60%_40%_at_100%_80%,rgba(244,114,182,0.22),transparent_55%)]" />
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_55%_35%_at_0%_80%,rgba(139,92,246,0.18),transparent_55%)]" /> */}
-
+      <CommitteesBackground/>
       {/* ======================================== */}
       {/* FLOWING BACKGROUND WAVES (bottom half)   */}
       {/* ======================================== */}

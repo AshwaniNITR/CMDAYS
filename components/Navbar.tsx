@@ -27,19 +27,23 @@ const navigation = [
       { name: "Advisory Committee", href: "/advisory" },
     ],
   },
-  {
-    name: "Author's Info",
-    href: "/authors",
-    dropdown: [
-      { name: "Call for Papers", href: "/NITFINAL.pdf" },
-      { name: "Submit Paper", href: "/submitPaper" },
-      { name: "Registration Details", href: "/RegDet" },
-    ],
-  },
-  { name: "Tracks", href: "/track-chairs" },
   { name: "Speakers", href: "/speaker" },
+  {
+    name: "Abstract Submission",
+    href: "/updatedsoon",
+    // dropdown: [
+       
+    //   { name: "Call for Papers", href: "/NITFINAL.pdf" },
+    //   { name: "Submit Paper", href: "/submitPaper" },
+    //   { name: "Registration Details", href: "/RegDet" },
+    // ],
+  },
+  // { name: "Tracks", href: "/track-chairs" },
+  {name:"Registration", href:"/RegDet"},
+ 
   { name: "Travel", href: "/travel" },
-  { name: "Events", href: "/updatedsoon" },
+  { name: "Schedule", href: "/updatedsoon" },
+  {name: "Accomodation", href: "/updatedsoon"},
   {
     name: "Sponsorship",
     href: "/Sponsorship",
@@ -265,7 +269,7 @@ export default function Navbar() {
           }`}>
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <Button
+              {/* <Button
                 onClick={() => {
                   router.push("/RegDet");
                 }}
@@ -274,7 +278,7 @@ export default function Navbar() {
   [@media(min-width:1024px)_and_(max-width:1040px)]:scale-90"
               >
                 Register Now
-              </Button>
+              </Button> */}
             </div>
           </div>
 

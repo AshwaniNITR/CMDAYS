@@ -3,11 +3,13 @@ import Image from "next/image"
 import { otherCommittees } from "./data"
 import { CommitteesBackground } from "./Background"
 import Navbar from "./Navbar"
+import OtherBackground from "./OtherBackground"
 
 export default function Committee() {
   return (
     <div className="relative min-h-screen">
-      <CommitteesBackground />
+      {/* <CommitteesBackground /> */}
+      <OtherBackground/>
       {/* <Navbar /> */}
       
       <section className="relative py-20 flex flex-col items-center justify-center min-h-screen">

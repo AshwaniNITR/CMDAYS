@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Calendar, MapPin } from "lucide-react";
-import CombinedBackground from "./CombinedBackground";
 
 const Hero = () => {
   const [animationStates, setAnimationStates] = useState({
@@ -12,255 +11,422 @@ const Hero = () => {
     text: false,
     dateBadge: false,
     locationSection: false,
-    bottomImages: [] as boolean[],
-    announcementsSection: false,
-    submissionSection: false,
   });
-  const [now, setNow] = useState(new Date());
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNow(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-  // Staggered entrance animation
   useEffect(() => {
     setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, desktopLayout: true }));
+      setAnimationStates((prev) => ({ ...prev, desktopLayout: true }));
     }, 100);
-    
+
     setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, content: true }));
+      setAnimationStates((prev) => ({ ...prev, content: true }));
     }, 200);
-    
+
     setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, logo: true }));
+      setAnimationStates((prev) => ({ ...prev, logo: true }));
     }, 300);
-    
+
     setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, text: true }));
+      setAnimationStates((prev) => ({ ...prev, text: true }));
     }, 400);
-    
+
     setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, dateBadge: true }));
+      setAnimationStates((prev) => ({ ...prev, dateBadge: true }));
     }, 500);
-    
+
     setTimeout(() => {
-      setAnimationStates(prev => ({ ...prev, locationSection: true }));
+      setAnimationStates((prev) => ({ ...prev, locationSection: true }));
     }, 600);
-    
   }, []);
 
-  // Current date for conference display as per image: NOVEMBER 17-19, 2026
   const conferenceDate = "NOVEMBER 17-19, 2026";
 
   return (
-    <div id="home" className="relative overflow-hidden min-h-screen">
-      {/* <CombinedBackground/> */}
-      
-      {/* Desktop Layout - Full Screen Centered with no scrolling */}
-      <div className={`hidden xl:flex min-h-screen transition-all duration-700 ease-out ${
-        animationStates.desktopLayout ? "opacity-100" : "opacity-0"
-      }`}>
-        <div className="w-full max-w-7xl mx-auto px-6 py-8 flex flex-col justify-center h-screen">
-          {/* Main Content - Centered and compact */}
-          <section className={`w-full max-w-4xl mx-auto transition-all duration-700 ease-out ${
-            animationStates.content 
-              ? "opacity-100 translate-y-0" 
-              : "opacity-0 translate-y-10"
-          }`}>
-            <div className="flex flex-col items-center justify-center">
-              {/* Logo - smaller for better fit */}
-              <div className={`flex justify-center items-center w-full mb-3 transition-all duration-500 ease-out ${
-                animationStates.logo 
-                  ? "opacity-100 scale-100" 
-                  : "opacity-0 scale-90"
-              }`}>
-                <div className="w-64 h-40">
-                  <img
-                    src="/cropped_circle_image.png"
-                    alt="I3ST Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-
-              {/* Text content styled like the image: serif fonts, deep blue/black colors */}
-              <div className={`text-center w-full space-y-2 transition-all duration-500 ease-out ${
-                animationStates.text 
-                  ? "opacity-100 translate-y-0" 
-                  : "opacity-0 translate-y-5"
-              }`}>
-                <p className="text-2xl font-serif font-semibold text-[#1e3a8a] tracking-wide backdrop-blur-sm bg-white/20 inline-block px-4 py-1 rounded-full mx-auto">
-                  34th National Conference
-                </p>
-<h1
-  className="
-    text-8xl
-    2xl:text-9xl
-    3xl:text-[6rem]
-    4xl:text-[7rem]
-    font-black
-    tracking-[-0.07em]
-    leading-none
-    bg-[linear-gradient(90deg,#1e1b9b_0%,#2563eb_68%,#ec4899_100%)]
-    bg-clip-text
-    text-transparent
-    drop-shadow-[0_3px_10px_rgba(59,130,246,0.12)]
-  "
-  style={{
-    fontFamily: "Arial, Helvetica, sans-serif",
-  }}
->
-  CMDAYS 2026
-</h1>       
-
-                {/* Date badge - style like the image (dark blue background with white text) */}
-                <div className={`inline-block mt-3 transition-all duration-500 ease-out delay-100 ${
-                  animationStates.dateBadge 
-                    ? "opacity-100 scale-100" 
-                    : "opacity-0 scale-95"
-                }`}>
-                  <div
-  className="
-    px-8
-    py-3
-    rounded-2xl
-    border
-    border-white/40
-    bg-white/55
-    backdrop-blur-md
-    shadow-[0_8px_30px_rgba(124,58,237,0.10)]
-  "
->
-  <div className="flex items-center justify-center gap-3">
-
-    <Calendar
-      className="w-5 h-5"
-      style={{
-        color: "#7c3aed",
-      }}
-    />
-
-    <span
-      className="
-        text-2xl
-        2xl:text-3xl
-        font-extrabold
-        tracking-[0.08em]
-      "
-      style={{
-        fontFamily: "Arial, Helvetica, sans-serif",
-        backgroundImage:
-          "linear-gradient(90deg,#2563eb 0%,#4f46e5 55%,#9333ea 100%)",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-      }}
+    <div
+      id="home"
+      className="relative overflow-hidden min-h-screen flex items-center justify-center"
     >
-      {conferenceDate}
-    </span>
+     {/* DESKTOP LAYOUT */}
+     {/* DESKTOP LAYOUT */}
+<div
+  className={`hidden xl:flex min-h-screen w-full transition-all duration-700 ease-out ${
+    animationStates.desktopLayout ? "opacity-100" : "opacity-0"
+  }`}
+>
+  <div
+    className="
+      w-full
+      max-w-[1800px]
+      mx-auto
 
-  </div>
-</div>
-                </div>
+      px-10
+      min-[1600px]:px-16
 
-                {/* Location section - clean and compact with subtle styling */}
-                <div className={`mt-4 transition-all duration-500 ease-out delay-200 ${
-                  animationStates.locationSection 
-                    ? "opacity-100 translate-y-0" 
-                    : "opacity-0 translate-y-5"
-                }`}>
-                  <div className="flex flex-col items-center">
-                    <div className="w-24 h-24 mb-2">
-                      <img
-                        src="/nitlogo-removebg-preview.png"
-                        alt="NIT Rourkela Logo"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <div className="text-center backdrop-blur-sm bg-white/20 px-6 py-2 rounded-2xl">
-                      <p className="font-serif font-bold text-gray-800 text-lg">
-                        Department of Physics And Astronomy
-                      </p>
-                      <p className="font-serif text-gray-600 text-base flex items-center justify-center gap-1">
-                        <MapPin className="w-4 h-4" />
-                        National Institute of Technology, Rourkela • Odisha, India - 769008
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
+      py-10
 
-      {/* Tablet Layout (lg) */}
-      <div className="hidden lg:flex xl:hidden min-h-screen items-center justify-center">
-        <div className="w-full max-w-4xl mx-auto px-6 py-12 flex flex-col items-center">
-          <div className="w-56 h-40 mb-3">
+      flex
+      flex-col
+      justify-center
+      items-center
+    "
+  >
+    <section
+      className={`w-full max-w-7xl mx-auto transition-all duration-700 ease-out ${
+        animationStates.content
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-10"
+      }`}
+    >
+      <div className="flex flex-col items-center justify-center">
+        
+        {/* Main Logo */}
+        <div
+          className={`mb-3 mt-10 transition-all duration-500 ease-out ${
+            animationStates.logo
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95"
+          }`}
+        >
+          <div
+            className="
+              w-[15rem]
+              h-[10rem]
+
+              min-[1400px]:w-[19rem]
+              min-[1400px]:h-[13rem]
+
+              min-[1700px]:w-[22rem]
+              min-[1700px]:h-[15rem]
+            "
+          >
             <img
               src="/cropped_circle_image.png"
               alt="CMDAYS Logo"
               className="w-full h-full object-contain"
             />
           </div>
+        </div>
 
-          <div className="text-center w-full space-y-2">
-            <p className="text-xl font-serif font-semibold text-[#1e3a8a] backdrop-blur-sm bg-white/20 inline-block px-4 py-1 rounded-full">
-              34th National Conference
-            </p>
-            <h1
-  className="
-    text-8xl
-    font-black
-    tracking-[-0.07em]
-    leading-none
-    bg-[linear-gradient(90deg,#1e1b8f_0%,#1d4ed8_72%,#7c3aed_100%)]
-    bg-clip-text
-    text-transparent
-    drop-shadow-[0_3px_12px_rgba(37,99,235,0.15)]
-  "
-  style={{
-    fontFamily: "Arial, Helvetica, sans-serif",
-  }}
->
-  CMDAYS 2026
-</h1>
-          
+        {/* Text Content */}
+        <div
+          className={`text-center flex flex-col items-center w-full transition-all duration-500 ease-out ${
+            animationStates.text
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-5"
+          }`}
+        >
+          {/* Subtitle */}
+          <div
+            className="
+              text-[1.3rem]
 
-            <div className="flex justify-center mt-2">
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-sm bg-[#0f2b4d] backdrop-blur-sm">
-                <Calendar className="w-4 h-4 text-white" />
-                <span className="font-serif font-bold text-white">{conferenceDate}</span>
-              </div>
+              min-[1400px]:text-[1.55rem]
+              min-[1700px]:text-[1.8rem]
+
+              font-serif
+              font-semibold
+              text-[#1e3a8a]
+
+              tracking-wide
+
+              backdrop-blur-sm
+              bg-white/20
+
+              inline-block
+              px-6
+              py-2
+
+              rounded-full
+            "
+          >
+            34th National Conference
+          </div>
+
+          {/* Condensed Matter Days */}
+          <div className="w-full flex justify-center">
+            <div className="flex items-center justify-center gap-4">
+              
+              <div
+                className="
+                  w-16
+                  min-[1700px]:w-20
+
+                  h-[2px]
+                  rounded-full
+
+                  bg-gradient-to-r
+                  from-blue-500
+                  to-blue-400
+                "
+              />
+
+              <span
+                className="
+                  text-[2.3rem]
+
+                  min-[1400px]:text-[3rem]
+                  min-[1700px]:text-[3.5rem]
+
+                  font-extrabold
+                  tracking-tight
+                  whitespace-nowrap
+                "
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg,#2563eb 0%,#7c3aed 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Condensed Matter Days
+              </span>
+
+              <div
+                className="
+                  w-16
+                  min-[1700px]:w-20
+
+                  h-[2px]
+                  rounded-full
+
+                  bg-gradient-to-l
+                  from-pink-500
+                  to-purple-500
+                "
+              />
             </div>
+          </div>
 
-            <div className="mt-4 flex flex-col items-center">
-              <div className="w-20 h-20 mb-2">
-                <img src="/nitlogo-removebg-preview.png" alt="NIT Logo" className="w-full h-full object-contain" />
+          {/* Main Heading */}
+          <h1
+            className="
+              mt-2
+
+              font-black
+              leading-[0.9]
+
+              tracking-[-0.05em]
+              pr-2
+
+              text-transparent
+              bg-clip-text
+              select-none
+
+              drop-shadow-[0_8px_28px_rgba(99,102,241,0.18)]
+
+              text-[6rem]
+
+              min-[1400px]:text-[7.5rem]
+              min-[1700px]:text-[9rem]
+            "
+            style={{
+              fontFamily: "Inter, Arial, sans-serif",
+              backgroundImage: `
+                linear-gradient(
+                  135deg,
+                  #60a5fa 0%,
+                  #3b82f6 20%,
+                  #2563eb 42%,
+                  #4f46e5 65%,
+                  #7c3aed 82%,
+                  #a855f7 100%
+                )
+              `,
+            }}
+          >
+            CMDAYS 2026
+          </h1>
+
+          {/* Date Badge */}
+          <div
+            className={`mt-4 transition-all duration-500 ease-out ${
+              animationStates.dateBadge
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-95"
+            }`}
+          >
+            <div
+              className="
+                inline-flex
+                items-center
+                gap-3
+
+                px-8
+                py-3.5
+
+                min-[1700px]:px-10
+                min-[1700px]:py-4
+
+                rounded-2xl
+                border
+                border-white/40
+
+                bg-white/60
+                backdrop-blur-md
+
+                shadow-[0_8px_30px_rgba(124,58,237,0.10)]
+              "
+            >
+              <Calendar
+                className="
+                  w-5
+                  h-5
+
+                  min-[1700px]:w-6
+                  min-[1700px]:h-6
+                "
+                style={{
+                  color: "#7c3aed",
+                }}
+              />
+
+              <span
+                className="
+                  text-[1.15rem]
+
+                  min-[1400px]:text-[1.35rem]
+                  min-[1700px]:text-[1.55rem]
+
+                  font-extrabold
+                  tracking-[0.08em]
+                "
+                style={{
+                  fontFamily: "Arial, Helvetica, sans-serif",
+                  backgroundImage:
+                    "linear-gradient(90deg,#2563eb 0%,#4f46e5 55%,#9333ea 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                {conferenceDate}
+              </span>
+            </div>
+          </div>
+
+          {/* Location Section */}
+          <div
+            className={`mt-8 transition-all duration-500 ease-out ${
+              animationStates.locationSection
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-5"
+            }`}
+          >
+            <div className="flex flex-col items-center">
+              
+              {/* NIT Logo */}
+              <div
+                className="
+                  w-28
+                  h-28
+
+                  min-[1400px]:w-32
+                  min-[1400px]:h-32
+
+                  min-[1700px]:w-36
+                  min-[1700px]:h-36
+
+                  mb-4
+                "
+              >
+                <img
+                  src="/nitlogo-removebg-preview.png"
+                  alt="NIT Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <div className="backdrop-blur-sm bg-white/20 px-6 py-2 rounded-2xl">
-                <p className="font-serif font-bold text-gray-800 text-base">Department of Electronics and Communication Engineering</p>
-                <p className="font-serif text-gray-600 text-sm flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5" />
-                  National Institute of Technology, Rourkela, Odisha, India - 769008
+
+              {/* Department Card */}
+              <div
+                className="
+                  backdrop-blur-sm
+                  bg-white/20
+
+                  px-8
+                  py-4
+
+                  min-[1700px]:px-10
+                  min-[1700px]:py-5
+
+                  rounded-3xl
+                "
+              >
+                <p
+                  className="
+                    text-[1.3rem]
+
+                    min-[1400px]:text-[1.6rem]
+                    min-[1700px]:text-[1.9rem]
+
+                    font-bold
+                    text-gray-800
+                    leading-snug
+                  "
+                  style={{
+                    fontFamily: "Georgia, serif",
+                  }}
+                >
+                  Department of Physics And Astronomy
+                </p>
+
+                <p
+                  className="
+                    mt-2
+
+                    text-[1.05rem]
+
+                    min-[1400px]:text-[1.2rem]
+                    min-[1700px]:text-[1.35rem]
+
+                    text-gray-600
+
+                    inline-flex
+                    items-start
+
+                    gap-1.5
+                    leading-relaxed
+
+                    text-center
+                    max-w-[850px]
+                    mx-auto
+                  "
+                  style={{
+                    fontFamily: "Georgia, serif",
+                  }}
+                >
+                  <MapPin className="w-5 h-5 shrink-0 mt-[0.18rem]" />
+
+                  National Institute of Technology, Rourkela • Odisha, India -
+                  769008
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+  </div>
+</div>
 
-      {/* Mobile Layout */}
-      {/* Mobile Layout */}
-<div className="lg:hidden relative min-h-screen flex flex-col">
-  <div className="flex-1 flex flex-col items-center justify-center px-5 py-10 text-center">
 
-    {/* Logo */}
-    <div className="w-40 h-28 sm:w-48 sm:h-32 mb-2">
+     {/* TABLET LAYOUT */}
+<div className="hidden md:flex xl:hidden min-h-screen items-center justify-center w-full overflow-hidden">
+  <div
+    className="
+      w-full
+      max-w-5xl
+      mx-auto
+
+      px-8
+      py-12
+
+      flex
+      flex-col
+      items-center
+      justify-center
+    "
+  >
+    {/* Main Logo */}
+    <div className="w-[17rem] mt-6 h-[12rem] lg:w-[19rem] lg:h-[13rem] mb-2">
       <img
         src="/cropped_circle_image.png"
         alt="CMDAYS Logo"
@@ -268,101 +434,481 @@ const Hero = () => {
       />
     </div>
 
-    {/* Conference Subtitle */}
-    <p className="text-sm sm:text-base font-serif font-semibold text-[#1e3a8a] backdrop-blur-sm bg-white/20 inline-block px-3 py-0.5 rounded-full">
-      34th National Conference
-    </p>
+    {/* Content */}
+    <div className="text-center w-full space-y-3">
+      
+      {/* Subtitle */}
+      <p
+        className="
+          text-[1.15rem]
+          lg:text-[1.3rem]
 
-    {/* Main Title */}
-    <h1
-      className="
-        text-[3.6rem]
-        sm:text-7xl
-        font-black
-        tracking-[-0.06em]
-        leading-[0.92]
-        bg-clip-text
-        text-transparent
-        drop-shadow-[0_3px_10px_rgba(59,130,246,0.10)]
-      "
-      style={{
-        fontFamily: "Arial, Helvetica, sans-serif",
-        backgroundImage: `
-          linear-gradient(
-            135deg,
-            #1a1b9f 0%,
-            #1a1b9f 18%,
-            #1d4ed8 42%,
-            #4f46e5 68%,
-            #ec4899 100%
-          )
-        `,
-      }}
-    >
-      CMDAYS 2026
-    </h1>
+          font-serif
+          font-semibold
+          text-[#1e3a8a]
 
-    {/* Date Badge */}
-    <div
-      className="
-        inline-flex
-        items-center
-        gap-2
-        px-5
-        py-2
-        rounded-2xl
-        border
-        border-white/40
-        bg-white/55
-        backdrop-blur-md
-        shadow-[0_8px_30px_rgba(124,58,237,0.10)]
-        mt-3
-      "
-    >
-      <Calendar
-        className="w-4 h-4"
+          backdrop-blur-sm
+          bg-white/25
+
+          inline-block
+          px-5
+          py-1.5
+          rounded-full
+        "
+      >
+        34th National Conference
+      </p>
+
+      {/* Condensed Matter Days */}
+      {/* <div
+        className="
+          text-[2.5rem]
+          lg:text-[3rem]
+
+          leading-tight
+          font-extrabold
+          tracking-tight
+          text-[#1e3a8a]
+
+          backdrop-blur-sm
+          bg-white/20
+
+          inline-block
+          px-6
+          py-2
+          rounded-3xl
+        "
         style={{
-          color: "#7c3aed",
-        }}
-      />
-
-      <span
-        className="text-sm font-extrabold tracking-[0.06em]"
-        style={{
-          fontFamily: "Arial, Helvetica, sans-serif",
-          backgroundImage:
-            "linear-gradient(90deg,#2563eb 0%,#4f46e5 55%,#9333ea 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          fontFamily: "Georgia, serif",
         }}
       >
-        {conferenceDate}
-      </span>
-    </div>
+        Condensed Matter Days
+      </div> */}
+      {/* <div className="flex items-center gap-3 mt-6">
+            <div className="w-12 h-[2px] bg-gradient-to-r from-blue-500 to-blue-400 rounded-full" />
 
-    {/* Location Section */}
-    <div className="mt-5">
-      <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2">
-        <img
-          src="/nitlogo-removebg-preview.png"
-          alt="NIT Logo"
-          className="w-full h-full object-contain"
-        />
+            <span
+              className="
+          text-xl
+          font-extrabold
+          tracking-[0.08em]
+          uppercase
+        "
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg,#2563eb 0%,#9333ea 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Condensed Matter Days
+            </span>
+
+            <div className="w-12 h-[2px] bg-gradient-to-l from-pink-500 to-purple-500 rounded-full" />
+          </div> */}
+          <div className="w-full flex justify-center">
+  <div className="flex items-center justify-center gap-3">
+    
+    <div
+      className="
+        w-12
+        h-[2px]
+        rounded-full
+        bg-gradient-to-r
+        from-blue-500
+        to-blue-400
+      "
+    />
+
+    <span
+      className="
+        text-2xl
+
+        font-extrabold
+        tracking-[0.08em]
+        uppercase
+        whitespace-nowrap
+      "
+      style={{
+        backgroundImage:
+          "linear-gradient(90deg,#2563eb 0%,#9333ea 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+      }}
+    >
+      Condensed Matter Days
+    </span>
+
+    <div
+      className="
+        w-12
+        h-[2px]
+        rounded-full
+        bg-gradient-to-l
+        from-pink-500
+        to-purple-500
+      "
+    />
+  </div>
+</div>
+
+
+      {/* Main Heading */}
+      <h1
+        className="
+          mt-1
+
+          font-black
+          leading-[0.9]
+
+          tracking-[-0.05em]
+          pr-2
+
+          text-transparent
+          bg-clip-text
+          select-none
+
+          drop-shadow-[0_8px_24px_rgba(99,102,241,0.18)]
+
+          text-[5.4rem]
+          lg:text-[6.5rem]
+        "
+        style={{
+          fontFamily: "Inter, Arial, sans-serif",
+          backgroundImage: `
+            linear-gradient(
+              135deg,
+              #60a5fa 0%,
+              #3b82f6 20%,
+              #2563eb 42%,
+              #4f46e5 65%,
+              #7c3aed 82%,
+              #a855f7 100%
+            )
+          `,
+        }}
+      >
+        CMDAYS 2026
+      </h1>
+
+      {/* Date Badge */}
+      <div className="flex justify-center mt-3">
+        <div
+          className="
+            inline-flex
+            items-center
+            gap-3
+
+            px-7
+            py-3
+
+            rounded-2xl
+            border
+            border-white/40
+
+            bg-white/60
+            backdrop-blur-md
+
+            shadow-[0_8px_30px_rgba(124,58,237,0.10)]
+          "
+        >
+          <Calendar
+            className="w-5 h-5"
+            style={{
+              color: "#7c3aed",
+            }}
+          />
+
+          <span
+            className="
+              text-[1.05rem]
+              lg:text-[1.15rem]
+
+              font-extrabold
+              tracking-[0.08em]
+            "
+            style={{
+              fontFamily: "Arial, Helvetica, sans-serif",
+              backgroundImage:
+                "linear-gradient(90deg,#2563eb 0%,#4f46e5 55%,#9333ea 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            {conferenceDate}
+          </span>
+        </div>
       </div>
 
-      <div className="backdrop-blur-sm bg-white/20 px-4 py-2 rounded-2xl">
-        <p className="font-serif font-bold text-gray-800 text-sm sm:text-base px-2">
-          Department of Physics And Astronomy
-        </p>
+      {/* NIT Section */}
+      <div className="mt-7 flex flex-col items-center">
+        
+        {/* NIT Logo */}
+        <div className="w-24 h-24 lg:w-28 lg:h-28 mb-3">
+          <img
+            src="/nitlogo-removebg-preview.png"
+            alt="NIT Logo"
+            className="w-full h-full object-contain"
+          />
+        </div>
 
-        <p className="font-serif text-gray-600 text-xs sm:text-sm flex items-center justify-center gap-1 mt-1 px-4">
-          <MapPin className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />
-          National Institute of Technology, Rourkela • Odisha, India
-        </p>
+        {/* Department Card */}
+        <div
+          className="
+            backdrop-blur-sm
+            bg-white/20
+
+            px-7
+            py-4
+
+            rounded-3xl
+          "
+        >
+          <p
+            className="
+              text-[1.2rem]
+              lg:text-[1.35rem]
+
+              font-bold
+              text-gray-800
+              leading-snug
+            "
+            style={{
+              fontFamily: "Georgia, serif",
+            }}
+          >
+            Department of Physics And Astronomy
+          </p>
+
+          <p
+            className="
+              mt-2
+
+              text-[1rem]
+              lg:text-[1.08rem]
+
+              text-gray-600
+
+              inline-flex
+              items-start
+
+              gap-1.5
+              leading-relaxed
+
+              text-center
+              max-w-[520px]
+              mx-auto
+            "
+            style={{
+              fontFamily: "Georgia, serif",
+            }}
+          >
+            <MapPin className="w-5 h-5 shrink-0 mt-[0.18rem]" />
+
+            National Institute of Technology, Rourkela • Odisha, India - 769008
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+      {/* MOBILE */}
+      {/* MOBILE LAYOUT */}
+      <div className="md:hidden relative min-h-screen flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col items-center justify-center px-6 py-10 text-center relative z-10">
+          {/* Main Logo */}
+          <div className="w-52  mt-6 h-36 mb-1">
+            <img
+              src="/cropped_circle_image.png"
+              alt="CMDAYS Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Subtitle */}
+          <p
+            className="
+        text-[0.95rem]
+        font-serif
+        font-semibold
+        text-[#1d3b8b]
+        tracking-wide
+      "
+          >
+            34th National Conference
+          </p>
+
+          {/* Condensed Matter Days */}
+          <div className="flex items-center gap-3 mt-6">
+            <div className="w-12 h-[2px] bg-gradient-to-r from-blue-500 to-blue-400 rounded-full" />
+
+            <span
+              className="
+          text-xl
+          font-extrabold
+          tracking-[0.08em]
+          uppercase
+        "
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg,#2563eb 0%,#9333ea 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Condensed Matter Days
+            </span>
+
+            <div className="w-12 h-[2px] bg-gradient-to-l from-pink-500 to-purple-500 rounded-full" />
+          </div>
+
+          {/* CMDAYS 2026 */}
+          <h1
+            className="
+        mt-1
+        leading-[0.9]
+
+        tracking-[-0.05em]
+        pr-2
+
+        font-black
+        text-transparent
+        bg-clip-text
+        drop-shadow-[0_6px_18px_rgba(79,70,229,0.18)]
+
+        text-[4.5rem]
+      "
+            style={{
+              fontFamily: "Inter, Arial, sans-serif",
+              backgroundImage: `
+          linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #1d4ed8 30%,
+            #4338ca 65%,
+            #7c3aed 100%
+          )
+        `,
+            }}
+          >
+            CMDAYS
+            <br />
+            2026
+          </h1>
+
+          {/* Date Badge */}
+          <div
+            className="
+        mt-5
+        inline-flex
+        items-center
+        gap-2.5
+        px-6
+        py-3
+        rounded-full
+        bg-white/75
+        backdrop-blur-md
+        border
+        border-white/50
+        shadow-[0_8px_30px_rgba(124,58,237,0.10)]
+      "
+          >
+            <Calendar className="w-4 h-4 text-[#7c3aed]" />
+
+            <span
+              className="
+          text-[0.95rem]
+          font-extrabold
+          tracking-[0.08em]
+        "
+              style={{
+                fontFamily: "Arial, Helvetica, sans-serif",
+                backgroundImage:
+                  "linear-gradient(90deg,#4f46e5 0%,#7c3aed 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              {conferenceDate}
+            </span>
+          </div>
+
+          {/* Decorative Line */}
+          {/* <div className="flex items-center gap-3 mt-6">
+      <div className="w-12 h-[2px] bg-gradient-to-r from-blue-500 to-blue-400 rounded-full" />
+
+      <span
+        className="
+          text-[1rem]
+          font-bold
+          tracking-[0.08em]
+          uppercase
+        "
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg,#2563eb 0%,#9333ea 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+      >
+        Condensed Matter Days
+      </span>
+
+      <div className="w-12 h-[2px] bg-gradient-to-l from-pink-500 to-purple-500 rounded-full" />
+    </div> */}
+
+          {/* NIT Logo */}
+          <div className="w-24 h-24 mt-8 mb-2">
+            <img
+              src="/nitlogo-removebg-preview.png"
+              alt="NIT Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Department */}
+          <div className="px-4">
+            <p
+              className="
+          text-[1.28rem]
+          font-bold
+          text-[#1f2937]
+          leading-snug
+        "
+              style={{
+                fontFamily: "Georgia, serif",
+              }}
+            >
+              Department of Physics And Astronomy
+            </p>
+
+            <p
+              className="
+           mt-2
+    text-[0.95rem]
+    text-gray-600
+    font-bold
+
+    inline-flex
+    items-start
+
+    gap-1.5
+    leading-relaxed
+    text-center
+    max-w-[280px]
+    mx-auto
+        "
+              style={{
+                fontFamily: "Georgia, serif",
+              }}
+            >
+              <MapPin className="w-4 h-4 shrink-0 mt-[0.18rem]" />
+              National Institute of Technology, Rourkela,Odisha, India-769008
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

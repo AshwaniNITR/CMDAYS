@@ -91,7 +91,7 @@ const Topics = () => {
         >
           <div className="inline-block relative">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-purple-900 via-violet-700 to-indigo-600 bg-clip-text text-transparent">
-              Conference Topics
+              Conference Themes
             </h1>
 
             <div className="w-full h-1 mt-3 rounded-full bg-gradient-to-r from-purple-900 via-violet-700 to-indigo-600"></div>

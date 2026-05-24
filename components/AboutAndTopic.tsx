@@ -15,7 +15,7 @@ const AboutAndTopic = () => {
       </div>
 
       {/* Shared Soft Overlay */}
-      <div className="fixed inset-0 bg-white/60 backdrop-blur-[0.5px] -z-10" />
+   
 
       {/* Main Content Wrapper */}
       <div className="relative z-10 w-full flex justify-center">

@@ -3,12 +3,14 @@ import Image from "next/image"
 import Navbar from "../../components/Navbar"
 import { CommitteesBackground } from "../../components/Background"
 import { otherCommittees, patronCommittees } from "../../components/data"
-import CombinedBackground from "../../components/CombinedBackground"
+import OtherBackground from "../../components/OtherBackground"
+//import CombinedBackground from "../../components/CombinedBackground"
 
 export default function Committee() {
   return (
     <div className="relative min-h-screen">
-      <CombinedBackground/>
+      {/* <CombinedBackground/> */}
+      <OtherBackground/>
       
       {/* <Navbar /> */}
       
