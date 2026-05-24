@@ -14,8 +14,10 @@ const AboutAndTopic = () => {
         <CombinedBackground />
       </div>
 
-      {/* Shared Soft Overlay */}
-   
+      {/* Soft Overlay */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+  <div className="absolute inset-0 bg-white/[0.06]" />
+</div>
 
       {/* Main Content Wrapper */}
       <div className="relative z-10 w-full flex justify-center">

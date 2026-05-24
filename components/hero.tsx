@@ -734,13 +734,24 @@ const Hero = () => {
         font-semibold
         text-[#1d3b8b]
         tracking-wide
+        w-auto
+          bg-white/75
+        backdrop-blur-md
+        border
+        border-white/50
+        shadow-[0_8px_30px_rgba(124,58,237,0.10)]
       "
           >
             34th National Conference
           </p>
 
           {/* Condensed Matter Days */}
-          <div className="flex items-center gap-3 mt-6">
+          <div className="flex items-center gap-3 mt-6
+           bg-white/75
+        backdrop-blur-md
+        border
+        border-white/50
+        shadow-[0_8px_30px_rgba(124,58,237,0.10)]">
             <div className="w-12 h-[2px] bg-gradient-to-r from-blue-500 to-blue-400 rounded-full" />
 
             <span
@@ -776,8 +787,12 @@ const Hero = () => {
         text-transparent
         bg-clip-text
         drop-shadow-[0_6px_18px_rgba(79,70,229,0.18)]
-
         text-[4.5rem]
+         bg-white/75
+        backdrop-blur-md
+        border
+        border-white/50
+        shadow-[0_8px_30px_rgba(124,58,237,0.10)]
       "
             style={{
               fontFamily: "Inter, Arial, sans-serif",
@@ -872,9 +887,14 @@ const Hero = () => {
             <p
               className="
           text-[1.28rem]
-          font-bold
+          font-extrabold
           text-[#1f2937]
           leading-snug
+           bg-white/75
+        backdrop-blur-md
+        border
+        border-white/50
+        shadow-[0_8px_30px_rgba(124,58,237,0.10)]
         "
               style={{
                 fontFamily: "Georgia, serif",
@@ -898,6 +918,11 @@ const Hero = () => {
     text-center
     max-w-[280px]
     mx-auto
+     bg-white/75
+        backdrop-blur-md
+        border
+        border-white/50
+        shadow-[0_8px_30px_rgba(124,58,237,0.10)]
         "
               style={{
                 fontFamily: "Georgia, serif",
