@@ -76,7 +76,7 @@ const AboutUs = () => {
         >
           <div className="inline-block relative">
             <h1 className="text-4xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-purple-800 via-purple-700 to-violet-600 bg-clip-text text-transparent">
-              About CMDAYS 2026
+              About The Conference
             </h1>
 
             <motion.div

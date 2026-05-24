@@ -131,7 +131,7 @@ export default function SpeakersCarousel() {
       </div>
 
       {/* Header with gradient */}
-      <div className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 py-4 px-6 flex justify-center items-center border-b border-blue-700/50 backdrop-blur-sm">
+      <div className="relative bg-gradient-to-r from-purple-700 via-purple-800 to-purple-700 py-4 px-6 flex justify-center items-center border-b border-blue-700/50 backdrop-blur-sm">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center">
             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

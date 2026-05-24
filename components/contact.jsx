@@ -1,164 +1,196 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import {
+  Mail,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  MapPin,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
+
 export default function Contact() {
-  // Scroll to specific section
-  const router=useRouter();
-  const handleClick = (e, href) => {
+  const router = useRouter();
+
+  const handleClick = (
+    e,
+    href
+  ) => {
     e.preventDefault();
-    if (href) {
-      // const targetElement = document.getElementById(href);
-      // if (targetElement) {
-      //   targetElement.scrollIntoView({ behavior: "smooth" });
-      // }
-      router.push(href);
-    }
+    router.push(href);
   };
-  
+
   return (
-    <div id="contactus" className="relative bg-white">
-      {/* Footer Section */}
+    <div id="contactus" className="relative">
+      {/* Footer */}
+      <footer className="relative overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-[#2b0a59] via-[#4b1d95] to-[#7c3aed] text-white py-14">
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-0 w-72 h-72 bg-purple-500/20 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-fuchsia-500/20 blur-3xl rounded-full translate-x-1/3 translate-y-1/3"></div>
 
-      <footer className="relative z-20 bg-blue-950 text-white py-10 rounded-t-3xl w-full overflow-hidden">
-        <div className="container mx-auto flex flex-col lg:flex-row justify-between my-5 px-4 md:px-6">
-          {/* Conference Details */}
-          <div className="lg:w-2/5 mb-8 lg:mb-0">
-            <h3 className="text-lg font-semibold">
-              The 1st IEEE International Conference On Instrumentation
-              INSTCon-2026
-            </h3>
+        <div className="relative z-10 container mx-auto px-6 lg:px-10">
+          <div className="flex flex-col lg:flex-row justify-between gap-12">
+            {/* Conference Details */}
+            <div className="lg:w-2/5">
+              <h3 className="text-2xl font-bold leading-snug tracking-wide">
+                The 34th National Conference on Condensed Matter Days
+                (CMDAYS-2026)
+              </h3>
 
-            {/* Social Icons */}
-            <ul className="flex space-x-4 mt-4">
-              {[
-                {
-                  icon: Twitter,
-                  name: "Twitter",
-                  url: "#",
-                },
-                {
-                  icon: Instagram,
-                  name: "Instagram",
-                  url: "#",
-                },
-                {
-                  icon: Facebook,
-                  name: "Facebook",
-                  url: "#",
-                },
-                {
-                  icon: Linkedin,
-                  name: "Linkedin",
-                  url: "https://www.linkedin.com/company/ieee-ims-society/",
-                },
-              ].map((social) => (
-                <li key={social.name}>
+              <p className="mt-5 text-sm md:text-base leading-7 text-purple-100">
+                CMDAYS-2026 is being organized by the Department of Physics and
+                Astronomy, National Institute of Technology Rourkela from 17th
+                to 19th July, 2026. The conference aims to bring together
+                researchers, academicians, and industry experts working in the
+                field of condensed matter physics and allied domains.
+              </p>
+
+              {/* Social Icons */}
+              <div className="flex items-center gap-4 mt-8">
+                {[
+                  {
+                    icon: Twitter,
+                    name: "Twitter",
+                    url: "#",
+                  },
+                  {
+                    icon: Instagram,
+                    name: "Instagram",
+                    url: "#",
+                  },
+                  {
+                    icon: Facebook,
+                    name: "Facebook",
+                    url: "#",
+                  },
+                  {
+                    icon: Linkedin,
+                    name: "LinkedIn",
+                    url: "https://www.linkedin.com/company/ieee-ims-society/",
+                  },
+                ].map((social) => (
                   <a
+                    key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center group"
+                    className="group"
                   >
-                    <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                      <social.icon className="w-4 h-4 text-white" />
+                    <div className="w-11 h-11 rounded-full bg-white/10 border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:bg-white hover:scale-110">
+                      <social.icon className="w-5 h-5 text-white group-hover:text-purple-700 transition-colors duration-300" />
                     </div>
                   </a>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </div>
+            </div>
 
-            <div className="w-full lg:w-64 h-0.5 bg-white mt-4"></div>
-            <div className="w-full my-4">
-              <p className="mt-4 text-sm text-white">
-                The 1st IEEE International Conference On Instrumentation
-                (INSTCon-2026) is being organized by the Electronics &
-                Communication Engineering Department at NIT Rourkela from July
-                24-25,2026.
-              </p>
+            {/* Quick Links */}
+            <div className="lg:w-1/5">
+              <h3 className="text-xl font-semibold mb-5 text-white">
+                Quick Links
+              </h3>
+
+              <ul className="space-y-4 text-sm md:text-base">
+                {[
+                  {
+                    name: "Home",
+                    href: "/",
+                  },
+                  {
+                    name: "About CMDAYS",
+                    href: "/about",
+                  },
+                  {
+                    name: "Conference Tracks",
+                    href: "/track-chairs",
+                  },
+                  {
+                    name: "Paper Submission",
+                    href: "/submitPaper",
+                  },
+                  {
+                    name: "Organizing Committee",
+                    href: "/organizing",
+                  },
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      onClick={(e) => handleClick(e, item.href)}
+                      className="text-purple-100 hover:text-white hover:translate-x-1 transition-all duration-300 inline-flex"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="lg:w-1/4">
+              <h3 className="text-xl font-semibold mb-5">Contact Us</h3>
+
+              <div className="space-y-5 text-sm md:text-base">
+                <div className="flex items-start gap-3">
+                  <Mail className="w-5 h-5 text-purple-200 mt-0.5" />
+                  <span className="text-purple-100">
+                    cmdays2026@nitrkl.ac.in
+                  </span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-purple-200 mt-0.5" />
+                  <span className="text-purple-100 leading-6">
+                    Department of Physics and Astronomy
+                    <br />
+                    National Institute of Technology Rourkela
+                    <br />
+                    Odisha, India
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Navigation Menu */}
-          <div className="lg:w-1/5 mb-8 lg:mb-0 text-sm space-y-2">
-            <ul className="space-y-1">
-              {[
-                {
-                  name: "Home",
-                  href: "/",
-                },
-                {
-                  name: "About Us",
-                  href: "/about",
-                },
-                {
-                  name: "Tracks of INSTCon-2026",
-                  href: "/track-chairs",
-                },
-                {
-                  name: "Paper Submission",
-                  href: "/submitPaper",
-                },
-                {
-                  name: "INSTCon-2026 Organizing Committee",
-                  href: "/organizing",
-                },
-              ].map((key) => (
-                <li key={key.name}>
-                  <Link
-                    href={`${key.href}`}
-                    onClick={(e) => handleClick(e, key.href)}
-                    className="flex items-center group hover:underline cursor-pointer"
-                  >
-                    {key.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Divider */}
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent my-10"></div>
 
-          {/* Contact Information */}
-          <div className="lg:w-1/5 text-sm">
-            <h3 className="text-lg font-semibold">CONTACT US</h3>
-            <p className="mt-2 flex items-center space-x-2">
-              <Mail className="w-5 h-5 text-gray-400" />
-              <span>instcon2026@nitrkl.ac.in</span>
-            </p>
-          </div>
-        </div>
-        
-        {/* Divider */}
-        <div className="w-full h-0.5 bg-white mt-8"></div>
+          {/* Bottom Footer */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Left */}
+            <div className="text-sm text-purple-100 tracking-wide">
+              © 2026 CMDAYS-2026. All Rights Reserved.
+            </div>
 
-        {/* Footer Bottom */}
-        <div className="container mx-auto px-4 md:px-6 mt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
-            <div className="order-1 md:order-1 text-white text-sm md:text-md">
-              @INSTCon-2026
+            {/* Center */}
+            <div className="text-center text-xs md:text-sm text-purple-200">
+              Organized by the Department of Physics and Astronomy,
+              <br className="hidden md:block" />
+              National Institute of Technology Rourkela
             </div>
-            
-            <div className="order-3 md:order-2 text-white text-xs md:text-sm text-center mt-2 md:mt-0">
-              © 2026 IEEE Rourkela Subsection. All rights reserved.
-            </div>
-            
-            <div className="order-2 md:order-3 flex items-center gap-8 md:gap-12">
-              <div className="relative w-12 h-8 md:w-12 md:h-8">
+
+            {/* Logos */}
+            <div className="flex items-center gap-8">
+              <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-white/10 p-2 backdrop-blur-md border border-white/20">
                 <Image
-                  className="rounded-2xl object-contain"
-                  src={`https://res.cloudinary.com/dd11bvhdi/image/upload/v1741620262/logo_I3ST_camy9q.jpg`}
-                  alt="INSTConLogo"
+                  src="/I3ST-removebg-preview.png"
+                  alt="CMDAYS Logo"
                   fill
-                  sizes="(max-width: 768px) 48px, 48px"
+                  className="object-contain p-1"
+                  sizes="56px"
                 />
               </div>
-              <div className="relative w-12 h-8 md:w-12 md:h-8">
+
+              <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-white/10 p-2 backdrop-blur-md border border-white/20">
                 <Image
-                  className="rounded-2xl object-contain"
-                  src={`/nitlogo.png`}
-                  alt="NITR Logo"
+                  src="/nitlogo.png"
+                  alt="NIT Rourkela Logo"
                   fill
-                  sizes="(max-width: 768px) 48px, 48px"
+                  className="object-contain p-1"
+                  sizes="56px"
                 />
               </div>
             </div>
