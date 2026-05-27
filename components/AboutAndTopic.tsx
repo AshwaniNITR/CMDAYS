@@ -4,6 +4,7 @@ import React from "react";
 import AboutUs from "./AboutUs";
 import Topics from "./Topics";
 import CombinedBackground from "./CombinedBackground";
+import OtherBackground from "./OtherBackground";
 
 const AboutAndTopic = () => {
   return (
@@ -11,7 +12,7 @@ const AboutAndTopic = () => {
       
       {/* Shared Background */}
       <div className="fixed inset-0 -z-20 pointer-events-none">
-        <CombinedBackground />
+        <OtherBackground/>
       </div>
 
       {/* Soft Overlay */}

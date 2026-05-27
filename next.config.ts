@@ -4,6 +4,10 @@ const nextConfig:NextConfig = {
   images: {
 
       remotePatterns: [
+           {
+        protocol: "https",
+        hostname: "cmdays-admin.vercel.app",
+      },
           {
               hostname: "res.cloudinary.com",
           },
