@@ -242,10 +242,10 @@ export default function Committee() {
   };
 
   return (
-    <div className="min-h-screen py-10">
+    <div className="min-h-screen py-10 relative">
       <OtherBackground />
 
-      <div className="container mx-auto px-4">
+      <div className="relative z-20 container mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col items-center justify-center py-8 mb-12">
           <motion.div
