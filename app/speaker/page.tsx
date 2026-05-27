@@ -40,12 +40,13 @@ export default function Committee() {
     const fetchSpeakers = async () => {
       try {
         const response = await fetch(
-          "https://cmdays-admin.vercel.app/api/speakers",
-          {
-            method: "GET",
-            cache: "no-store",
-          },
-        );
+  "https://cmdays-admin.vercel.app/api/speakers",
+  {
+    headers: {
+      Accept: "application/json",
+    },
+  }
+)
 
         const data = await response.json();
 
