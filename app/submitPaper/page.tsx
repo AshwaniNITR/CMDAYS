@@ -1,229 +1,180 @@
 "use client";
-import React from "react";
-import Navbar from "../../components/Navbar";
-import { CommitteesBackground } from "../../components/Background";
-import { CheckCircle } from "lucide-react";
+import OtherBackground from "../../components/OtherBackground";
 
 const Page = () => {
+  const handleDownloadTemplate = () => {
+    const link = document.createElement("a");
+    link.href = "/files/CMDAYS2026_Abstract_Template.docx";
+    link.download = "CMDAYS2026_Abstract_Template.docx";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <div className="relative min-h-screen">
-      {/* <Navbar /> */}
-      <CommitteesBackground />
+      <OtherBackground />
 
-      <section className="relative py-20 flex flex-col items-center justify-center min-h-screen">
+      <section className="relative py-16 flex flex-col items-center justify-center min-h-screen">
         <div className="container mx-auto px-4 lg:px-8">
-          {/* Modern Header */}
+          {/* Header */}
           <div className="mb-16 text-center animate-fadeIn">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#003366] to-[#0066cc] bg-clip-text text-transparent">
-              Important<span className="font-extrabold"> Guidelines</span>
+            <h2 className="w-fit mx-auto px-6 py-3 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 shadow-lg text-4xl md:text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 bg-clip-text text-transparent">
+              Abstract Submission Guidelines
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-[#003366] to-[#0066cc] mx-auto mb-6 rounded-full"></div>
-            <p className="text-gray-600 font-extrabold text-lg max-w-3xl mx-auto">
-              Important guidelines and policies for paper submission and
+
+            <div className="w-24 h-1.5 bg-gradient-to-r from-purple-900 to-purple-900 mx-auto mb-6 rounded-full"></div>
+
+            <p className="text-slate-900 font-semibold text-lg max-w-3xl mx-auto">
+              Important guidelines and policies for abstract submission and
               publication
             </p>
           </div>
 
-          {/* Content Section */}
-          <div className="max-w-5xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 lg:p-12 border border-gray-200/50">
-            {/* Registration Requirement */}
-            <div className="mb-12 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border-l-4 border-blue-500">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-3">
-                Initial Full Paper Preparation
-              </h3>
-              <p className="text-gray-700 mb-6 leading-relaxed justify-center">
-                Please note that{" "}
-                <span className="font-bold">
-                  at least one author of each accepted paper must register for
-                  the conference, attend the event, and present the paper for it
-                  to be included in the proceedings.{" "}
-                </span>
-                Papers that do not meet these requirements will not be published
-                - no exceptions.
-              </p>
-            </div>
-
-            {/* Paper Submission Section */}
-            <div className="mb-12 justify-center">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
-                Paper Submission via Microsoft CMT
-              </h3>
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                Prospective authors are invited to submit a{" "}
-                <span className="font-semibold text-blue-700">
-                  FULL PAPER (4–6 pages)
-                </span>{" "}
-                through the Microsoft CMT submission portal.{" "}
-                <span className="font-bold text-blue-600 mb-6 items-center gap-2">
-                  Here is the{" "}
-                  <a
-                    href="https://cmt3.research.microsoft.com/INSTCON2026"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:text-blue-800"
-                  >
-                     Submission Link
-                  </a>
-                  <svg
-                    className="w-4 h-4 inline"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </span>
-                . Manuscripts must present a complete and original description
-                of the proposed technical contribution, including relevant
-                research results.
-                <span className="font-semibold text-red-600">
-                  {" "}
-                  Submissions shorter than 4 pages may be rejected
-                  automatically.
-                </span>
-              </p>
-
-              <p>
-                Acknowledgement: The Microsoft CMT service was used for managing
-                the peer-reviewing process for this conference. This service was
-                provided for free by Microsoft and they bear all expenses,
-                including costs for Azure cloud services as well as for software
-                development and support.
-              </p>
-
-              <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                <h4 className="text-xl font-semibold text-gray-800 mb-4">
-                  Each manuscript should clearly demonstrate:
-                </h4>
-                <ul className="space-y-3 pl-5">
-                  {[
-                    "Alignment with the scope of the conference",
-                    "Originality and technical quality",
-                    "Sound organization and writing clarity",
-                    "Significance of the contribution",
-                    "Adequate references to prior work",
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-r">
-                <p className="text-gray-800 italic">
-                  By submitting a paper, authors indicate their willingness to
-                  register for and present the work at the Conference if
-                  accepted.
-                </p>
-              </div>
-            </div>
-
-            {/* Review Section */}
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">
-                Review and Final Submission
-              </h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                All submissions will undergo peer review by the Technical
-                Program Committee. Authors of accepted papers must{" "}
-                <span className="font-bold">
-                  upload a final version (maximum 6 pages)
-                </span>{" "}
-                conforming to the publication guidelines, complete the
-                registration process, and present the work at the conference.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                All accepted and presented papers will be submitted for
-                inclusion in IEEE Xplore. However, IEEE reserves the right to
-                exclude a submission from distribution after the conference,
-                including exclusion from IEEE Xplore, if the submission does not
-                meet IEEE standards for scope and/or quality.
-              </p>
-            </div>
-
-            {/* Template & Revision Section */}
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Template Section */}
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  Template
-                </h3>
-                <p className="text-gray-700 mb-4">
-                  Conference paper templates in multiple formats are available
-                  through the following link:
-                </p>
+          {/* Main Content */}
+          <div className="max-w-5xl mx-auto space-y-5">
+            <div className="bg-white/[0.08] backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg p-8">
+              <p className="text-slate-900 font-semibold leading-relaxed text-center mb-6">
+                Participants are encouraged to submit their abstracts online to{" "}
                 <a
-                  href="https://www.ieee.org/conferences/publishing/templates"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-colors"
+                  href="mailto:cmdays2026@nitrkl.ac.in"
+                  className="text-purple-700 font-bold underline"
                 >
-                  Paper Templates
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </a>
-              </div>
+                  cmdays2026@nitrkl.ac.in
+                </a>{" "}
+                on or before <span className="font-bold">20.09.2026</span>.
+              </p>
 
-              {/* Revision Policy */}
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  Revision Policy
-                </h3>
-                <p className="text-gray-700">
-                  If minor revisions are requested, acceptance is contingent
-                  upon satisfactorily addressing all reviewer comments in the
-                  final submission. Papers may still be rejected at the final
-                  stage if reviewer remarks are not properly addressed.
-                </p>
-              </div>
-            </div>
-
-            {/* Important Note */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl border border-red-200">
-              <div className="flex items-start gap-4">
-                <div>
-                  <h4 className="text-lg font-bold text-gray-800 mb-2">
-                    Important Notes
+              {/* Side-by-side cards */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white/[0.08] backdrop-blur-md border border-white/20 rounded-2xl shadow-lg p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">
+                    Abstract Format
                   </h4>
-                  <ul className="text-gray-700 space-y-2">
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">•</span>
-                      Early submission is strongly encouraged
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">•</span>
-                      All deadlines are firm and strictly enforced
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-red-600 font-bold">•</span>
-                      Ensure your paper meets all formatting requirements
-                    </li>
+
+                  <ul className="space-y-3">
+                    {[
+                      "A4 size page",
+                      "MS Word or PDF format",
+                      "Font: Times New Roman",
+                      "Title: 16 pt",
+                      "Body Text: 11 pt with single spacing",
+                      "Mention affiliation and email address of the corresponding author",
+                      "Refer to the conference website for additional details",
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-purple-700 rounded-full mt-2 flex-shrink-0" />
+                        <span className="text-slate-900 font-semibold">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
                   </ul>
+                </div>
+
+                <div className="bg-white/[0.08] backdrop-blur-md border border-white/20 rounded-2xl shadow-lg p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">
+                    Publication Information
+                  </h4>
+
+                  <p className="text-slate-900 font-semibold leading-relaxed text-justify">
+                    The publication of peer-reviewed full-length articles will
+                    depend on the availability of funds from the organizers.
+                    Participants opting for peer-reviewed publication may be
+                    required to contribute a partial publication charge. Further
+                    details will be communicated in due course.
+                  </p>
                 </div>
               </div>
             </div>
+            {/* Important Dates */}
+<div className="bg-white/[0.08] backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg p-8">
+  <h3 className="mx-auto w-fit px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-2xl font-bold text-gray-900 mb-6 shadow-md">
+    Important Dates
+  </h3>
+
+  <div className="space-y-3">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 p-4 rounded-xl bg-white/[0.08] border border-white/20">
+      <span className="font-bold text-slate-900 text-center md:text-left">
+        Email ID for Abstract Submission
+      </span>
+      <span className="font-bold text-purple-700 text-center md:text-right break-all">
+        cmdays2026@nitrkl.ac.in
+      </span>
+    </div>
+
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 rounded-xl bg-white/[0.08] border border-white/20">
+      <span className="font-bold text-slate-900 text-center md:text-left">
+        Template
+      </span>
+
+      <a
+        href="/Abstract_template.docx"
+        download
+        className="group inline-flex items-center justify-center gap-3 px-6 py-3 rounded-xl
+                   bg-gradient-to-r from-purple-700 to-purple-900
+                   text-white font-bold shadow-lg
+                   hover:shadow-purple-500/30
+                   hover:scale-105
+                   transition-all duration-300"
+      >
+        <svg
+          className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-0.5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14"
+          />
+        </svg>
+
+        <span>Download Template</span>
+      </a>
+    </div>
+
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 p-4 rounded-xl bg-white/[0.08] border border-white/20">
+      <span className="font-bold text-slate-900 text-center md:text-left">
+        Abstract Submission Ends
+      </span>
+      <span className="font-bold text-red-600 text-center md:text-right">
+        To Be Announced
+      </span>
+    </div>
+
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 p-4 rounded-xl bg-white/[0.08] border border-white/20">
+      <span className="font-bold text-slate-900 text-center md:text-left">
+        Confirmation of Acceptance
+      </span>
+      <span className="font-bold text-red-600 text-center md:text-right">
+        To Be Announced
+      </span>
+    </div>
+
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 p-4 rounded-xl bg-white/[0.08] border border-white/20">
+      <span className="font-bold text-slate-900 text-center md:text-left">
+        Registration Begins
+      </span>
+      <span className="font-bold text-red-600 text-center md:text-right">
+        To Be Announced
+      </span>
+    </div>
+
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 p-4 rounded-xl bg-white/[0.08] border border-white/20">
+      <span className="font-bold text-slate-900 text-center md:text-left">
+        Registration Deadline
+      </span>
+      <span className="font-bold text-red-600 text-center md:text-right">
+        To Be Announced
+      </span>
+    </div>
+  </div>
+</div>
           </div>
 
-          {/* Bottom spacing */}
-          <div className="mt-20"></div>
+          <div className="mt-20" />
         </div>
       </section>
     </div>

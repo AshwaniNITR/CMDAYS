@@ -1091,6 +1091,389 @@ export default function OtherBackground() {
           ))}
         </svg>
       </div>
+      {/* ======================================== */}
+{/* 3XL+ ULTRA-WIDE PHYSICS VISUALS          */}
+{/* ONLY FOR >= 1750px                       */}
+{/* ======================================== */}
+{/* ======================================== */}
+{/* TOP RIGHT ELECTRIC LIGHTNING             */}
+{/* ======================================== */}
+{/* <div className="fixed top-[25%] right-[14%] hidden lg:block  opacity-75 scale-50 origin-top-right">
+  <svg
+    width="220"
+    height="400"
+    viewBox="0 0 220 400"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="animate-[lightningPulse_2.5s_ease-in-out_infinite]"
+  >
+    <defs>
+      <linearGradient
+        id="lightningGradient"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="100%"
+      >
+        <stop offset="0%" stopColor="#fff700" />
+        <stop offset="55%" stopColor="#ffe600" />
+        <stop offset="100%" stopColor="#facc15" />
+      </linearGradient>
+
+      <linearGradient
+        id="borderGradient"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="100%"
+      >
+        <stop offset="0%" stopColor="#4b5563" />
+        <stop offset="100%" stopColor="#1f2937" />
+      </linearGradient>
+
+      <filter
+        id="glow"
+        x="-50%"
+        y="-50%"
+        width="200%"
+        height="200%"
+      >
+        <feGaussianBlur stdDeviation="6" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <path
+      d="
+        M70 10
+        L200 10
+        L135 150
+        L210 150
+        L20 390
+        L85 220
+        L10 220
+        Z
+      "
+      fill="url(#borderGradient)"
+      filter="url(#glow)"
+    />
+
+   
+    <path
+      d="
+        M82 24
+        L182 24
+        L123 140
+        L188 140
+        L36 360
+        L96 205
+        L28 205
+        Z
+      "
+      fill="url(#lightningGradient)"
+    />
+
+    <path
+      d="
+        M82 24
+        L120 24
+        L72 205
+        L96 205
+        L36 360
+        L62 210
+        L28 205
+        Z
+      "
+      fill="rgba(255,255,255,0.18)"
+    />
+  </svg>
+</div> */}
+
+{/* ======================================== */}
+{/* LEFT-SIDE FEYNMAN STYLE WAVE             */}
+{/* ======================================== */}
+<div className="fixed left-[-2%] top-[28%] opacity-30 hidden 3xl:block">
+  <svg
+    width="420"
+    height="520"
+    viewBox="0 0 420 520"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="animate-[waveDrift_14s_linear_infinite]"
+  >
+    <defs>
+      <linearGradient id="feynGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.15" />
+        <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#f472b6" stopOpacity="0.15" />
+      </linearGradient>
+    </defs>
+
+    {/* Sine particle path */}
+    <path
+      d="
+      M40 40
+      C90 80, 90 140, 40 180
+      C-10 220, -10 280, 40 320
+      C90 360, 90 420, 40 460
+    "
+      stroke="url(#feynGrad)"
+      strokeWidth="4"
+      fill="none"
+      strokeLinecap="round"
+    />
+
+    {/* Photon interaction nodes */}
+    {[40, 180, 320, 460].map((y, i) => (
+      <circle
+        key={i}
+        cx="40"
+        cy={y}
+        r="11"
+        fill={i % 2 === 0 ? "#a78bfa" : "#60a5fa"}
+        opacity="0.8"
+      />
+    ))}
+
+    {/* Interaction connectors */}
+    <line
+      x1="40"
+      y1="180"
+      x2="220"
+      y2="110"
+      stroke="#c084fc"
+      strokeWidth="2"
+      strokeDasharray="7 7"
+      opacity="0.45"
+    />
+
+    <line
+      x1="40"
+      y1="320"
+      x2="240"
+      y2="390"
+      stroke="#f472b6"
+      strokeWidth="2"
+      strokeDasharray="7 7"
+      opacity="0.45"
+    />
+
+    {/* Virtual particles */}
+    <circle cx="220" cy="110" r="14" fill="#8b5cf6" opacity="0.7" />
+    <circle cx="240" cy="390" r="14" fill="#ec4899" opacity="0.7" />
+  </svg>
+</div>
+
+{/* ======================================== */}
+{/* RIGHT-SIDE HELICAL DNA TORUS             */}
+{/* ======================================== */}
+<div className="fixed right-[2%] top-[35%] opacity-30 hidden 3xl:block">
+  <svg
+    width="420"
+    height="520"
+    viewBox="0 0 420 520"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="animate-[slowRotate_22s_linear_infinite]"
+  >
+    <defs>
+      <linearGradient id="dna1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#8b5cf6" />
+        <stop offset="100%" stopColor="#ec4899" />
+      </linearGradient>
+
+      <linearGradient id="dna2" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#60a5fa" />
+        <stop offset="100%" stopColor="#c084fc" />
+      </linearGradient>
+    </defs>
+
+    {/* Helix strands */}
+    <path
+      d="
+      M140 20
+      C280 80, 280 160, 140 220
+      C0 280, 0 360, 140 420
+      C280 480, 280 500, 140 520
+    "
+      stroke="url(#dna1)"
+      strokeWidth="4"
+      fill="none"
+      strokeLinecap="round"
+    />
+
+    <path
+      d="
+      M280 20
+      C140 80, 140 160, 280 220
+      C420 280, 420 360, 280 420
+      C140 480, 140 500, 280 520
+    "
+      stroke="url(#dna2)"
+      strokeWidth="4"
+      fill="none"
+      strokeLinecap="round"
+    />
+
+    {/* DNA connectors */}
+    {Array.from({ length: 12 }).map((_, i) => (
+      <line
+        key={i}
+        x1={150 + Math.sin(i) * 30}
+        y1={40 + i * 38}
+        x2={270 - Math.sin(i) * 30}
+        y2={40 + i * 38}
+        stroke="#c084fc"
+        strokeOpacity="0.4"
+        strokeWidth="2"
+      />
+    ))}
+
+    {/* Orbit particles */}
+    {[
+      [140, 20],
+      [280, 20],
+      [140, 220],
+      [280, 220],
+      [140, 420],
+      [280, 420],
+    ].map(([cx, cy], i) => (
+      <circle
+        key={i}
+        cx={cx}
+        cy={cy}
+        r="10"
+        fill={i % 2 === 0 ? "#8b5cf6" : "#60a5fa"}
+        opacity="0.75"
+      />
+    ))}
+  </svg>
+</div>
+
+{/* ======================================== */}
+{/* BOTTOM CENTER PARTICLE COLLIDER          */}
+{/* ======================================== */}
+<div className="fixed bottom-[3%] left-1/2 -translate-x-1/2 opacity-25 hidden 3xl:block">
+  <svg
+    width="760"
+    height="280"
+    viewBox="0 0 760 280"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <radialGradient id="colliderGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#f472b6" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+      </radialGradient>
+
+      <linearGradient id="colliderRing" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.25" />
+        <stop offset="50%" stopColor="#c084fc" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.25" />
+      </linearGradient>
+    </defs>
+
+    {/* Main collider rings */}
+    <ellipse
+      cx="380"
+      cy="140"
+      rx="300"
+      ry="70"
+      stroke="url(#colliderRing)"
+      strokeWidth="3"
+      opacity="0.65"
+    />
+
+    <ellipse
+      cx="380"
+      cy="140"
+      rx="220"
+      ry="45"
+      stroke="#a78bfa"
+      strokeOpacity="0.35"
+      strokeWidth="2"
+      strokeDasharray="8 8"
+    />
+
+    {/* Collision core */}
+    <circle
+      cx="380"
+      cy="140"
+      r="40"
+      fill="url(#colliderGlow)"
+      className="animate-[pulse_4s_ease-in-out_infinite]"
+    />
+
+    {/* Beams */}
+    <line
+      x1="80"
+      y1="140"
+      x2="340"
+      y2="140"
+      stroke="#60a5fa"
+      strokeWidth="3"
+      strokeLinecap="round"
+      opacity="0.7"
+    />
+
+    <line
+      x1="420"
+      y1="140"
+      x2="680"
+      y2="140"
+      stroke="#f472b6"
+      strokeWidth="3"
+      strokeLinecap="round"
+      opacity="0.7"
+    />
+
+    {/* Beam particles */}
+    {Array.from({ length: 10 }).map((_, i) => (
+      <circle
+        key={i}
+        cx={100 + i * 22}
+        cy="140"
+        r="5"
+        fill="#60a5fa"
+        className="animate-[beamMove_3s_linear_infinite]"
+      />
+    ))}
+
+    {Array.from({ length: 10 }).map((_, i) => (
+      <circle
+        key={`r-${i}`}
+        cx={660 - i * 22}
+        cy="140"
+        r="5"
+        fill="#f472b6"
+        className="animate-[beamMoveReverse_3s_linear_infinite]"
+      />
+    ))}
+  </svg>
+</div>
+
+{/* ======================================== */}
+{/* FAR BACK STAR PARTICLE SYSTEM            */}
+{/* ======================================== */}
+<div className="fixed inset-0 hidden 3xl:block pointer-events-none">
+  {Array.from({ length: 80 }).map((_, i) => (
+    <span
+      key={i}
+      className="absolute rounded-full bg-violet-300/50"
+      style={{
+        width: `${Math.random() * 4 + 1}px`,
+        height: `${Math.random() * 4 + 1}px`,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        animation: `starFloat ${8 + Math.random() * 14}s ease-in-out infinite`,
+        animationDelay: `${Math.random() * 10}s`,
+      }}
+    />
+  ))}
+</div>
 
       {/* ======================================== */}
       {/* DECORATIVE DIAMONDS / RHOMBS scatter - responsive */}
@@ -1211,6 +1594,151 @@ export default function OtherBackground() {
             opacity: 0.45;
           }
         }
+          @keyframes fieldPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.18;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.32;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.18;
+  }
+}
+
+@keyframes waveDrift {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes beamMove {
+  0% {
+    transform: translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(220px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes beamMoveReverse {
+  0% {
+    transform: translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-220px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes starFloat {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-25px) scale(1.4);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.25;
+  }
+}
+@keyframes lightningPulse {
+  0% {
+    transform: scale(1);
+    filter:
+      brightness(1)
+      drop-shadow(0 0 8px rgba(255, 230, 0, 0.6))
+      drop-shadow(0 0 18px rgba(255, 217, 0, 0.45));
+    opacity: 0.75;
+  }
+
+  10% {
+    transform: scale(1.02);
+    filter:
+      brightness(1.5)
+      drop-shadow(0 0 12px rgba(255, 255, 120, 0.95))
+      drop-shadow(0 0 28px rgba(255, 230, 0, 0.95))
+      drop-shadow(0 0 55px rgba(255, 208, 0, 0.8));
+    opacity: 1;
+  }
+
+  20% {
+    transform: scale(0.98);
+    filter:
+      brightness(1.2)
+      drop-shadow(0 0 10px rgba(255, 230, 0, 0.7))
+      drop-shadow(0 0 20px rgba(255, 217, 0, 0.5));
+    opacity: 0.85;
+  }
+
+  35% {
+    transform: scale(1.05);
+    filter:
+      brightness(2.1)
+      drop-shadow(0 0 16px rgba(255,255,180,1))
+      drop-shadow(0 0 36px rgba(255,230,0,1))
+      drop-shadow(0 0 70px rgba(255,200,0,0.95));
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.03);
+    filter:
+      brightness(1.6)
+      drop-shadow(0 0 14px rgba(255,240,120,0.9))
+      drop-shadow(0 0 30px rgba(255,220,0,0.8))
+      drop-shadow(0 0 55px rgba(255,180,0,0.7));
+    opacity: 0.95;
+  }
+
+  75% {
+    transform: scale(1);
+    filter:
+      brightness(1.3)
+      drop-shadow(0 0 10px rgba(255,230,0,0.7))
+      drop-shadow(0 0 24px rgba(255,210,0,0.6));
+    opacity: 0.82;
+  }
+
+  100% {
+    transform: scale(1);
+    filter:
+      brightness(1)
+      drop-shadow(0 0 8px rgba(255,230,0,0.6))
+      drop-shadow(0 0 18px rgba(255,217,0,0.45));
+    opacity: 0.75;
+  }
+}
       `}</style>
     </div>
   );

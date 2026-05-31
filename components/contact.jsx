@@ -43,7 +43,7 @@ export default function Contact() {
               <p className="mt-5 text-sm md:text-base leading-7 text-purple-100">
                 CMDAYS-2026 is being organized by the Department of Physics and
                 Astronomy, National Institute of Technology Rourkela from 17th
-                to 19th July, 2026. The conference aims to bring together
+                to 19th November, 2026. The conference aims to bring together
                 researchers, academicians, and industry experts working in the
                 field of condensed matter physics and allied domains.
               </p>

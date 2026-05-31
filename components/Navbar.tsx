@@ -29,8 +29,8 @@ const navigation = [
   },
   { name: "Speakers", href: "/speaker" },
   {
-    name: "Abstract Submission",
-    href: "/updatedsoon",
+    name: "Call For Papers",
+    href: "/submitPaper",
     // dropdown: [
        
     //   { name: "Call for Papers", href: "/NITFINAL.pdf" },
@@ -41,7 +41,7 @@ const navigation = [
   // { name: "Tracks", href: "/track-chairs" },
   {name:"Registration", href:"/RegDet"},
  
-  { name: "Travel", href: "/travel" },
+  { name: "Travel", href: "/updatedSoon" },
   { name: "Schedule", href: "/updatedsoon" },
   {name: "Accomodation", href: "/updatedsoon"},
   {
