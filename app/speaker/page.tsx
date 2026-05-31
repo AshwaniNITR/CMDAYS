@@ -36,36 +36,102 @@ export default function Committee() {
 
   const [sidebarSpeaker, setSidebarSpeaker] = useState<Speaker | null>(null);
 
-  useEffect(() => {
-    const fetchSpeakers = async () => {
-      try {
-        const response = await fetch(
-  "https://cmdays-admin.vercel.app/api/speakers",
-  {
-    headers: {
-      Accept: "application/json",
-    },
-  }
-)
+//   useEffect(() => {
+//     const fetchSpeakers = async () => {
+//       try {
+//         const response = await fetch(
+//   "https://cmdays-admin-ten.vercel.app/api/speakers",
+//   {
+//     headers: {
+//       Accept: "application/json",
+//     },
+//   }
+// )
 
-        const data = await response.json();
+//         const data = await response.json();
 
-        // Sort by order ascending
-        const sortedData = data.sort(
-          (a: Speaker, b: Speaker) => a.order - b.order,
-        );
+//         // Sort by order ascending
+//         const sortedData = data.sort(
+//           (a: Speaker, b: Speaker) => a.order - b.order,
+//         );
 
-        setSpeakers(sortedData);
-      } catch (error) {
-        console.error("Failed to fetch speakers:", error);
-      } finally {
-        setLoading(false);
+//         setSpeakers(sortedData);
+//       } catch (error) {
+//         console.error("Failed to fetch speakers:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchSpeakers();
+//   }, []);
+   useEffect(() => {
+  const fetchSpeakers = async () => {
+    try {
+      // Check session storage first
+      const cachedSpeakers =
+        sessionStorage.getItem(
+          "speakersData"
+        )
+
+      if (cachedSpeakers) {
+        const parsedData: Speaker[] =
+          JSON.parse(cachedSpeakers)
+
+        const sortedData =
+          parsedData.sort(
+            (a, b) =>
+              a.order - b.order
+          )
+
+        setSpeakers(sortedData)
+        setLoading(false)
+        return
       }
-    };
 
-    fetchSpeakers();
-  }, []);
+      // Fetch from API if not cached
+      const response = await fetch(
+        "https://cmdays-admin-ten.vercel.app/api/speakers",
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      )
 
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch speakers: ${response.status}`
+        )
+      }
+
+      const data: Speaker[] =
+        await response.json()
+
+      // Store entire response
+      sessionStorage.setItem(
+        "speakersData",
+        JSON.stringify(data)
+      )
+
+      const sortedData =
+        data.sort(
+          (a, b) =>
+            a.order - b.order
+        )
+
+      setSpeakers(sortedData)
+    } catch (error) {
+      console.error(
+        "Failed to fetch speakers:",
+        error
+      )
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  fetchSpeakers()
+}, [])
   const handleSpeakerClick = (speaker: Speaker) => {
     if (speaker.talkTitle || speaker.abstract) {
       setSelectedSpeaker(speaker);
@@ -105,7 +171,7 @@ export default function Committee() {
 
     if (url.startsWith("http")) return url;
 
-    return `https://cmdays-admin.vercel.app${url}`;
+    return `https://cmdays-admin-ten.vercel.app${url}`;
   };
 
   // Animation variants

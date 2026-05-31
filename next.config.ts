@@ -8,6 +8,10 @@ const nextConfig:NextConfig = {
         protocol: "https",
         hostname: "cmdays-admin.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "cmdays-admin-ten.vercel.app",
+      },
           {
               hostname: "res.cloudinary.com",
           },

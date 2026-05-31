@@ -39,7 +39,7 @@ export default function CommitteeSection({ title, category, description }: Commi
         }
 
         // Fetch from API if no cached data
-        const response = await fetch('https://cmdays-admin.vercel.app/api/committee');
+        const response = await fetch('https://cmdays-admin-ten.vercel.app/api/committee');
         
         if (!response.ok) {
           throw new Error(`Failed to fetch committee data: ${response.status}`);
@@ -127,7 +127,7 @@ export default function CommitteeSection({ title, category, description }: Commi
                       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#003366] to-[#0066cc] p-1 transform rotate-45 scale-105 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white z-10">
                         <img
-                          src={member.imageUrl.startsWith('http') ? member.imageUrl : `https://cmdays-admin.vercel.app${member.imageUrl}`}
+                          src={member.imageUrl.startsWith('http') ? member.imageUrl : `https://cmdays-admin-ten.vercel.app${member.imageUrl}`}
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
                           onError={(e) => {

@@ -59,41 +59,107 @@ export default function SpeakersCarousel() {
   }, [])
 
   // FETCH SPEAKERS FROM API
+  // useEffect(() => {
+  //   const fetchSpeakers = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://cmdays-admin-ten.vercel.app/api/speakers",
+  //         {
+  //           method: "GET",
+  //           cache: "no-store",
+  //         }
+  //       )
+
+  //       const data = await response.json()
+
+  //       // SORT ASCENDING
+  //       const sortedData = data.sort(
+  //         (
+  //           a: Speaker,
+  //           b: Speaker
+  //         ) => a.order - b.order
+  //       )
+
+  //       setSpeakers(sortedData)
+  //     } catch (error) {
+  //       console.error(
+  //         "Failed to fetch speakers:",
+  //         error
+  //       )
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+
+  //   fetchSpeakers()
+  // }, [])
   useEffect(() => {
-    const fetchSpeakers = async () => {
-      try {
-        const response = await fetch(
-          "https://cmdays-admin.vercel.app/api/speakers",
-          {
-            method: "GET",
-            cache: "no-store",
-          }
+  const fetchSpeakers = async () => {
+    try {
+      // Check session storage first
+      const cachedSpeakers =
+        sessionStorage.getItem(
+          "speakersData"
         )
 
-        const data = await response.json()
+      if (cachedSpeakers) {
+        const parsedData: Speaker[] =
+          JSON.parse(cachedSpeakers)
 
-        // SORT ASCENDING
-        const sortedData = data.sort(
-          (
-            a: Speaker,
-            b: Speaker
-          ) => a.order - b.order
-        )
+        const sortedData =
+          parsedData.sort(
+            (a, b) =>
+              a.order - b.order
+          )
 
         setSpeakers(sortedData)
-      } catch (error) {
-        console.error(
-          "Failed to fetch speakers:",
-          error
-        )
-      } finally {
         setLoading(false)
+        return
       }
+
+      // Fetch from API if not cached
+      const response = await fetch(
+        "https://cmdays-admin-ten.vercel.app/api/speakers",
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch speakers: ${response.status}`
+        )
+      }
+
+      const data: Speaker[] =
+        await response.json()
+
+      // Store entire response
+      sessionStorage.setItem(
+        "speakersData",
+        JSON.stringify(data)
+      )
+
+      const sortedData =
+        data.sort(
+          (a, b) =>
+            a.order - b.order
+        )
+
+      setSpeakers(sortedData)
+    } catch (error) {
+      console.error(
+        "Failed to fetch speakers:",
+        error
+      )
+    } finally {
+      setLoading(false)
     }
+  }
 
-    fetchSpeakers()
-  }, [])
-
+  fetchSpeakers()
+}, [])
   // FIX IMAGE URL
   const getImageUrl = (
     url: string
@@ -104,7 +170,7 @@ export default function SpeakersCarousel() {
     if (url.startsWith("http"))
       return url
 
-    return `https://cmdays-admin.vercel.app${url}`
+    return `https://cmdays-admin-ten.vercel.app${url}`
   }
 
   // CREATE BATCHES
