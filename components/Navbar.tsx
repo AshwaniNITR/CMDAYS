@@ -22,9 +22,9 @@ const navigation = [
     name: "Committee",
     href: "/committee",
     dropdown: [
-      { name: "Organizing Committee", href: "/organizing" },
-      { name: "Technical Committee", href: "/technical" },
-      { name: "Advisory Committee", href: "/advisory" },
+      { name: "Central Organizing Committee", href: "/organizing" },
+      { name: "Central Advisory Committee", href: "/advisory" },
+      { name: "Local Organizing Committee", href: "/local" },
     ],
   },
   { name: "Speakers", href: "/speaker" },
