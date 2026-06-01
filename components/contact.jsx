@@ -15,10 +15,7 @@ import { useRouter } from "next/navigation";
 export default function Contact() {
   const router = useRouter();
 
-  const handleClick = (
-    e,
-    href
-  ) => {
+  const handleClick = (e, href) => {
     e.preventDefault();
     router.push(href);
   };
@@ -104,10 +101,6 @@ export default function Contact() {
                     href: "/about",
                   },
                   {
-                    name: "Conference Tracks",
-                    href: "/track-chairs",
-                  },
-                  {
                     name: "Paper Submission",
                     href: "/submitPaper",
                   },
@@ -134,6 +127,16 @@ export default function Contact() {
               <h3 className="text-xl font-semibold mb-5">Contact Us</h3>
 
               <div className="space-y-5 text-sm md:text-base">
+                <div className="flex items-start gap-3">
+                  <span className="text-purple-100">
+                    Dr. Suryanarayan Dash (Convener)
+                  </span>
+                </div>
+                 <div className="flex items-start gap-3">
+                  <span className="text-purple-100">
+                    Dr. Gopi Nath Daptary(Co-Convener)
+                  </span>
+                </div>
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-purple-200 mt-0.5" />
                   <span className="text-purple-100">
