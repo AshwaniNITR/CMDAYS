@@ -119,7 +119,7 @@ const AboutUs = () => {
 </motion.p>
 
             {/* CTA Button */}
-            <motion.div
+            {/* <motion.div
               variants={itemVariants}
               className="mt-12 flex justify-center"
             >
@@ -130,7 +130,7 @@ const AboutUs = () => {
                   <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 </Button>
               </Link>
-            </motion.div>
+            </motion.div> */}
           </div>
         </motion.div>
       </motion.div>
