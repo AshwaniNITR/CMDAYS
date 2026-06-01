@@ -7,6 +7,7 @@ import {
   VscArrowCircleRight,
   VscArrowCircleLeft,
 } from "react-icons/vsc";
+import { useRouter } from "next/navigation";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -25,6 +26,8 @@ const Topics = () => {
   const [members, setMembers] = useState<CommitteeMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [slidesToShow, setSlidesToShow] = useState(1);
+  const router = useRouter();
 
   // Specific roles to display
   const targetRoles = [
@@ -77,15 +80,31 @@ const Topics = () => {
     fetchCommitteeData();
   }, []);
 
-  // Create chunks of members for slides (3 members per slide for better visibility)
+  // Handle responsive slidesToShow
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setSlidesToShow(1);
+      } else {
+        setSlidesToShow(3);
+      }
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Create chunks of members based on slidesToShow
   const memberSlides = [];
-  for (let i = 0; i < members.length; i += 3) {
-    memberSlides.push(members.slice(i, i + 3));
+  const chunkSize = slidesToShow;
+  for (let i = 0; i < members.length; i += chunkSize) {
+    memberSlides.push(members.slice(i, i + chunkSize));
   }
 
   const settings = {
     dots: true,
-    infinite: members.length > 3,
+    infinite: members.length > slidesToShow,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -97,6 +116,19 @@ const Topics = () => {
 
   const goToNext = () => sliderRef.current?.slickNext();
   const goToPrev = () => sliderRef.current?.slickPrev();
+
+  // Navigation handlers
+  const handleCentralCommittee = () => {
+    router.push('/organizing');
+  };
+
+  const handleAdvisoryCommittee = () => {
+    router.push('/advisory');
+  };
+
+  const handleLocalCommittee = () => {
+    router.push('/local');
+  };
 
   // Loading state
   if (loading) {
@@ -200,7 +232,9 @@ const Topics = () => {
                     viewport={{ once: true }}
                     className="rounded-3xl border border-white/30 bg-white/80 backdrop-blur-lg shadow-2xl p-6 sm:p-8"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className={`grid grid-cols-1 gap-6 ${
+                      slidesToShow === 3 ? 'md:grid-cols-2 lg:grid-cols-3' : ''
+                    }`}>
                       {slide.map((member, i) => (
                         <motion.div
                           key={member._id}
@@ -215,7 +249,7 @@ const Topics = () => {
                         >
                           <div className="flex flex-col items-center text-center p-4 rounded-2xl transition-all duration-300 group-hover:shadow-lg">
                             {/* Avatar/Image */}
-                            <div className="relative w-32 h-32 mb-4">
+                            <div className="relative w-32 h-32 mb-4 mx-auto">
                               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 p-1 transform rotate-45 scale-105 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
                                 <img
@@ -281,6 +315,36 @@ const Topics = () => {
             <p className="text-gray-500 text-lg">No committee members found.</p>
           </div>
         )}
+
+        {/* Three Navigation Buttons Below the Images */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-4 mt-12 pt-8 border-t border-gray-200"
+        >
+          <button
+            onClick={handleCentralCommittee}
+            className="px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-xl"
+          >
+            View Central Organizing Committee
+          </button>
+          
+          <button
+            onClick={handleAdvisoryCommittee}
+            className="px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-xl"
+          >
+            View Advisory Committee
+          </button>
+          
+          <button
+            onClick={handleLocalCommittee}
+            className="px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-xl"
+          >
+            View Local Organizing Committee
+          </button>
+        </motion.div>
       </div>
     </section>
   );
