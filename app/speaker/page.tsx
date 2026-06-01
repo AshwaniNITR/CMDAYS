@@ -36,102 +36,50 @@ export default function Committee() {
 
   const [sidebarSpeaker, setSidebarSpeaker] = useState<Speaker | null>(null);
 
-//   useEffect(() => {
-//     const fetchSpeakers = async () => {
-//       try {
-//         const response = await fetch(
-//   "https://cmdays-admin-ten.vercel.app/api/speakers",
-//   {
-//     headers: {
-//       Accept: "application/json",
-//     },
-//   }
-// )
+  useEffect(() => {
+    const fetchSpeakers = async () => {
+      try {
+        // Check session storage first
+        const cachedSpeakers = sessionStorage.getItem("speakersData");
 
-//         const data = await response.json();
-
-//         // Sort by order ascending
-//         const sortedData = data.sort(
-//           (a: Speaker, b: Speaker) => a.order - b.order,
-//         );
-
-//         setSpeakers(sortedData);
-//       } catch (error) {
-//         console.error("Failed to fetch speakers:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchSpeakers();
-//   }, []);
-   useEffect(() => {
-  const fetchSpeakers = async () => {
-    try {
-      // Check session storage first
-      const cachedSpeakers =
-        sessionStorage.getItem(
-          "speakersData"
-        )
-
-      if (cachedSpeakers) {
-        const parsedData: Speaker[] =
-          JSON.parse(cachedSpeakers)
-
-        const sortedData =
-          parsedData.sort(
-            (a, b) =>
-              a.order - b.order
-          )
-
-        setSpeakers(sortedData)
-        setLoading(false)
-        return
-      }
-
-      // Fetch from API if not cached
-      const response = await fetch(
-        "https://cmdays-admin-ten.vercel.app/api/speakers",
-        {
-          method: "GET",
-          cache: "no-store",
+        if (cachedSpeakers) {
+          const parsedData: Speaker[] = JSON.parse(cachedSpeakers);
+          const sortedData = parsedData.sort((a, b) => a.order - b.order);
+          setSpeakers(sortedData);
+          setLoading(false);
+          return;
         }
-      )
 
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch speakers: ${response.status}`
-        )
+        // Fetch from API if not cached
+        const response = await fetch(
+          "https://cmdays-admin-ten.vercel.app/api/speakers",
+          {
+            method: "GET",
+            cache: "no-store",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch speakers: ${response.status}`);
+        }
+
+        const data: Speaker[] = await response.json();
+
+        // Store entire response
+        sessionStorage.setItem("speakersData", JSON.stringify(data));
+
+        const sortedData = data.sort((a, b) => a.order - b.order);
+        setSpeakers(sortedData);
+      } catch (error) {
+        console.error("Failed to fetch speakers:", error);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      const data: Speaker[] =
-        await response.json()
+    fetchSpeakers();
+  }, []);
 
-      // Store entire response
-      sessionStorage.setItem(
-        "speakersData",
-        JSON.stringify(data)
-      )
-
-      const sortedData =
-        data.sort(
-          (a, b) =>
-            a.order - b.order
-        )
-
-      setSpeakers(sortedData)
-    } catch (error) {
-      console.error(
-        "Failed to fetch speakers:",
-        error
-      )
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  fetchSpeakers()
-}, [])
   const handleSpeakerClick = (speaker: Speaker) => {
     if (speaker.talkTitle || speaker.abstract) {
       setSelectedSpeaker(speaker);
@@ -340,7 +288,7 @@ export default function Committee() {
             </motion.h2>
           </motion.div>
 
-          <div className="w-32 h-2 bg-gradient-to-r from-[#003366] to-[#0066cc] rounded-full"></div>
+          <div className="w-32 h-2 bg-gradient-to-r from-purple-800 via-purple-700 to-purple-800 rounded-full"></div>
         </div>
 
         {/* Loading */}
@@ -352,17 +300,16 @@ export default function Committee() {
           </div>
         )}
 
-        {/* Speakers Grid */}
+        {/* Speakers Grid - Card with Circular Photo */}
         {!loading && (
           <motion.div
-            className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto"
+            className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             {speakers.map((speaker, index) => {
               const hasTalkInfo = speaker.talkTitle || speaker.abstract;
-
               const hasBiosketch = speaker.bio || speaker.biosketch;
 
               return (
@@ -370,12 +317,7 @@ export default function Committee() {
                   key={speaker._id}
                   variants={cardVariants}
                   custom={index}
-                  onClick={() => hasTalkInfo && handleSpeakerClick(speaker)}
-                  className={`w-full sm:w-[45%] lg:w-[45%] xl:w-[30%] group bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 ${
-                    hasTalkInfo
-                      ? "cursor-pointer hover:border-blue-300"
-                      : "cursor-default"
-                  }`}
+                  className="group relative w-72"
                   whileHover={{
                     y: -5,
                     transition: {
@@ -383,64 +325,51 @@ export default function Committee() {
                     },
                   }}
                 >
-                  {/* IMAGE */}
-                  <div className="relative w-full pt-[100%] bg-gray-50 overflow-hidden z-0">
-                    {/* <Image
-                        src={getImageUrl(
-                          speaker.imageUrl
-                        )}
-                        alt={speaker.name}
-                        fill
-                        className="object-cover z-0"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        priority={index < 4}
-                      /> */}
-                    <img
-                      src={getImageUrl(speaker.imageUrl)}
-                      alt={speaker.name}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-
-                    {hasTalkInfo && (
-                      <div className="absolute top-3 right-3 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded shadow-md z-10">
-                        VIEW TALK
-                      </div>
-                    )}
-                  </div>
-
-                  {/* CONTENT */}
-                  <div className="relative z-10 p-5 bg-white">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">
-                      {speaker.name}
-                    </h3>
-
-                    <p className="text-gray-600 font-bold text-sm mb-3">
-                      {speaker.role}
-                    </p>
-
-                    {speaker.talkTitle && (
-                      <div className="mt-4 pt-4 border-t border-gray-100">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-
-                          <span className="text-blue-700 text-xs font-semibold uppercase tracking-wide">
-                            Title Of Talk
-                          </span>
+                  <div className="rounded-2xl overflow-hidden shadow-md bg-white border border-gray-100 flex flex-col h-full transition-all duration-300 group-hover:shadow-xl">
+                    {/* Circular Image Section */}
+                    <div className="flex justify-center pt-8 pb-4">
+                      <div className="relative w-36 h-36">
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 p-1 transform rotate-45 scale-105 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
+                          <img
+                            src={getImageUrl(speaker.imageUrl)}
+                            alt={speaker.name}
+                            className="w-full h-full object-cover object-center"
+                          />
                         </div>
+                      </div>
+                    </div>
 
-                        <p className="text-gray-800 text-sm leading-relaxed line-clamp-2">
-                          {speaker.talkTitle}
+                    {/* Content Section */}
+                    <div className="flex flex-col p-6 flex-grow">
+                      <div className="text-center">
+                        <h3 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-[#003366] transition-colors">
+                          {speaker.name}
+                        </h3>
+                        <p className="text-gray-600 text-sm font-medium">
+                          {speaker.role}
                         </p>
+                      </div>
 
-                        <div className="flex gap-2 mt-3 flex-wrap">
+                      {/* Talk Title if exists */}
+                      {speaker.talkTitle && (
+                        <div className="mt-4 text-center">
+                          <p className="text-gray-700 text-sm italic line-clamp-2">
+                            "{speaker.talkTitle}"
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Buttons Section - Always at bottom */}
+                      {(hasTalkInfo || hasBiosketch) && (
+                        <div className="mt-6 pt-4 border-t border-gray-100 flex gap-2 justify-center">
                           {hasTalkInfo && (
                             <button
                               onClick={() => handleSpeakerClick(speaker)}
                               className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-medium rounded-md border border-blue-200 hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
                             >
                               <FileText className="w-3.5 h-3.5" />
-
-                              <span>View Abstract</span>
+                              <span>Abstract</span>
                             </button>
                           )}
 
@@ -450,13 +379,12 @@ export default function Committee() {
                               className="inline-flex items-center gap-1 px-3 py-1.5 bg-purple-50 text-purple-700 text-xs font-medium rounded-md border border-purple-200 hover:bg-purple-100 hover:border-purple-300 transition-all duration-200"
                             >
                               <User className="w-3.5 h-3.5" />
-
-                              <span>Biosketch</span>
+                              <span>Biography</span>
                             </button>
                           )}
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -573,7 +501,7 @@ export default function Committee() {
               {/* HEADER */}
               <div className="bg-gradient-to-r from-[#003366] to-[#0066cc] text-white p-6">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-2xl font-bold">Biosketch</h3>
+                  <h3 className="text-2xl font-bold">Biography</h3>
 
                   <button
                     onClick={closeSidebar}
@@ -586,37 +514,43 @@ export default function Committee() {
 
               {/* CONTENT */}
               <div className="flex-1 overflow-y-auto p-6">
-                <div className="relative w-26 h-26 mx-auto mb-4 rounded-lg overflow-hidden">
-                  <Image
-                    src={getImageUrl(sidebarSpeaker.imageUrl)}
-                    alt={sidebarSpeaker.name}
-                    fill
-                    className="object-cover"
-                  />
+                <div className="flex justify-center mb-4">
+                  <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#003366] shadow-lg">
+                    <img
+                      src={getImageUrl(sidebarSpeaker.imageUrl)}
+                      alt={sidebarSpeaker.name}
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
                 </div>
 
                 <div className="text-center mb-6">
                   <h4 className="text-xl font-bold">{sidebarSpeaker.name}</h4>
 
-                  <p className="text-gray-600 font-semibold text-sm">
+                  <p className="text-gray-600 font-semibold text-sm mt-1">
                     {sidebarSpeaker.role}
                   </p>
                 </div>
 
-                <p className="text-gray-700 whitespace-pre-line">
-                  {sidebarSpeaker.bio ||
-                    sidebarSpeaker.biosketch ||
-                    "No biosketch available"}
-                </p>
+                <div className="mt-4">
+                  <h5 className="text-lg font-semibold mb-3 text-[#003366]">
+                    Biography
+                  </h5>
+                  <p className="text-gray-700 whitespace-pre-line leading-relaxed">
+                    {sidebarSpeaker.bio ||
+                      sidebarSpeaker.biosketch ||
+                      "No biography available"}
+                  </p>
+                </div>
               </div>
 
               {/* FOOTER */}
               <div className="border-t border-gray-200 p-4 bg-gray-50">
                 <button
                   onClick={closeSidebar}
-                  className="w-full py-3 bg-gradient-to-r from-[#003366] to-[#0066cc] text-white font-semibold rounded-lg"
+                  className="w-full py-3 bg-gradient-to-r from-[#003366] to-[#0066cc] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
                 >
-                  Close Biosketch
+                  Close Biography
                 </button>
               </div>
             </motion.div>
