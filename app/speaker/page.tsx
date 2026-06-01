@@ -586,7 +586,7 @@ export default function Committee() {
 
               {/* CONTENT */}
               <div className="flex-1 overflow-y-auto p-6">
-                <div className="relative w-32 h-32 mx-auto mb-4 rounded-lg overflow-hidden">
+                <div className="relative w-26 h-26 mx-auto mb-4 rounded-lg overflow-hidden">
                   <Image
                     src={getImageUrl(sidebarSpeaker.imageUrl)}
                     alt={sidebarSpeaker.name}

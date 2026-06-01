@@ -24,6 +24,11 @@ export default function CommitteeSection({ title, category, description }: Commi
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Role to exclude for Local Organizing Committee
+  const excludedRoles = [
+    "Chief Patron,   Director NIT Rourkela"
+  ];
+
   useEffect(() => {
     const fetchCommitteeData = async () => {
       try {
@@ -33,7 +38,15 @@ export default function CommitteeSection({ title, category, description }: Commi
         if (cachedData) {
           // Use cached data
           const allData: CommitteeMember[] = JSON.parse(cachedData);
-          const filtered = allData.filter(m => m.category === category);
+          
+          // Filter by category
+          let filtered = allData.filter(m => m.category === category);
+          
+          // If this is Local Organizing Committee, exclude specific roles
+          if (category === "Local Organizing Committee") {
+            filtered = filtered.filter(m => !excludedRoles.includes(m.role));
+          }
+          
           setMembers(filtered.sort((a, b) => a.order - b.order));
           setLoading(false);
           return;
@@ -52,7 +65,13 @@ export default function CommitteeSection({ title, category, description }: Commi
         sessionStorage.setItem('allCommitteeData', JSON.stringify(data));
         
         // Filter for specific category
-        const filtered = data.filter(m => m.category === category);
+        let filtered = data.filter(m => m.category === category);
+        
+        // If this is Local Organizing Committee, exclude specific roles
+        if (category === "Local Organizing Committee") {
+          filtered = filtered.filter(m => !excludedRoles.includes(m.role));
+        }
+        
         setMembers(filtered.sort((a, b) => a.order - b.order));
         setLoading(false);
       } catch (err) {
