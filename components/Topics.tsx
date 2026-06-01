@@ -32,7 +32,8 @@ const Topics = () => {
     "Chairperson, NIT Rourkela",
     "Convener, NIT Rourkela",
     "Co-Convener, NIT Rourkela",
-    "Secretary, NIT Rourkela"
+    "Secretary, NIT Rourkela",
+    "Treasurer, NIT Rourkela"
   ];
 
   useEffect(() => {
@@ -148,14 +149,14 @@ const Topics = () => {
         >
           <div className="inline-block relative">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-purple-900 via-violet-700 to-indigo-600 bg-clip-text text-transparent">
-              Conference Organizing Committee
+              Leadership Committee
             </h1>
 
             <div className="w-full h-1 mt-3 rounded-full bg-gradient-to-r from-purple-900 via-violet-700 to-indigo-600"></div>
           </div>
 
           <p className="mt-5 text-gray-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
-            Meet our distinguished organizing committee members who are leading
+            Meet our distinguished leadership committee members who are leading
             the conference to success with their expertise and guidance.
           </p>
         </motion.div>
