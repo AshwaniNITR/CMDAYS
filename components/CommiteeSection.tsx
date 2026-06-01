@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 interface CommitteeMember {
   _id: string;
@@ -99,12 +100,17 @@ export default function CommitteeSection({ title, category, description }: Commi
     <div className="mb-24 flex flex-col items-center">
       {/* Committee Header */}
       <div className="mb-16 animate-fadeIn w-full text-center">
-        <h2 className="inline-block backdrop-blur-sm text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-[#003366] to-[#0066cc] bg-clip-text text-transparent">
-          {title}
-        </h2>
-        <div className="w-24 h-1.5 bg-gradient-to-r from-[#003366] to-[#0066cc] mx-auto mb-6 rounded-full"></div>
+         <motion.h2
+  className="w-fit mx-auto px-6 py-3 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 shadow-lg text-4xl md:text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 bg-clip-text text-transparent"
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+>
+  {title}
+</motion.h2>
+        <div className="w-24 h-1.5 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 mx-auto mb-6 rounded-full"></div>
         {description && (
-          <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
+          <p className="w-fit mx-auto px-6 py-2 font-bold rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 shadow-lg">
             {description}
           </p>
         )}
