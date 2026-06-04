@@ -64,3 +64,30 @@
     align-items: stretch;
   }
 }
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-25px) scale(1.05);
+  }
+
+  100% {
+    transform: translateX(25px) scale(1.05);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(25px) scale(1.05);
+  }
+
+  100% {
+    transform: translateX(-25px) scale(1.05);
+  }
+}
+
+.left-carousel {
+  animation: slideFromLeft 8s linear infinite alternate;
+}
+
+.right-carousel {
+  animation: slideFromRight 8s linear infinite alternate;
+}
