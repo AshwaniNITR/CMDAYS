@@ -19,17 +19,17 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   }
 
   .slider-track-desktop {
-    animation: infiniteScroll 30s linear infinite;
+    animation: infiniteScroll 40s linear infinite;
     animation-play-state: running !important;
   }
 
   .slider-track-tablet {
-    animation: infiniteScroll 25s linear infinite;
+    animation: infiniteScroll 35s linear infinite;
     animation-play-state: running !important;
   }
 
   .slider-track-mobile {
-    animation: infiniteScroll 20s linear infinite;
+    animation: infiniteScroll 30s linear infinite;
     animation-play-state: running !important;
   }
 
