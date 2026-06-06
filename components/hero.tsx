@@ -48,6 +48,15 @@ const Hero = () => {
     "/conf4.jpeg",
     "/conf5.jpeg",
     "/conf6.jpeg",
+    "/conf7.jpeg",
+    "/conf8.jpeg",
+    "/conf9.jpeg",
+    "/conf10.jpeg",
+    "/conf11.jpeg",
+    "/conf12.jpeg",
+    "/conf13.jpeg",
+    "/conf14.jpeg",
+    "/conf15.jpeg",
   ];
 
   return (
@@ -241,7 +250,7 @@ const Hero = () => {
               `,
                   }}
                 >
-                  CMDAYS 2026
+                  CMDAYS-2026
                 </h1>
 
                 {/* Date Badge */}
