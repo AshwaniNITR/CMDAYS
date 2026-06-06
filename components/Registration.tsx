@@ -1,559 +1,237 @@
+"use client";
+
 import { motion } from "framer-motion";
-import React from "react";
+import Image from "next/image";
 
 export default function FeesPage() {
-  const rows = [
-  {
-    left: "All registration fees are inclusive of 18% GST",
-    right:
-      "For more than one accepted paper, a 40% discount will be given on the registration of the 2nd paper only (e.g. for two papers in the student category, registration fees will be ₹12000 (1st Reg. ₹7500 + 2nd Reg. ₹7500×60%) instead of ₹15000).",
-    highlightLeft: false,
-    highlightRight: true,
-  },
-  {
-    left:
-      "Author registration fee includes- Registration Kit, Conference Lunch and Banquet Dinner.",
-    right: "Registration fees, once paid, are non-refundable.",
-  },
-  {
-    left:
-      "Papers exceeding 6 pages will be charged at ₹1000 (USD 50) per additional page, up to a maximum of 8 pages. Beyond 8 pages, the charge will be ₹4000 (USD 200) per page",
-    right:
-      "Registration fees for attendees (co-author/non-author/accompanying person) is ₹3500 (without any Registration Kit).",
-    highlightLeft: true,
-  },
-];
-
-  const indianTableData = [
-    [
-      "Category",
-      "IEEE Member",
-      "Non-IEEE Member",
-      "IEEE Member",
-      "Non-IEEE Member",
-    ],
-    ["Student(UG/PG/Ph.D)", "7500", "8500", "8000", "9000"],
-    ["Academia/R&D Organization", "10,000", "11,000", "11,000", "12,000"],
-    ["Industry Professionals", "15,000", "16,000", "16,000", "17,000"],
+  // Fee structure from the image
+  const feeCategories = [
+    { category: "UG/PG student", amount: "2000 INR" },
+    { category: "Research Scholar", amount: "3000 INR" },
+    { category: "Postdoc Researcher", amount: "4000 INR" },
+    { category: "Faculty/Scientist", amount: "5000 INR" },
+    { category: "Industry Personnel", amount: "6000 INR" },
   ];
 
-  const foreignTableData = [
-    [
-      "Category",
-      "IEEE Member",
-      "Non-IEEE Member",
-      "IEEE Member",
-      "Non-IEEE Member",
-    ],
-    ["Student(UG/PG/Ph.D)", "250", "350", "300", "400"],
-    ["Academia/R&D Organization", "400", "450", "450", "500"],
-    ["Industry Professionals", "500", "550", "550", "600"],
+  // Additional info rows
+  const infoRows = [
+    {
+      text: "All registration fees are inclusive of 18% GST",
+      highlight: false,
+    },
+    {
+      text: "Author registration fee includes- Registration Kit, Conference Lunch and Banquet Dinner.",
+      highlight: false,
+    },
+    {
+      text: "Papers exceeding 6 pages will be charged at ₹1000 (USD 50) per additional page, up to a maximum of 8 pages. Beyond 8 pages, the charge will be ₹4000 (USD 200) per page",
+      highlight: false,
+    },
+    {
+      text: "For more than one accepted paper, a 40% discount will be given on the registration of the 2nd paper only (e.g. for two papers in the student category, registration fees will be ₹12000 (1st Reg. ₹7500 + 2nd Reg. ₹7500×60%) instead of ₹15000).",
+      highlight: true,
+    },
+    {
+      text: "Registration fees, once paid, are non-refundable.",
+      highlight: false,
+    },
+    {
+      text: "Registration fees for attendees (co-author/non-author/accompanying person) is ₹3500 (without any Registration Kit).",
+      highlight: false,
+    },
   ];
 
   return (
-    <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
-      <motion.h2
-        className="mt-12 font-extrabold sm:mt-10 text-4xl md:text-5xl text-center  leading-[1.25] pb-[0.15em] bg-gradient-to-r from-[#003366] to-[#0066cc] bg-clip-text text-transparent"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Registration Details
-      </motion.h2>
-      <div className="w-32 h-2 bg-gradient-to-r from-[#003366] to-[#0066cc] mx-auto mb-8 rounded-full"></div>
+    <div className="min-h-screen py-14 px-4 sm:px-6 md:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.h2
+          className="w-fit mx-auto px-6 py-3 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 shadow-lg text-4xl md:text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 bg-clip-text text-transparent"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Registration Details
+        </motion.h2>
+        <div className="w-24 h-1.5 bg-gradient-to-r from-purple-900 to-purple-900 mx-auto mb-10 rounded-full"></div>
 
-      {/* Indian Authors Table */}
-      <motion.div
-        className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl overflow-hidden mb-12 border border-blue-200"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        <div className="bg-gradient-to-r from-blue-800 to-blue-900 p-5">
-          <h2 className="text-2xl font-bold text-white text-center">
-            Indian Author (INR)
-          </h2>
-          <p className="text-blue-200 text-center text-sm mt-1">
-            Registration Fee Details
-          </p>
-        </div>
-
-        <div className="hidden lg:block p-6">
-          <div className="overflow-x-auto rounded-xl border border-blue-200 shadow-inner">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr>
-                  <th
-                    className="bg-gradient-to-b from-blue-900 to-blue-800 text-white p-5 text-center text-lg font-bold border border-blue-500 rounded-tl-xl"
-                    rowSpan={2}
+        {/* Main Grid: Fee Table + Bank Details + QR */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* Fee Table Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white rounded-2xl shadow-xl overflow-hidden border border-purple-200"
+          >
+            <div className="bg-gradient-to-r from-purple-800 to-purple-700 p-5">
+              <h2 className="text-2xl font-bold text-white text-center">
+                Registration Fees
+              </h2>
+              <p className="text-purple-200 text-center text-sm mt-1">
+                Fee Structure (in INR)
+              </p>
+            </div>
+            <div className="p-4">
+              <div className="space-y-2">
+                {feeCategories.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + idx * 0.05 }}
+                    className="flex justify-between items-center p-3 rounded-lg bg-purple-50 border border-purple-100 hover:shadow-md transition-shadow"
                   >
-                    Category
-                  </th>
-                  <th
-                    colSpan={2}
-                    className="bg-gradient-to-b from-blue-900 to-blue-950 text-white p-4 text-center border-r border-blue-500"
-                  >
-                    <div className="font-bold text-lg">Early Bird</div>
-                    <div className="text-blue-100 text-sm font-medium mt-1">
-                      (On or before 15.06.2025)
-                    </div>
-                  </th>
-                  <th
-                    colSpan={2}
-                    className="bg-gradient-to-b from-blue-900 to-blue-950 text-white p-4 text-center border border-blue-500"
-                  >
-                    <div className="font-bold text-lg">Regular</div>
-                    <div className="text-blue-100 text-sm font-medium mt-1">
-                      (16.06.2026 - 22.06.2026)
-                    </div>
-                  </th>
-                </tr>
-                <tr className="bg-gradient-to-b from-blue-800 to-blue-900">
-                  <th className="text-white p-4 text-center font-semibold border border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                      IEEE Member
+                    <span className="font-semibold text-purple-900">
+                      {item.category}
                     </span>
-                  </th>
-                  <th className="text-white p-4 text-center font-semibold border border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                      Non-IEEE Member
+                    <span className="text-purple-700 font-bold text-lg">
+                      {item.amount}
                     </span>
-                  </th>
-                  <th className="text-white p-4 text-center font-semibold border border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                      IEEE Member
-                    </span>
-                  </th>
-                  <th className="text-white p-4 text-center font-semibold border border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                      Non-IEEE Member
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {indianTableData.slice(1).map((row, rowIndex) => (
-                  <tr
-                    key={rowIndex}
-                    className={`${
-                      rowIndex % 2 === 0 ? "bg-white" : "bg-blue-50"
-                    } ${rowIndex === indianTableData.length - 2 ? "rounded-b-xl" : ""}
-                   `}
-                  >
-                    {row.map((cell, cellIndex) => (
-                      <td
-                        key={cellIndex}
-                        className={`p-4 border border-blue-500 ${
-                          cellIndex === 0
-                            ? "font-semibold text-blue-900 pl-6"
-                            : "text-gray-800 text-center font-medium"
-                        }`}
-                      >
-                        {cellIndex === 0 ? (
-                          <div className="flex items-center">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                            {cell}
-                          </div>
-                        ) : (
-                          <span
-                            className={`inline-block px-3 py-1.5 rounded-lg ${
-                              cellIndex % 2 === 1
-                                ? "bg-blue-100 text-blue-800 border border-blue-200"
-                                : "bg-blue-50 text-blue-900 border border-blue-100"
-                            }`}
-                          >
-                            ₹{cell}
-                          </span>
-                        )}
-                      </td>
-                    ))}
-                  </tr>
+                  </motion.div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Mobile View for Indian Authors */}
-        <div className="lg:hidden">
-          {indianTableData.slice(1).map((row, rowIndex) => (
-            <motion.div
-              key={rowIndex}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: rowIndex * 0.1 }}
-              className={`
-                border-t border-blue-300 first:border-t-0
-                ${rowIndex % 2 === 0 ? "bg-white" : "bg-blue-50"}
-              `}
-            >
-              {/* Category Header */}
-              <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-3 border-b border-blue-500">
-                <h3 className="font-bold text-white text-lg flex items-center">
-                  <span className="w-3 h-3 bg-white rounded-full mr-3"></span>
-                  {row[0]}
-                </h3>
               </div>
-              
-              <div className="p-4">
-                {/* Early Bird Section */}
-                <div className="mb-4">
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-950 p-2 rounded-t-lg border border-blue-500 border-b-0">
-                    <h4 className="font-bold text-white text-center">
-                      Early Bird
-                    </h4>
-                    <p className="text-blue-200 text-xs text-center mt-0.5">
-                      On or before 15.06.2025
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-0 border border-blue-500 rounded-b-lg overflow-hidden">
-                    <div className="bg-gradient-to-b from-blue-800 to-blue-900 p-3 border-r border-blue-500">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                        <span className="text-white font-medium">IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ₹{row[1]}
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-b from-blue-700 to-blue-800 p-3">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                        <span className="text-white font-medium">Non-IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ₹{row[2]}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="mt-4 p-3 bg-purple-100 rounded-lg border border-purple-200">
+                <p className="text-purple-800 text-sm font-medium">
+                  <span className="font-bold">Note:</span> Registration fees are
+                  non-refundable
+                </p>
+                <p className="text-purple-700 text-sm mt-1">
+                  <span className="font-bold">Special:</span> NITR students -
+                  Registration Fees: Nil
+                </p>
+              </div>
+            </div>
+          </motion.div>
 
-                {/* Regular Section */}
-                <div>
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-950 p-2 rounded-t-lg border border-blue-500 border-b-0">
-                    <h4 className="font-bold text-white text-center">
-                      Regular
-                    </h4>
-                    <p className="text-blue-200 text-xs text-center mt-0.5">
-                      16.06.2026 - 22.06.2026
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-0 border border-blue-500 rounded-b-lg overflow-hidden">
-                    <div className="bg-gradient-to-b from-blue-800 to-blue-900 p-3 border-r border-blue-500">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                        <span className="text-white font-medium">IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ₹{row[3]}
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-b from-blue-700 to-blue-800 p-3">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                        <span className="text-white font-medium">Non-IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ₹{row[4]}
-                      </div>
-                    </div>
-                  </div>
+          {/* Bank Details + QR Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white rounded-2xl shadow-xl overflow-hidden border border-purple-200"
+          >
+            <div className="bg-gradient-to-r from-purple-800 to-purple-700 p-5">
+              <h2 className="text-2xl font-bold text-white text-center">
+                Payment Details
+              </h2>
+              <p className="text-purple-200 text-center text-sm mt-1">
+                Bank Transfer via UPI / NEFT / IMPS
+              </p>
+            </div>
+            <div className="p-5 space-y-4">
+              <div className="space-y-2">
+                <div className="flex justify-between items-center border-b border-purple-200 pb-2">
+                  <span className="font-semibold text-purple-900">
+                    Account Number:
+                  </span>
+                  <span className="text-purple-700 font-mono font-bold">
+                    36734418111
+                  </span>
+                </div>
+                <div className="flex justify-between items-center border-b border-purple-200 pb-2">
+                  <span className="font-semibold text-purple-900">
+                    Account Name:
+                  </span>
+                  <span className="text-purple-700">
+                    Conference, NIT Rourkela
+                  </span>
+                </div>
+                <div className="flex justify-between items-center border-b border-purple-200 pb-2">
+                  <span className="font-semibold text-purple-900">
+                    IFSC Code:
+                  </span>
+                  <span className="text-purple-700 font-mono">SBIN0002109</span>
+                </div>
+                <div className="flex justify-between items-center border-b border-purple-200 pb-2">
+                  <span className="font-semibold text-purple-900">
+                    Bank & Branch:
+                  </span>
+                  <span className="text-purple-700">
+                    SBI, NIT Campus, Rourkela
+                  </span>
+                </div>
+                <div className="flex justify-between items-center border-b border-purple-200 pb-2">
+                  <span className="font-semibold text-purple-900">
+                    Merchant Name:
+                  </span>
+                  <span className="text-purple-700">
+                    CONFERENCE NIT ROURKELA
+                  </span>
+                </div>
+                <div className="flex justify-between items-center pt-1">
+                  <span className="font-semibold text-purple-900">UPI ID:</span>
+                  <span className="text-purple-700 font-mono font-bold">
+                    2804180418@sbi
+                  </span>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
 
-      {/* Foreign Authors Table */}
-      <motion.div
-        className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl overflow-hidden mb-12 border border-blue-200"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="bg-gradient-to-r from-blue-800 to-blue-900 p-5">
-          <h2 className="text-2xl font-bold text-white text-center">
-            Foreign Author (USD)
-          </h2>
-          <p className="text-blue-200 text-center text-sm mt-1">
-            Registration Fee Details
-          </p>
-        </div>
-
-        <div className="hidden lg:block p-6">
-          <div className="overflow-x-auto rounded-xl border border-blue-200 shadow-inner">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr>
-                  <th
-                    className="bg-gradient-to-b from-blue-900 to-blue-800 text-white p-5 text-center text-lg font-bold border border-blue-500 rounded-tl-xl"
-                    rowSpan={2}
-                  >
-                    Category
-                  </th>
-                  <th
-                    colSpan={2}
-                    className="bg-gradient-to-b from-blue-900 to-blue-950 text-white p-4 text-center border-r border-blue-500"
-                  >
-                    <div className="font-bold text-lg">Early Bird</div>
-                    <div className="text-blue-100 text-sm font-medium mt-1">
-                      (On or before 15.06.2025)
-                    </div>
-                  </th>
-                  <th
-                    colSpan={2}
-                    className="bg-gradient-to-b from-blue-900 to-blue-950 text-white p-4 text-center border border-blue-500"
-                  >
-                    <div className="font-bold text-lg">Regular</div>
-                    <div className="text-blue-100 text-sm font-medium mt-1">
-                      (16.06.2026 - 22.06.2026)
-                    </div>
-                  </th>
-                </tr>
-                <tr className="bg-gradient-to-b from-blue-800 to-blue-900">
-                  <th className="text-white p-4 text-center font-semibold border-r border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                      IEEE Member
-                    </span>
-                  </th>
-                  <th className="text-white p-4 text-center font-semibold border-r border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                      Non-IEEE Member
-                    </span>
-                  </th>
-                  <th className="text-white p-4 text-center font-semibold border-r border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                      IEEE Member
-                    </span>
-                  </th>
-                  <th className="text-white p-4 text-center font-semibold border-r border-blue-500">
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                      Non-IEEE Member
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {foreignTableData.slice(1).map((row, rowIndex) => (
-                  <tr
-                    key={rowIndex}
-                    className={`${
-                      rowIndex % 2 === 0 ? "bg-white" : "bg-blue-50"
-                    } ${rowIndex === foreignTableData.length - 2 ? "rounded-b-xl" : ""}`}
-                  >
-                    {row.map((cell, cellIndex) => (
-                      <td
-                        key={cellIndex}
-                        className={`p-4 border border-blue-500 ${
-                          cellIndex === 0
-                            ? "font-semibold text-blue-900 pl-6"
-                            : "text-gray-800 text-center font-medium"
-                        }`}
-                      >
-                        {cellIndex === 0 ? (
-                          <div className="flex items-center">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                            {cell}
-                          </div>
-                        ) : (
-                          <span
-                            className={`inline-block px-3 py-1.5 rounded-lg ${
-                              cellIndex % 2 === 1
-                                ? "bg-blue-100 text-blue-800 border border-blue-200"
-                                : "bg-blue-50 text-blue-900 border border-blue-100"
-                            }`}
-                          >
-                            ${cell}
-                          </span>
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Mobile View for Foreign Authors */}
-        <div className="lg:hidden">
-          {foreignTableData.slice(1).map((row, rowIndex) => (
-            <motion.div
-              key={rowIndex}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: rowIndex * 0.1 }}
-              className={`
-                border-t border-blue-300 first:border-t-0
-                ${rowIndex % 2 === 0 ? "bg-white" : "bg-blue-50"}
-              `}
-            >
-              {/* Category Header */}
-              <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-3 border-b border-blue-500">
-                <h3 className="font-bold text-white text-lg flex items-center">
-                  <span className="w-3 h-3 bg-white rounded-full mr-3"></span>
-                  {row[0]}
-                </h3>
-              </div>
-              
-              <div className="p-4">
-                {/* Early Bird Section */}
-                <div className="mb-4">
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-950 p-2 rounded-t-lg border border-blue-500 border-b-0">
-                    <h4 className="font-bold text-white text-center">
-                      Early Bird
-                    </h4>
-                    <p className="text-blue-200 text-xs text-center mt-0.5">
-                      On or before 15.06.2025
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-0 border border-blue-500 rounded-b-lg overflow-hidden">
-                    <div className="bg-gradient-to-b from-blue-800 to-blue-900 p-3 border-r border-blue-500">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                        <span className="text-white font-medium">IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ${row[1]}
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-b from-blue-700 to-blue-800 p-3">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                        <span className="text-white font-medium">Non-IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ${row[2]}
-                      </div>
-                    </div>
+              {/* QR Code Placeholder - Replace with actual QR image */}
+              <div className="mt-4 pt-4 border-t border-purple-200">
+                <p className="text-purple-800 text-sm font-medium text-center mb-3">
+                  Scan QR Code for UPI Payment
+                </p>
+                <div className="flex justify-center">
+                  <div className="relative w-36 h-36 bg-purple-100 rounded-xl border-2 border-purple-300 flex items-center justify-center">
+                    {/* Replace the src below with your actual QR image path */}
+                    <Image
+                      src="/qr-placeholder.png"
+                      alt="UPI QR Code"
+                      width={128}
+                      height={128}
+                      className="object-contain"
+                      onError={(e) => {
+                        // Fallback if image not found - show a placeholder box
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        const parent = target.parentElement;
+                        if (parent) {
+                          const fallback = document.createElement("div");
+                          fallback.className =
+                            "text-purple-600 text-xs text-center p-2";
+                          fallback.innerText = "QR Code\nPlaceholder";
+                          parent.appendChild(fallback);
+                        }
+                      }}
+                    />
+                    {/* If you don't have an image yet, uncomment below line and comment Image */}
+                    {/* <div className="text-purple-600 text-xs text-center p-2">QR Code Placeholder<br />Add your QR image</div> */}
                   </div>
                 </div>
-
-                {/* Regular Section */}
-                <div>
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-950 p-2 rounded-t-lg border border-blue-500 border-b-0">
-                    <h4 className="font-bold text-white text-center">
-                      Regular
-                    </h4>
-                    <p className="text-blue-200 text-xs text-center mt-0.5">
-                      16.06.2026 - 22.06.2026
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-0 border border-blue-500 rounded-b-lg overflow-hidden">
-                    <div className="bg-gradient-to-b from-blue-800 to-blue-900 p-3 border-r border-blue-500">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-300 rounded-full"></span>
-                        <span className="text-white font-medium">IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ${row[3]}
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-b from-blue-700 to-blue-800 p-3">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <span className="w-3 h-3 bg-blue-400 rounded-full"></span>
-                        <span className="text-white font-medium">Non-IEEE Member</span>
-                      </div>
-                      <div className="text-2xl font-bold text-white text-center">
-                        ${row[4]}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-purple-500 text-xs text-center mt-2">
+                  * Registration fees are non-refundable
+                </p>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Additional Information Card */}
-      <motion.div
-        className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl overflow-hidden border border-blue-200"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-5">
-          <h2 className="text-2xl font-bold text-white text-center">
-            Additional Information
-          </h2>
-          <p className="text-blue-200 text-sm mt-1 text-center">
-            Important registration guidelines and policies
-          </p>
+            </div>
+          </motion.div>
         </div>
 
-      <div className="p-6">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-    {rows.map((row, index) => (
-      <React.Fragment key={index}>
-        {/* LEFT CELL */}
-        <div className="flex items-start p-3 rounded-lg hover:bg-blue-50 transition">
-          <div
-            className={`w-6 h-6 aspect-square shrink-0 rounded-full
-  flex items-center justify-center mr-3 leading-none ${
-              row.highlightLeft ? "bg-red-100" : "bg-blue-100"
-            }`}
-          >
-            <span
-              className={`text-sm font-bold leading-none ${
-                row.highlightLeft ? "text-red-600" : "text-blue-600"
-              }`}
+        {/* Google Form Link */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="mb-8"
+        >
+          <div className="bg-gradient-to-r from-purple-100 to-purple-50 rounded-xl p-5 border border-purple-200 text-center shadow-md">
+            <h3 className="text-xl font-bold text-purple-900 mb-2">
+              Register Now
+            </h3>
+            <p className="text-purple-700 mb-3">
+              Please fill out the Google Form to complete your registration
+            </p>
+            <a
+              href="https://forms.gle/J6YQGo13Pyh5oaUz5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gradient-to-r from-purple-600 to-purple-500 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105"
             >
-              •
-            </span>
+              Registration Form →
+            </a>
           </div>
-          <p
-            className={`${
-              row.highlightLeft
-                ? "text-red-600 font-semibold"
-                : "text-gray-700"
-            }`}
-          >
-            {row.left}
-          </p>
-        </div>
-
-        {/* RIGHT CELL */}
-        <div className="flex items-start p-3 rounded-lg hover:bg-blue-50 transition">
-          <div
-            className={`w-6 h-6 aspect-square shrink-0 rounded-full
-  flex items-center justify-center mr-3 leading-none ${
-              row.highlightRight ? "bg-red-100" : "bg-blue-100"
-            }`}
-          >
-            <span
-              className={`text-sm font-bold leading-none ${
-                row.highlightRight ? "text-red-600" : "text-blue-600"
-              }`}
-            >
-              •
-            </span>
-          </div>
-          <p
-            className={`${
-              row.highlightRight
-                ? "text-red-600 font-semibold"
-                : "text-gray-700"
-            }`}
-          >
-            {row.right}
-          </p>
-        </div>
-      </React.Fragment>
-    ))}
-  </div>
-</div>
-
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }
