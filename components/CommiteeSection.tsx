@@ -30,7 +30,7 @@ export default function CommitteeSection({
   const [error, setError] = useState<string | null>(null);
 
   // Role to exclude for Local Organizing Committee
-  const excludedRoles = ["Chief Patron,   Director NIT Rourkela"];
+  const excludedRoles = ["Director, NIT Rourkela"];
 
   useEffect(() => {
     const fetchCommitteeData = async () => {
