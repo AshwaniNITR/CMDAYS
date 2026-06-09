@@ -93,12 +93,14 @@ export default function FeesPage() {
               </div>
               <div className="mt-4 p-3 bg-purple-100 rounded-lg border border-purple-200">
                 <p className="text-purple-800 text-sm font-medium">
-                  <span className="font-bold">Note:</span> Registration fees are
-                  non-refundable
+                  <span className="font-bold">Note:</span> The registration fees are inclusive of 18% GST.
                 </p>
                 <p className="text-purple-700 text-sm mt-1">
-                  <span className="font-bold">Special:</span> NITR students -
+                 NITR students -
                   Registration Fees: Nil
+                </p>
+                  <p className="text-purple-700 text-sm mt-1">
+                   <span className="font-bold">Registration Fee includes:</span> Registration Kit, conference Lunch and Dinner etc.
                 </p>
               </div>
             </div>
