@@ -95,10 +95,6 @@ export default function FeesPage() {
                 <p className="text-purple-800 text-sm font-medium">
                   <span className="font-bold">Note:</span> The registration fees are inclusive of 18% GST.
                 </p>
-                <p className="text-purple-700 text-sm mt-1">
-                 NITR students -
-                  Registration Fees: Nil
-                </p>
                   <p className="text-purple-700 text-sm mt-1">
                    <span className="font-bold">Registration Fee includes:</span> Registration Kit, conference Lunch and Dinner etc.
                 </p>
