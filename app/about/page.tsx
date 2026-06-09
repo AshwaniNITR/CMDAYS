@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
 import { type FC, useState, useEffect } from "react";
 import Image from "next/image";
 import OtherBackground from "../../components/OtherBackground";
@@ -14,7 +15,7 @@ interface Section {
 const AboutUs: FC = () => {
   // State for current image index in the first section
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   // Images for NIT Rourkela section
   const nitImages = [
     "/photo1NIT.jpeg",
@@ -22,6 +23,8 @@ const AboutUs: FC = () => {
     "/photo3NIT.jpeg",
     "/photo5NIT.jpeg",
     "/photo6NIT.jpeg",
+    "/photo7NIT.jpeg",
+    "/photo8NIT.jpeg",
   ];
 
   const sections: Section[] = [
@@ -41,7 +44,7 @@ const AboutUs: FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % nitImages.length);
-    }, 2000); // 2 seconds interval
+    }, 5000); // 5 seconds interval
 
     return () => clearInterval(interval);
   }, [nitImages.length]);
@@ -59,7 +62,7 @@ const AboutUs: FC = () => {
   return (
     <div className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <OtherBackground />
-      
+
       <div className="relative z-20">
         <motion.h2
           className="w-fit mx-auto px-6 py-3 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/20 shadow-lg text-4xl md:text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 bg-clip-text text-transparent"
@@ -96,23 +99,28 @@ const AboutUs: FC = () => {
                 {sectionIndex === 0 ? (
                   // Image Slider for NIT Rourkela
                   <div className="relative w-full h-64 md:h-80 overflow-hidden">
-                    <motion.div
-                      key={currentImageIndex}
-                      initial={{ opacity: 0, scale: 1.1 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      className="w-full h-full"
-                    >
-                      <Image
-                        src={section.images[currentImageIndex]}
-                        alt={`${section.title} - Image ${currentImageIndex + 1}`}
-                        width={800}
-                        height={450}
-                        className="w-full h-full object-cover"
-                        priority={sectionIndex === 0}
-                      />
-                    </motion.div>
-                    
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentImageIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{
+                          duration: 1.2,
+                          ease: "easeInOut",
+                        }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={section.images[currentImageIndex]}
+                          alt={`${section.title} - Image ${currentImageIndex + 1}`}
+                          fill
+                          className="object-cover"
+                          priority
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+
                     {/* Image Counter/Dots Indicator */}
                     <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
                       {nitImages.map((_, idx) => (
@@ -128,24 +136,55 @@ const AboutUs: FC = () => {
                         />
                       ))}
                     </div>
-                    
+
                     {/* Navigation Arrows */}
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev - 1 + nitImages.length) % nitImages.length)}
+                      onClick={() =>
+                        setCurrentImageIndex(
+                          (prev) =>
+                            (prev - 1 + nitImages.length) % nitImages.length,
+                        )
+                      }
                       className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
                       aria-label="Previous image"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
                       </svg>
                     </button>
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev + 1) % nitImages.length)}
+                      onClick={() =>
+                        setCurrentImageIndex(
+                          (prev) => (prev + 1) % nitImages.length,
+                        )
+                      }
                       className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
                       aria-label="Next image"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </button>
                   </div>
