@@ -9,6 +9,7 @@ import {
   Twitter,
   Linkedin,
   MapPin,
+  Phone,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -127,21 +128,28 @@ export default function Contact() {
               <h3 className="text-xl font-semibold mb-5">Contact Us</h3>
 
               <div className="space-y-5 text-sm md:text-base">
-                <div className="flex items-start gap-3">
-                  <span className="text-purple-100">
-                    Dr. Suryanarayan Dash (Convener)
-                  </span>
-                </div>
-                 <div className="flex items-start gap-3">
-                  <span className="text-purple-100">
-                    Dr. Gopi Nath Daptary(Co-Convener)
-                  </span>
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-start gap-3">
+                    <Phone className="w-5 h-5 text-purple-200 mt-1" />
+                    <div className="flex flex-col">
+                      <span className="text-white font-medium">Dr. Suryanarayan Dash <span className="text-purple-200 text-sm font-normal">(Convener)</span></span>
+                      <a href="tel:+919438741397" className="text-purple-100 hover:text-white transition-colors">+91-9438741397</a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <Phone className="w-5 h-5 text-purple-200 mt-1" />
+                    <div className="flex flex-col">
+                      <span className="text-white font-medium">Dr. Nilay Maji <span className="text-purple-200 text-sm font-normal">(Co-Convener)</span></span>
+                      <a href="tel:+918250441545" className="text-purple-100 hover:text-white transition-colors">+91-8250441545</a>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-purple-200 mt-0.5" />
-                  <span className="text-purple-100">
+                  <Link href="mailto:cmdays2026@nitrkl.ac.in" className="text-purple-100">
                     cmdays2026@nitrkl.ac.in
-                  </span>
+                  </Link>
                 </div>
 
                 <div className="flex items-start gap-3">
