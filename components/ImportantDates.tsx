@@ -7,27 +7,27 @@ const IMPORTANT_DATES = [
   {
     id: 1,
     title: "Abstract Submission Begins",
-    date: new Date("2026-08-20"),
+    date: new Date("2026-08-01"),
   },
   {
     id: 2,
     title: "Abstract Submission Ends",
-    date: new Date("2026-09-20"),
+    date: new Date("2026-08-31"),
   },
   {
     id: 3,
     title: "Confirmation of Acceptance",
-    date: new Date("2026-09-30"),
+    date: new Date("2026-09-10"),
   },
   {
     id: 4,
     title: "Registration Begins",
-    date: new Date("2026-10-01"),
+    date: new Date("2026-09-10"),
   },
    {
     id: 5,
     title: "Registration Ends",
-    date: new Date("2026-10-10"),
+    date: new Date("2026-09-20"),
   },
 ];
 
