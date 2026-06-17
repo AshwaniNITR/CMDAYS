@@ -97,17 +97,22 @@ export default function Contact() {
                     href: "/",
                   },
                   {
-                    name: "About CMDAYS",
-                    href: "/about",
-                  },
-                  {
                     name: "Paper Submission",
                     href: "/submitPaper",
                   },
                   {
                     name: "Organizing Committee",
-                    href: "/organizing",
+                    href: "/local",
                   },
+                  {
+                    name:"Registration",
+                    href:"/RegDet"
+                  },
+                  {
+                    name:"Accomodation",
+                    href:"/updatedsoon"
+                  }
+
                 ].map((item) => (
                   <li key={item.name}>
                     <Link
