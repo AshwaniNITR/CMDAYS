@@ -46,7 +46,7 @@ const Page = () => {
                 >
                   cmdays2026@nitrkl.ac.in
                 </a>{" "}
-                by <span className="font-bold">20.09.2026</span>.
+                by <span className="font-bold">31.08.2026</span>.
               </p>
 
               <p className="text-slate-900 font-semibold leading-relaxed text-justify mt-4">
@@ -72,7 +72,7 @@ const Page = () => {
                 >
                   cmdays2026@nitrkl.ac.in
                 </a>{" "}
-                on or before <span className="font-bold">20.09.2026</span>.
+                on or before <span className="font-bold">31.08.2026</span>.
               </p>
 
               {/* Side-by-side cards */}
@@ -171,7 +171,7 @@ const Page = () => {
                     Abstract Submission Ends
                   </span>
                   <span className="font-bold text-red-600 text-center md:text-right">
-                    Sep 20, 2026
+                    Aug 31, 2026
                   </span>
                 </div>
 
@@ -180,7 +180,7 @@ const Page = () => {
                     Confirmation of Acceptance
                   </span>
                   <span className="font-bold text-red-600 text-center md:text-right">
-                    Sep 30, 2026
+                    Sep 10, 2026
                   </span>
                 </div>
 
@@ -189,7 +189,7 @@ const Page = () => {
                     Registration Begins
                   </span>
                   <span className="font-bold text-red-600 text-center md:text-right">
-                    Oct 1, 2026
+                    Sep 10, 2026
                   </span>
                 </div>
 
@@ -198,7 +198,7 @@ const Page = () => {
                     Registration Deadline
                   </span>
                   <span className="font-bold text-red-600 text-center md:text-right">
-                    Oct 10, 2026
+                    Sep 20, 2026
                   </span>
                 </div>
               </div>

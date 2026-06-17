@@ -146,7 +146,7 @@ const AboutUs = () => {
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl md:text-2xl font-bold text-purple-900">
-                    Conference Brochure
+                    Conference Flyer
                   </h3>
                   <Button
                     onClick={() => setIsModalOpen(true)}
@@ -202,7 +202,7 @@ const AboutUs = () => {
           >
             {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 shrink-0">
-              <h3 className="text-lg font-bold text-purple-900">Conference Brochure</h3>
+              <h3 className="text-lg font-bold text-purple-900">Conference Flyer</h3>
               <Button
                 onClick={() => setIsModalOpen(false)}
                 variant="default"
@@ -218,7 +218,7 @@ const AboutUs = () => {
               <iframe
                 src="/CMDAYS-2026_Flyer.pdf"
                 className="w-full h-full"
-                title="Conference Brochure Full Screen"
+                title="Conference Flyer Full Screen"
                 style={{ border: "none" }}
               >
                 This browser does not support PDFs. Please download the PDF to view it.
