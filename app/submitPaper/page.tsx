@@ -72,7 +72,7 @@ const Page = () => {
                 >
                   cmdays2026@nitrkl.ac.in
                 </a>{" "}
-                on or before <span className="font-bold">20.09.2026</span>.
+                on or before <span className="font-bold">31.08.2026</span>.
               </p>
 
               {/* Side-by-side cards */}
