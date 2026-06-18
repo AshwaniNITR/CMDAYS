@@ -8,17 +8,18 @@ import Navbar from '../components/Navbar';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "CMDAYS 2026 | CMDAYS2026 | 34th National Conference",
+  title: "CMDAYS-2026 | CMDAYS2026 | 34th National Conference",
   description:
-    "CMDAYS 2026: 34th National Conference. November 17-19, 2026 at NIT Rourkela.",
+    "CMDAYS-2026: 34th National Conference. November 17-19, 2026 at NIT Rourkela.",
    icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
   keywords: [
-    "CMDAYS",
+    "CMDAYS-2026",
     "CMDAYS 2026",
+    "Condensed Matter Days 2026",
     "CMDAYS2026",
     "Physics Conferences India",
     "Physics Conferences 2026",
