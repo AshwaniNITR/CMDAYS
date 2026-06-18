@@ -11,8 +11,8 @@ interface Section {
   content: string;
   images: string[]; // Changed from single image to array
 }
-
 const AboutUs: FC = () => {
+
   // State for current image index in the first section
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

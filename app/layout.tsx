@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: "CMDAYS 2026 | CMDAYS2026 | 34th National Conference",
   description:
-    "CMDAYS 2026: 34th National Conference on Instrumentation and Measurement. July 24-25, 2026 at NIT Rourkela.",
+    "CMDAYS 2026: 34th National Conference. November 17-19, 2026 at NIT Rourkela.",
    icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -20,50 +20,51 @@ export const metadata: Metadata = {
     "CMDAYS",
     "CMDAYS 2026",
     "CMDAYS2026",
-    "IEEE Conference",
-    "Instrumentation Conference",
-    "NIT Rourkela Conference",
-    "IEEE Instrumentation and Measurement Society",
-    "IEEE Robotics and Automation Society",
-    "Instrumentation",
-    "Sensors",
-    "AI instrumentation",
+    "Physics Conferences India",
+    "Physics Conferences 2026",
+    "Physics Conferences NIT Rourkela",
+    "Condensed Matter Days",
+    "34th National Conference ",
+    "NIT Rourkela, Physics",
+    "NIT Rkl conference",
+    "National Institute of Technology Rourkela",
+    
   ],
 
-  authors: [{ name: "INSTCon 2026 Organizing Committee" }],
-  creator: "INSTCon 2026",
+  authors: [{ name: "CMDAYS 2026 Organizing Committee" }],
+  creator: "CMDAYS 2026",
   publisher: "National Institute of Technology Rourkela",
 
   openGraph: {
-    title: "INSTCon 2026 | INSTCon2026 – IEEE International Conference on Instrumentation",
+    title: "CMDAYS 2026 | CMDAYS2026 – 34th National Conference",
     description:
-      "1st IEEE International Conference on Instrumentation (INSTCon 2026). Intelligent Instrumentation for Sustainable Technologies. July 24–25, 2026, NIT Rourkela.",
-    url: "https://instcon2026.nitrkl.ac.in",
-    siteName: "INSTCon2026",
+      "CMDAYS 2026: 34th National Conference. November 17-19, 2026 at NIT Rourkela.",
+    url: "https://cmdays2026.nitrkl.ac.in",
+    siteName: "CMDAYS2026",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://instcon2026.nitrkl.ac.in/og-image.png",
+        url: "https://cmdays2026.nitrkl.ac.in/og-image.png",
         width: 1200,
         height: 630,
-        alt: "INSTCon2026 – IEEE International Conference on Instrumentation",
+        alt: "CMDAYS2026 – 34th National Conference",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "INSTCon 2026 | INSTCon2026 – IEEE International Conference",
+    title: "CMDAYS 2026 | CMDAYS2026 – 34th National Conference",
     description:
-      "Official website of INSTCon 2026 – Intelligent Instrumentation for Sustainable Technologies. July 24–25, 2026.",
-    images: ["https://instcon2026.nitrkl.ac.in/og-image.png"],
+      "Official website of CMDAYS 2026 – 34th National Conference. November 17-19, 2026.",
+    images: ["https://cmdays2026.nitrkl.ac.in/og-image.png"],
   },
 
-  metadataBase: new URL("https://instcon2026.nitrkl.ac.in"),
+  metadataBase: new URL("https://cmdays2026.nitrkl.ac.in"),
 
   alternates: {
-    canonical: "https://instcon2026.nitrkl.ac.in",
+    canonical: "https://cmdays2026.nitrkl.ac.in",
   },
 
   verification: {
@@ -80,7 +81,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-      <meta name="google-site-verification" content="cw1_8gl8nq05FsobxveJq8HUE4BlMFBFEeR_nAitBwQ" />
+      <meta name="google-site-verification" content="" />
       </head>
       <body className={inter.className + 'bg-transparent antialiased'} suppressHydrationWarning>
         <Navbar/>
