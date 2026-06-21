@@ -67,7 +67,7 @@ export default function Contact() {
                   {
                     icon: Linkedin,
                     name: "LinkedIn",
-                    url: "https://www.linkedin.com/company/ieee-ims-society/",
+                    url: "#",
                   },
                 ].map((social) => (
                   <a

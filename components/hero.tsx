@@ -380,7 +380,7 @@ const Hero = () => {
                           fontFamily: "Georgia, serif",
                         }}
                       >
-                        Department of Physics And Astronomy
+                        Department of Physics and Astronomy
                       </p>
 
                       <p
@@ -409,7 +409,7 @@ const Hero = () => {
                         }}
                       >
                         <MapPin className="w-5 h-5 shrink-0 mt-[0.18rem]" />
-                        National Institute of Technology, Rourkela • Odisha,
+                        National Institute of Technology Rourkela, Odisha,
                         India - 769008
                       </p>
                     </div>
@@ -687,7 +687,7 @@ const Hero = () => {
                     fontFamily: "Georgia, serif",
                   }}
                 >
-                  Department of Physics And Astronomy
+                  Department of Physics and Astronomy
                 </p>
 
                 <p
@@ -714,8 +714,7 @@ const Hero = () => {
                   }}
                 >
                   <MapPin className="w-5 h-5 shrink-0 mt-[0.18rem]" />
-                  National Institute of Technology, Rourkela • Odisha, India -
-                  769008
+                  National Institute of Technology Rourkela, Odisha, India - 769008
                 </p>
               </div>
             </div>
@@ -913,7 +912,7 @@ const Hero = () => {
                 fontFamily: "Georgia, serif",
               }}
             >
-              Department of Physics And Astronomy
+              Department of Physics and Astronomy
             </p>
 
             <p
@@ -942,7 +941,7 @@ const Hero = () => {
               }}
             >
               <MapPin className="w-4 h-4 shrink-0 mt-[0.18rem]" />
-              National Institute of Technology, Rourkela,Odisha, India-769008
+              National Institute of Technology Rourkela, Odisha, India-769008
             </p>
           </div>
           <div className="w-full mt-6 mb-8 relative z-[9999]">
