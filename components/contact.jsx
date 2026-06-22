@@ -67,7 +67,7 @@ export default function Contact() {
                   {
                     icon: Linkedin,
                     name: "LinkedIn",
-                    url: "#",
+                    url: "https://www.linkedin.com/in/condensed-matter-days-946805418/",
                   },
                 ].map((social) => (
                   <a
