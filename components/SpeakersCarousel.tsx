@@ -408,7 +408,7 @@ export default function SpeakersCarousel() {
           </div>
 
           <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-            Our Speakers
+            Tentative List of Speakers
           </h2>
 
           {speakerBatches.length >
