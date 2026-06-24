@@ -284,7 +284,7 @@ export default function Committee() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Our Speakers
+              Tentative List of Speakers
             </motion.h2>
           </motion.div>
 
