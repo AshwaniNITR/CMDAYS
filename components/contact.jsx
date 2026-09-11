@@ -110,9 +110,9 @@ export default function Contact() {
                     href:"/RegDet"
                   },
                   {
-                    name:"Accomodation",
-                    href:"/updatedsoon"
-                  }
+                    name: "Accommodation",
+                    href: "/accommodation",
+                  },
 
                 ].map((item) => (
                   <li key={item.name}>

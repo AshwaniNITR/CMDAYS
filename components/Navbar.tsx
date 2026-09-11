@@ -43,7 +43,7 @@ const navigation = [
  
   { name: "Travel", href: "/travel" },
   { name: "Schedule", href: "/updatedsoon" },
-  {name: "Accomodation", href: "/updatedsoon"},
+  { name: "Accommodation", href: "/accommodation" },
   {
     name: "Sponsorship",
     href: "/Sponsorship",
@@ -241,7 +241,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105 group px-1 xl:px-2 py-1 text-sm xl:text-base whitespace-nowrap transition-all duration-500 ease-out ${
+                  className={`relative text-gray-700 hover:text-blue-600 font-medium hover:scale-105 group px-1 xl:px-2 py-1 text-sm xl:text-base whitespace-nowrap transition-all duration-500 ease-out ${
                     animationStates.navItems[idx]
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 -translate-y-4"
