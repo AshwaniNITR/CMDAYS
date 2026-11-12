@@ -42,7 +42,7 @@ const navigation = [
   {name:"Registration", href:"/RegDet"},
  
   { name: "Travel", href: "/travel" },
-  { name: "Schedule", href: "/updatedsoon" },
+  { name: "Schedule", href: "/schedule.pdf" },
   { name: "Accommodation", href: "/accommodation" },
   {
     name: "Sponsorship",
