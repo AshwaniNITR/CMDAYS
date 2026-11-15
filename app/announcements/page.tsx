@@ -138,8 +138,8 @@ const FlippableCard = ({ announcement, index, isDeadlinePassed }) => {
 const Page = () => {
   const announcements = [
   {
-    title: "Inauguration Ceremony",
-    description: "Write that The inauguration of 34th National Conference Condensed Matter Days 2026 (CMDAYS-2026) will be held on 17th NOVEMBER 2026 at PPA NIT ROURKELA at 9:30AM",
+    title: "The Inauguration Ceremony",
+    description: "The Inauguration of 34th National Conference Condensed Matter Days 2026 (CMDAYS-2026) will be held on 17th NOVEMBER 2026 at PPA NIT ROURKELA at 9:30AM",
     icon: Calendar,
     color: "from-orange-500 to-red-500",
   },
