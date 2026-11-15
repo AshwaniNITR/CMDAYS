@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Navbar from "../../components/Navbar";
+//import Navbar from "../../components/Navbar";
 
 import { CommitteesBackground } from "../../components/Background";
-import SecondBack from "../../components/SecondBack";
+import CombinedBackground from "../../components/CombinedBackground";
+//import SecondBack from "../../components/SecondBack";
 const sponsorLogos = [
-  "https://res.cloudinary.com/dd11bvhdi/image/upload/v1741620262/logo_I3ST_camy9q.jpg",
-  "/ieeerklsub.jpg",
-  "/IEEE_Kolkata_Section.png",
-  "/WomenInEng.jpeg"
+  "/anrf.jpeg",
+  "/sponsors2.jpeg",
+  "/sponsor3.jpeg"
 ];
 
 // Duplicate logos multiple times for seamless scrolling
@@ -29,13 +29,13 @@ export default function Committee() {
 
   return (
     <div className="relative min-h-screen overflow-hidden ">
-      <CommitteesBackground/>
+      <CombinedBackground/>
       {/* <Navbar/> */}
-      <section className="relative py-20 flex flex-col items-center justify-center min-h-screen">
+      <section className="relative  flex flex-col items-center justify-center min-h-screen">
         {/* Technical Sponsors Header */}
         <div className="container mx-auto px-4 lg:px-8 text-center mb-5">
-          <h2 className="md:text-5xl text-4xl font-bold bg-gradient-to-r from-blue-900 via-blue-700 to-purple-600 bg-clip-text text-transparent  mb-4">
-            Technical <span className="font-extrabold">Co-Sponsors</span>
+          <h2 className="md:text-5xl text-4xl font-bold bg-gradient-to-r from-blue-900 via-blue-700 to-purple-600 bg-clip-text text-transparent mb-4">
+            Our <span className="font-extrabold">Sponsors</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto  rounded-full"></div>
         </div>
@@ -78,13 +78,6 @@ export default function Committee() {
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-100 to-transparent pointer-events-none z-10" />
         </div>
 
-        {/* Financial Sponsors Header */}
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="md:text-5xl text-4xl font-bold bg-gradient-to-r from-blue-900 via-blue-700 to-purple-600 bg-clip-text text-transparent  mb-4">
-            Financial <span className="font-extrabold">Sponsors</span>
-          </h2>
-        </div>
-        <p className="mb-10 text-2xl text-gray-600">To be Updated Soon...</p>
       </section>
 
       <style jsx>{`

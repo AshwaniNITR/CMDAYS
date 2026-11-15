@@ -49,7 +49,7 @@ const navigation = [
     href: "/Sponsorship",
     dropdown: [
       { name: "Call For Sponsors", href: "/callforspons" },
-      { name: "Our Sponsors", href: "/updatesoon" },
+      { name: "Our Sponsors", href: "/Sponsorship" },
     ],
   },
   {

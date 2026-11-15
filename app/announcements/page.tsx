@@ -138,31 +138,11 @@ const FlippableCard = ({ announcement, index, isDeadlinePassed }) => {
 const Page = () => {
   const announcements = [
   {
-    title: "Paper Submission is now closed!",
-    description: "Thank you for your interest. Stay tuned for updates on the review process and notification of acceptance.",
+    title: "List Of Registered Participants",
+    description: "Please find the list of registered participants for the conference. Find the PDF",
     icon: Calendar,
     color: "from-orange-500 to-red-500",
-  },
-  {
-    title: "Travel Grants",
-    description:
-      "Limited Travel Grants will be awarded to the selected student presenters.",
-    icon: Plane,
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    title: "Best Paper Award in Each Track",
-    description: "One best paper award in each track",
-    icon: Trophy,
-    color: "from-yellow-500 to-amber-500",
-  },
-  {
-    title: "Journal Publication Opportunity",
-    description:
-      "Authors of papers accepted and presented at INSTCon 2026 may submit technically extended versions of their work to IEEE Transactions on Instrumentation and Measurement (TIM) and IEEE Open Journal of Instrumentation and Measurement (OJIM), in accordance with the journals' policies for extended versions of conference papers. All such submissions will be handled as regular journal submissions and will undergo the standard peer-review process.",
-    icon: FileText,
-    color: "from-blue-500 to-indigo-500",
-  },
+  }
 ];
      const [now, setNow] = useState(new Date());
 
