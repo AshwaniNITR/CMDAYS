@@ -54,7 +54,7 @@ const navigation = [
   },
   {
     name: "Announcements",
-    href: "/updatedsoon",
+    href: "/announcements",
   },
 ];
 

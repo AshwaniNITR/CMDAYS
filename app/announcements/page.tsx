@@ -138,11 +138,18 @@ const FlippableCard = ({ announcement, index, isDeadlinePassed }) => {
 const Page = () => {
   const announcements = [
   {
-    title: "List Of Registered Participants",
-    description: "Please find the list of registered participants for the conference. Find the PDF",
+    title: "Inauguration Ceremony",
+    description: "Write that The inauguration of 34th National Conference Condensed Matter Days 2026 (CMDAYS-2026) will be held on 17th NOVEMBER 2026 at PPA NIT ROURKELA at 9:30AM",
     icon: Calendar,
     color: "from-orange-500 to-red-500",
+  },
+  {
+    title:"Best Oral Presentation and Best Poster Presentation Award",
+    icon:Trophy,
+    color:"from-yellow-500 to-orange-500",
+    description:"Best Oral Presentation and Best Poster Presentation Award will be given in the Velidictary Function on 19th November 2026."
   }
+
 ];
      const [now, setNow] = useState(new Date());
 
@@ -155,11 +162,7 @@ const Page = () => {
   }, []);
   const targetTime = new Date("2026-03-31T23:59:00");
   const isDeadlinePassed = now >= targetTime;
-  if(isDeadlinePassed){
-     announcements[0].title="Date For Notification of Acceptance is Extended!";
-     announcements[0].description="The Notification of Acceptance date has been extended to May 31, 2026.";
-     announcements[0].color="from-green-500 to-green-600";
-  }
+  
   return (
     <div className="relative min-h-screen">
       <CombinedBackground/>
