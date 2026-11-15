@@ -9,7 +9,8 @@ import CombinedBackground from "../../components/CombinedBackground";
 const sponsorLogos = [
   "/anrf.jpeg",
   "/sponsors2.jpeg",
-  "/sponsor3.jpeg"
+  "/sponsor3.jpeg",
+  "/sponsors4.jpeg"
 ];
 
 // Duplicate logos multiple times for seamless scrolling
