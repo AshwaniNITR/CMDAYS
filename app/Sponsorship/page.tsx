@@ -7,8 +7,8 @@ import { CommitteesBackground } from "../../components/Background";
 import CombinedBackground from "../../components/CombinedBackground";
 //import SecondBack from "../../components/SecondBack";
 const sponsorLogos = [
+  "/anrf.jpeg",
   "/sponsors1.jpeg",
-  "/sponsors2.jpeg",
   "/sponsor3.jpeg",
   "/sponsors4.jpeg"
 ];
