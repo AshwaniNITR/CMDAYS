@@ -147,7 +147,7 @@ const Page = () => {
     title:"Best Oral Presentation and Best Poster Presentation Award",
     icon:Trophy,
     color:"from-yellow-500 to-orange-500",
-    description:"Best Oral Presentation and Best Poster Presentation Award will be given in the Velidictary Function on 19th November 2026."
+    description:"Best Oral Presentation and Best Poster Presentation Award will be given in the Valedictory Function on 19th November 2026."
   }
 
 ];
