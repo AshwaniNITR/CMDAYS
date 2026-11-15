@@ -39,7 +39,12 @@ const navigation = [
     // ],
   },
   // { name: "Tracks", href: "/track-chairs" },
-  {name:"Registration", href:"/RegDet"},
+  {name:"Registration", href:"/RegDet",
+    dropdown:[
+      {name:"Registration Details", href:"/RegDet"},
+      {name:"List of Registered Participants", href:"/RegisteredParticipants.pdf"},
+    ]
+  },
  
   { name: "Travel", href: "/travel" },
   { name: "Schedule", href: "/schedule.pdf" },
